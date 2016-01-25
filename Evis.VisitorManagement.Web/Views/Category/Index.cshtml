@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="category" ng-init="initializeController()">
+
+    <h2>My Note</h2>
+
+    <p><textarea ng-model="message" cols="40" rows="10"></textarea></p>
+
+    <p>
+        <button ng-click="save()">Save</button>
+        <button ng-click="clear()">Clear</button>
+    </p>
+
+    <p>Number of characters left: <span ng-bind="left()"></span></p>
+
+    <table class="table table-bordered table-hover">
+        <tbody>
+            <tr data-ng-repeat="val in values">
+                <td> {{val}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript" src="~/Scripts/Controllers/CategoryController.js"></script>
