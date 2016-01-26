@@ -58,8 +58,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationUser.cs" />
-    <Compile Include="Category.cs" />
+    <Compile Include="Entities\ApplicationRole.cs" />
+    <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Salutation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

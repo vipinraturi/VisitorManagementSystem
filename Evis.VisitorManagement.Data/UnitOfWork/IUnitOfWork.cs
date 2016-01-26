@@ -21,6 +21,7 @@ namespace Evis.VisitorManagement.Data
         /// </summary>
         /// <typeparam name="T">Type of repository</typeparam>
         /// <returns></returns>
-        IRepository<T> GetRepository<T>() where T : class; 
+        IRepository<T> GetRepository<T>() where T : class;
+        IUserRepository UserRepository { get; }
     }
 }

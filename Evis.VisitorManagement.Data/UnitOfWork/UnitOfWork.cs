@@ -1,4 +1,5 @@
-﻿using Evis.VisitorManagement.Data.Contract;
+﻿using Evis.VisitorManagement.Data.Context;
+using Evis.VisitorManagement.Data.Contract;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -66,8 +67,17 @@ namespace Evis.VisitorManagement.Data
         /// <returns></returns>
         IRepository<T> IUnitOfWork.GetRepository<T>()
         {
-            RepositoryFactory obj = new RepositoryFactory(new LearningDataEntities());
+            RepositoryFactory obj = new RepositoryFactory(new VMSDbContext());
             return obj.GetRepository<T>();
+        }
+
+        IUserRepository m_userRepository;
+        public IUserRepository UserRepository
+        {
+            get
+            {
+                return m_userRepository ?? (m_userRepository = new UserRepository(new VMSDbContext()));
+            }
         }
         
         /// <summary>

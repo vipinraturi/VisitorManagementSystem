@@ -1,4 +1,5 @@
-﻿/********************************************************************************
+﻿using Evis.VisitorManagement.DataProject.Model.Entities;
+/********************************************************************************
  * File Name    : Category.cs
  * Company Name : EVIS
  * Author       : Shambhoo Kumar
@@ -13,13 +14,12 @@ using System.Threading.Tasks;
 
 namespace Evis.VisitorManagement.DataProject.Model
 {
-   public class Category
+    public class Category : BaseEntity<int>
     {
-       public Category()
-       {
-       }
+        public Category()
+        {
+        }
 
-        public int Id { get; set; }
         public String Name { get; set; }
         public bool IsActive { get; set; }
 

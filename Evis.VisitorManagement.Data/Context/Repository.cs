@@ -16,7 +16,7 @@ namespace Evis.VisitorManagement.Data
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly DbSet<T> _dbSet;
-        protected LearningDataEntities DataContext;
+        protected VMSDbContext DataContext;
 
         #region Constructor and Destructors
 
@@ -25,7 +25,7 @@ namespace Evis.VisitorManagement.Data
         /// </summary>
         public Repository()
         {
-            DataContext = new LearningDataEntities();
+            DataContext = new VMSDbContext();
             // Gets the DbSet of the specific type, so information stored in database for 
             // that entity can be retrieve.
             _dbSet = DataContext.Set<T>();

@@ -9,14 +9,14 @@ using System.Data.Entity;
 
 namespace Evis.VisitorManagement.Data
 {
-    public class LearningDBInitializer : DropCreateDatabaseIfModelChanges<LearningDataEntities>
+    public class LearningDBInitializer : DropCreateDatabaseIfModelChanges<VMSDbContext>
     {
-        public override void InitializeDatabase(LearningDataEntities context)
+        public override void InitializeDatabase(VMSDbContext context)
         {
             base.InitializeDatabase(context);
         }
 
-        protected override void Seed(LearningDataEntities context)
+        protected override void Seed(VMSDbContext context)
         {
             base.Seed(context);
         }

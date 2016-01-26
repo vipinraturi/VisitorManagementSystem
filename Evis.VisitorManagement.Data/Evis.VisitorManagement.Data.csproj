@@ -87,19 +87,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\CategoryRepository.cs" />
-    <Compile Include="Context\IUnitOfWork.cs" />
-    <Compile Include="Context\LearningDataEntities.cs" />
-    <Compile Include="Context\LearningDBInitializer.cs" />
+    <Compile Include="Context\UserRepository.cs" />
+    <Compile Include="Contract\IUserRepository.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="DbContext\VMSDbContext.cs" />
     <Compile Include="Context\Repository.cs" />
     <Compile Include="Context\RepositoryFactory.cs" />
-    <Compile Include="Context\UnitOfWork.cs" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Contract\ICategoryRepository.cs" />
     <Compile Include="Contract\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
