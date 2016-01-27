@@ -49,5 +49,10 @@ namespace Evis.VisitorManagement.Web.Controllers
             return View();
         }
 
+        public ActionResult UploadFile()
+        {
+            return View();
+        }
+
     }
 }

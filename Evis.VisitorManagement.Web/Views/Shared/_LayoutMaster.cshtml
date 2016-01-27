@@ -26,6 +26,7 @@
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="~/Scripts/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
+    <script src="~/Scripts/js/lumino.glyphs.js"></script>
     <link rel="stylesheet" href="~/Content/fonts/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="~/Content/fonts/ionicons.min.css">
@@ -53,6 +54,105 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!--table design-->
+    <!-- CSS Reset -->
+    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/reset.css" media="screen" />
+
+    <!-- Fluid 960 Grid System - CSS framework -->
+    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/grid.css" media="screen" />
+
+
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/styles.css"  media="screen" />
+
+    <!-- WYSIWYG editor stylesheet -->
+    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/jquery.wysiwyg.css"  media="screen" />
+
+    <!-- Table sorter stylesheet -->
+    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/tablesorter.css"  media="screen" />
+
+    <!-- Thickbox stylesheet -->
+    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/thickbox.css"  media="screen" />
+
+    <!-- Themes. Below are several color themes. Uncomment the line of your choice to switch to different color. All styles commented out means blue theme. -->
+    <link rel="stylesheet" type="text/css" href="~/css-admin/theme-blue.css"  media="screen" />
+
+
+    <!-- JQuery engine script-->
+    <script type="text/javascript" src="~/Content/css-admin/jquery-1.3.2.min.js" ></script>
+
+    <!-- JQuery WYSIWYG plugin script -->
+    <script type="text/javascript" src="~/Content/css-admin/jquery.wysiwyg.js" ></script>
+
+    <!-- JQuery tablesorter plugin script-->
+    <script type="text/javascript" src="~/Content/css-admin/jquery.tablesorter.min.js" ></script>
+
+    <!-- JQuery pager plugin script for tablesorter tables -->
+    <script type="text/javascript" src="~/Content/css-admin/jquery.tablesorter.pager.js" ></script>
+
+    <!-- JQuery password strength plugin script -->
+    <script type="text/javascript" src="~/Content/css-admin/jquery.pstrength-min.1.2.js" ></script>
+
+    <!-- JQuery thickbox plugin script -->
+    <script type="text/javascript" src="~/Content/css-admin/thickbox.js" ></script>
+
+
+
+
+    <!-- Initiate WYIWYG text area -->
+    @*<script type="text/javascript">
+        $(function () {
+            $('#wysiwyg').wysiwyg(
+        {
+            controls: {
+                separator01: { visible: true },
+                separator03: { visible: true },
+                separator04: { visible: true },
+                separator00: { visible: true },
+                separator07: { visible: false },
+                separator02: { visible: false },
+                separator08: { visible: false },
+                insertOrderedList: { visible: true },
+                insertUnorderedList: { visible: true },
+                undo: { visible: true },
+                redo: { visible: true },
+                justifyLeft: { visible: true },
+                justifyCenter: { visible: true },
+                justifyRight: { visible: true },
+                justifyFull: { visible: true },
+                subscript: { visible: true },
+                superscript: { visible: true },
+                underline: { visible: true },
+                increaseFontSize: { visible: false },
+                decreaseFontSize: { visible: false }
+            }
+        });
+        });
+    </script>*@
+
+    <!-- Initiate tablesorter script -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#myTable")
+            .tablesorter({
+                // zebra coloring
+                widgets: ['zebra'],
+                // pass the headers argument and assing a object
+                headers: {
+                    // assign the sixth column (we start counting zero)
+                    6: {
+                        // disable it by setting the property sorter to false
+                        sorter: false
+                    }
+                }
+            })
+        .tablesorterPager({ container: $("#pager") });
+        });
+    </script>
+
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -139,7 +239,7 @@
                 <ul class="sidebar-menu">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="active treeview">
-                        <a href="#">
+                        <a href="~/Dashboard/Index">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
 
@@ -158,7 +258,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="~/Account/UploadFile">
                             <i class="fa fa-fw fa-camera"></i> <span>File Upload</span>
 
                         </a>
