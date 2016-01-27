@@ -27,11 +27,6 @@ namespace Evis.VisitorManagement.Web.Controllers
             return View();
         }
 
-        public ActionResult Login()
-        {
-            return View(new LoginViewModel());
-        }
-
         [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel loginViewModel)
         {
@@ -41,6 +36,17 @@ namespace Evis.VisitorManagement.Web.Controllers
             var user = await m_accountBO.FindAsync(loginViewModel.UserName, loginViewModel.Password);
 
             return View("Login");
+        }
+
+       
+        public ActionResult ManageUsers()
+        {
+            return View();
+        }
+
+        public ActionResult NewUsers()
+        {
+            return View();
         }
 
     }

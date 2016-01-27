@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+@using (Html.BeginForm("Index", "Dashboard", FormMethod.Post))
 {
     <link href="@Url.Content("http://fonts.googleapis.com/css?family=Roboto:400,100,300,500")" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/customCss")
