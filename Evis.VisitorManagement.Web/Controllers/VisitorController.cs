@@ -24,11 +24,17 @@ namespace Evis.VisitorManagement.Web.Controllers
             {
                 if (uploadFile.ContentLength > 0)
                 {
-                    string filePath = Path.Combine(HttpContext.Server.MapPath("../Uploads"),
+                    var directoryPath = HttpContext.Server.MapPath("~/Content/Uploads");
+
+                    if (!Directory.Exists(directoryPath))
+                        Directory.CreateDirectory(directoryPath);
+
+
+                    var filePath = Path.Combine(directoryPath,
                                                    Path.GetFileName(uploadFile.FileName));
                     uploadFile.SaveAs(filePath);
 
-                    string imageText = ExtractTextFromImage(filePath);
+                    var imageText = ExtractTextFromImage(filePath);
                 }
                 return View();
             }
@@ -55,6 +61,7 @@ namespace Evis.VisitorManagement.Web.Controllers
             Document modiDocument = new Document();
             modiDocument.Create(filePath);
             modiDocument.OCR(MiLANGUAGES.miLANG_ENGLISH);
+
             MODI.Image modiImage = (modiDocument.Images[0] as MODI.Image);
             string extractedText = modiImage.Layout.Text;
             modiDocument.Close();
