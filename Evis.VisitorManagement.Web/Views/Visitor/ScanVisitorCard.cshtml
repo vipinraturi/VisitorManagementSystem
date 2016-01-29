@@ -13,19 +13,22 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form">
+                    @*<form role="form">*@
+@using (Html.BeginForm("ScanVisitorCard", "Visitor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputFile">File input</label>
-                                <input type="file" id="exampleInputFile">
+                                <input type="file" name="UploadFile" />
                             </div>
                         </div>
                         <!-- /.box-body -->
-
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            @*<button type="submit" class="btn btn-primary">Submit</button>*@
+                            <input type="submit" class="btn btn-primary" value="Upload" />
                         </div>
-                    </form>
+}
+                    @*</form>*@
                 </div>
                 <!-- /.box -->
             </div>
