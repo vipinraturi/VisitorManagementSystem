@@ -274,6 +274,7 @@
     <Content Include="Content\css\skins\_all-skins.css" />
     <Content Include="Content\css\skins\_all-skins.min.css" />
     <Content Include="Content\fonts\font-awesome.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\html5shiv.min.js" />
     <Content Include="Content\fonts\ionicons.min.css" />
     <Content Include="Content\fonts\respond.min.js" />
@@ -306,7 +307,6 @@
     <Content Include="Content\img\user7-128x128.jpg" />
     <Content Include="Content\img\user8-128x128.jpg" />
     <Content Include="Content\Site.css" />
-    <Content Include="Controllers\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Application\AjaxService.js" />
     <Content Include="Scripts\Application\AlertService.js" />
@@ -1878,9 +1878,6 @@
     <Content Include="Scripts\Plugin\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\Plugin\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\Plugin\i18n\angular-locale_zu.js" />
-    <Content Include="Controllers\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Controllers\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Controllers\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\img\credit\Thumbs.db" />
     <Content Include="Scripts\bootstrap\css\bootstrap.css.map" />
     <Content Include="Scripts\bootstrap\fonts\glyphicons-halflings-regular.eot" />
@@ -1947,6 +1944,11 @@
     <Content Include="Content\assets\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\assets\font-awesome\scss\_variables.scss" />
     <Content Include="Content\css-admin\Thumbs.db" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
     <None Include="Scripts\Plugin\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\Plugin\jquery-2.2.0.js" />
     <Content Include="Scripts\Plugin\jquery-2.2.0.min.js" />
@@ -1962,6 +1964,9 @@
     <Content Include="Views\Shared\_LayoutMaster.cshtml" />
     <Content Include="Views\Account\NewUsers.cshtml" />
     <Content Include="Views\Account\UploadFile.cshtml" />
+    <Content Include="Views\Visitor\ScanVisitorCard.cshtml" />
+    <Content Include="Views\Visitor\AddVisitorManually.cshtml" />
+    <Content Include="Views\Visitor\VisitorList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -1973,6 +1978,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

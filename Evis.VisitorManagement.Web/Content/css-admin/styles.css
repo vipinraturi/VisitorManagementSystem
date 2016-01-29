@@ -689,7 +689,7 @@ a.completed:visited {
 .user { 
 	display: block; 
 	padding-left: 22px; 
-	background: url(user.gif) left 50% no-repeat; 
+	/*background: url(user.gif) left 50% no-repeat;*/ 
 	font-size: 14px; color: #666666; 
 	font-weight: normal;  
 	}

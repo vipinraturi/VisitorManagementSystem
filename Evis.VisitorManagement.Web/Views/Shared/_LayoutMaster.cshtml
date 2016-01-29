@@ -1,22 +1,4 @@
-﻿
-
-
-
-@*<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-    <div>
-        @RenderBody()
-    </div>
-</body>
-</html>*@
-
-<html>
+﻿<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,6 +9,7 @@
     <link rel="stylesheet" href="~/Scripts/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <script src="~/Scripts/js/lumino.glyphs.js"></script>
+
     <link rel="stylesheet" href="~/Content/fonts/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="~/Content/fonts/ionicons.min.css">
@@ -54,7 +37,6 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
     <!--table design-->
     <!-- CSS Reset -->
     <link rel="stylesheet" type="text/css" href="~/Content/css-admin/reset.css" media="screen" />
@@ -65,72 +47,38 @@
 
 
     <!-- Main stylesheet -->
-    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/styles.css"  media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/styles.css" media="screen" />
 
     <!-- WYSIWYG editor stylesheet -->
-    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/jquery.wysiwyg.css"  media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/jquery.wysiwyg.css" media="screen" />
 
     <!-- Table sorter stylesheet -->
-    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/tablesorter.css"  media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/tablesorter.css" media="screen" />
 
     <!-- Thickbox stylesheet -->
-    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/thickbox.css"  media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/thickbox.css" media="screen" />
 
     <!-- Themes. Below are several color themes. Uncomment the line of your choice to switch to different color. All styles commented out means blue theme. -->
-    <link rel="stylesheet" type="text/css" href="~/css-admin/theme-blue.css"  media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/css-admin/theme-blue.css" media="screen" />
 
 
     <!-- JQuery engine script-->
-    <script type="text/javascript" src="~/Content/css-admin/jquery-1.3.2.min.js" ></script>
+    <script type="text/javascript" src="~/Content/css-admin/jquery-1.3.2.min.js"></script>
 
     <!-- JQuery WYSIWYG plugin script -->
-    <script type="text/javascript" src="~/Content/css-admin/jquery.wysiwyg.js" ></script>
+    <script type="text/javascript" src="~/Content/css-admin/jquery.wysiwyg.js"></script>
 
     <!-- JQuery tablesorter plugin script-->
-    <script type="text/javascript" src="~/Content/css-admin/jquery.tablesorter.min.js" ></script>
+    <script type="text/javascript" src="~/Content/css-admin/jquery.tablesorter.min.js"></script>
 
     <!-- JQuery pager plugin script for tablesorter tables -->
-    <script type="text/javascript" src="~/Content/css-admin/jquery.tablesorter.pager.js" ></script>
+    <script type="text/javascript" src="~/Content/css-admin/jquery.tablesorter.pager.js"></script>
 
     <!-- JQuery password strength plugin script -->
-    <script type="text/javascript" src="~/Content/css-admin/jquery.pstrength-min.1.2.js" ></script>
+    <script type="text/javascript" src="~/Content/css-admin/jquery.pstrength-min.1.2.js"></script>
 
     <!-- JQuery thickbox plugin script -->
-    <script type="text/javascript" src="~/Content/css-admin/thickbox.js" ></script>
-
-
-
-
-    <!-- Initiate WYIWYG text area -->
-    @*<script type="text/javascript">
-        $(function () {
-            $('#wysiwyg').wysiwyg(
-        {
-            controls: {
-                separator01: { visible: true },
-                separator03: { visible: true },
-                separator04: { visible: true },
-                separator00: { visible: true },
-                separator07: { visible: false },
-                separator02: { visible: false },
-                separator08: { visible: false },
-                insertOrderedList: { visible: true },
-                insertUnorderedList: { visible: true },
-                undo: { visible: true },
-                redo: { visible: true },
-                justifyLeft: { visible: true },
-                justifyCenter: { visible: true },
-                justifyRight: { visible: true },
-                justifyFull: { visible: true },
-                subscript: { visible: true },
-                superscript: { visible: true },
-                underline: { visible: true },
-                increaseFontSize: { visible: false },
-                decreaseFontSize: { visible: false }
-            }
-        });
-        });
-    </script>*@
+    <script type="text/javascript" src="~/Content/css-admin/thickbox.js"></script>
 
     <!-- Initiate tablesorter script -->
     <script type="text/javascript">
@@ -151,15 +99,13 @@
         .tablesorterPager({ container: $("#pager") });
         });
     </script>
-
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
         <header class="main-header">
             <!-- Logo -->
-            <a href="index2.html" class="logo">
+            <a href="~/Dashboard/Index" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
@@ -215,13 +161,13 @@
             <section class="sidebar">
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
-                    <div class="pull-left image">
-                        <img src="~/Scripts/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                    </div>
-                    <div class="pull-left info">
-                        <p>Anith RAJ</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                    </div>
+                   @* <div class="pull-left image">
+         <img src="~/Scripts/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+     </div>
+    <div class="pull-left info">
+         <p>Anith RAJ</p>
+         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+     </div>*@
                 </div>
                 <!-- search form -->
                 <form action="#" method="get" class="sidebar-form">
@@ -242,59 +188,44 @@
                         <a href="~/Dashboard/Index">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
-
                     </li>
                     <li class="treeview">
                         <a href="#">
-
                             <i class="fa fa-fw fa-users"></i><i class="fa fa-angle-left pull-right"></i>
                             <span>User Management</span>
-
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="~/Account/NewUsers"><i class="fa fa-fw fa-user-plus"></i> New User</a></li>
                             <li><a href="~/Account/ManageUsers"><i class="fa fa-fw fa-user"></i> Manage User</a></li>
-
                         </ul>
-                    </li>
-                    <li>
-                        <a href="~/Account/UploadFile">
-                            <i class="fa fa-fw fa-camera"></i> <span>File Upload</span>
-
-                        </a>
                     </li>
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-pie-chart"></i>
-                            <span>User Profile</span>
-
+                            <span>Visitor</span>
                         </a>
-
+                        <ul class="treeview-menu">
+                            <li><a href="~/Visitor/ScanVisitorCard"><i class="fa fa-fw fa-user-plus"></i> Scan Visitor Card</a></li>
+                            <li><a href="~/Visitor/AddVisitorManually"><i class="fa fa-fw fa-user-plus"></i> Add Visitor Manually</a></li>
+                            <li><a href="~/Visitor/VisitorList"><i class="fa fa-fw fa-user"></i> Visitors Detail</a></li>
+                        </ul>
                     </li>
-
-
-
-
                 </ul>
             </section>
             <!-- /.sidebar -->
         </aside>
         @RenderBody()
-       
         <footer class="main-footer">
-
             <strong>Copyright &copy; 2015-2016 <a href="#">Evis UAE</a>.</strong> All rights
             reserved.
         </footer>
-
-
         <div class="control-sidebar-bg"></div>
     </div>
     <!-- ./wrapper -->
     <!-- jQuery 2.1.4 -->
     <script src="~/Scripts/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    @*<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>*@
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button);
@@ -302,7 +233,7 @@
     <!-- Bootstrap 3.3.5 -->
     <script src="~/Scripts/bootstrap/js/bootstrap.min.js"></script>
     <!-- Morris.js charts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>*@
     <script src="~/Scripts/plugins/morris/morris.min.js"></script>
     <!-- Sparkline -->
     <script src="~/Scripts/plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -312,7 +243,7 @@
     <!-- jQuery Knob Chart -->
     <script src="~/Scripts/plugins/knob/jquery.knob.js"></script>
     <!-- daterangepicker -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>*@
     <script src="~/Scripts/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- datepicker -->
     <script src="~/Scripts/plugins/datepicker/bootstrap-datepicker.js"></script>
