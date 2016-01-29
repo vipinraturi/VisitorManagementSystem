@@ -1967,6 +1967,7 @@
     <Content Include="Views\Visitor\ScanVisitorCard.cshtml" />
     <Content Include="Views\Visitor\AddVisitorManually.cshtml" />
     <Content Include="Views\Visitor\VisitorList.cshtml" />
+    <Content Include="Views\Account\MyProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />

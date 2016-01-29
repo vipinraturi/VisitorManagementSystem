@@ -5,122 +5,254 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 
-    <style type="text/css">
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-    </style>
-    <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <h3>New Visitor Entry</h3>
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Add Visitor Details</h3>
+            <div class="box-tools pull-right">
+                @*<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>*@
                 <button type="button" style="float:right;" class="btn btn-primary">Save</button>
+                <button type="button" style="float:right;" class="btn btn-primary">Check-out</button>
+                <button type="button" style="float:right;" class="btn btn-primary">Check-in</button>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <!-- general form elements -->
-                <div>
-                    <!-- form start -->
-                    <form role="form">
-                        <div>
-                            <div class="form-group">
-                                <label for="exampleInputFname">First Name</label>
-                                <input type="text" class="form-control" id="txtFirstName" placeholder="First Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputContact">Contact No</label>
-                                <input type="number" class="form-control" id="exampleInputContact" placeholder="Contact No">
-                            </div>
-                            <div class="form-group">
-                                <label>Type Of Card</label>
-                                <select class="form-control">
-                                    <option>--Select--</option>
-                                    <option>Emirate Id</option>
-                                    <option>Driving Licence</option>
-                                    <option>Other</option>
-                                </select>
-                                <input type="text" class="form-control" id="otherIdCard" placeholder="Card Type Other">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">Browse Image</label>
-                                <input type="file" id="exampleInputFile">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="">
-                    <form role="form">
-                        <div class="">
-                            <div class="form-group">
-                                <label for="exampleInputLastName">Last Name</label>
-                                <input type="text" class="form-control" id="txtLastName" placeholder="Last Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputLGender">Gender</label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                        Male
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                        Female
-                                    </label>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div>
+                        <!-- form start -->
+                        <form role="form" class="">
+                            <div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="exampleInputFname" class="">First Name</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="txtFirstName" placeholder="First Name">
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="exampleInputLastName">Last Name</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="txtLastName" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="exampleInputLGender">Gender</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                                        Male
+                                                    </label>
+                                                    </div>
+                                                <div class="col-md-4">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                        Female
+                                                    </label>
+                                                </div>
+                                                </div>
+                                                    @*<div class="radio">
+                                                        
+                                                       
+                                                    </div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="exampleInputAddress">Address</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" rows="3" placeholder="Address ..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="exampleInputEmail1">Email</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="exampleInputContact">Contact No</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" id="exampleInputContact" placeholder="Contact No">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="exampleInputContact">Fax No</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" id="exampleInputContact" placeholder="Fax No">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Type Of Card</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <select class="form-control">
+                                                <option>--Select--</option>
+                                                <option>Emirate Id</option>
+                                                <option>Driving Licence</option>
+                                                <option>Other</option>
+                                            </select>
+                                            <input style="display:none" type="text" class="form-control" id="otherIdCard" placeholder="Card Type Other">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="exampleInputContact">Identity Number</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" id="identityNumber" placeholder="Identity Number">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="exampleInputFile">Browse Image</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="file" id="exampleInputFile">
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputAddress">Address</label>
-                                <textarea class="form-control" rows="5" placeholder="Address ..."></textarea>
-                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="">
+                        <form role="form">
+                            <table id="myTable" class="tablesorter">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Date</th>
+                                        <th>Check-In Time</th>
+                                        <th>Check-Out Time</th>
+                                        <th>Minutes Stay</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="align-center">1</td>
+                                        <td>Jan 01, 2016</td>
+                                        <td>5:14:23 PM</td>
+                                        <td>5:30:23 PM</td>
+                                        <td>16 mins 20 Sec</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-center">2</td>
+                                        <td>Jan 02, 2016</td>
+                                        <td>5:00:23 PM</td>
+                                        <td>5:30:00 PM</td>
+                                        <td>29 mins 30 Secs</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                        <div class="pager" id="pager">
+                            <form action="">
+                                <div>
+                                    <img class="first" src="~/Content/css-admin/arrow-stop-180.gif" alt="first" />
+                                    <img class="prev" src="~/Content/css-admin/arrow-180.gif" alt="prev" />
+                                    <input type="text" class="pagedisplay input-short align-center" />
+                                    <img class="next" src="~/Content/css-admin/arrow.gif" alt="next" />
+                                    <img class="last" src="~/Content/css-admin/arrow-stop.gif" alt="last" />
+                                    <select class="pagesize input-short align-center">
+                                        <option value="10" selected="selected">10</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                        <option value="40">40</option>
+                                    </select>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
+                    <div class="pagination">
+                        <a href="" class="button"><span><img src="~/Content/css-admin/arrow-stop-180-small.gif" height="9" width="12" alt="First" /> First</span></a>
+                        <a href="" class="button"><span><img src="~/Content/css-admin/arrow-180-small.gif" height="9" width="12" alt="Previous" /> Prev</span></a>
+                        <div class="numbers">
+                            <span>Page:</span>
+                            <a href="">1</a>
+                            <span>|</span>
+                            <a href="">2</a>
+                            <span>|</span>
+                            <span class="current">3</span>
+                            <span>|</span>
+                            <a href="">4</a>
+                            <span>|</span>
+                            <a href="">5</a>
+                        </div>
+                        <a href="" class="button"><span>Next <img src="~/Content/css-admin/arrow-000-small.gif" height="9" width="12" alt="Next" /></span></a>
+                        <a href="" class="button last"><span>Last <img src="~/Content/css-admin/arrow-stop-000-small.gif" height="9" width="12" alt="Last" /></span></a>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                    
                 </div>
             </div>
+            <!-- /.row -->
         </div>
-        <div class="row">
-            <div class="col-md-12">
+        <!-- /.box-body -->
+        <div class="box-footer">
 
-                <table class="table" border="1">
-                    <thead class="thead-inverse">
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
-    </section>
+    </div>
+
+    @*<style type="text/css">
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        </style>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>New Visitor Entry</h3>
+                    <button type="button" style="float:right;" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+
+        </section>*@
 </div>
