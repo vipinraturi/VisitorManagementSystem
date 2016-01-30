@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace OTS.Web.ControllerApi
+namespace Evis.VisitorManagement.Web.ControllerApi
 {
     public class CategoryApiController : ApiController
     {

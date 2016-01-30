@@ -27,7 +27,11 @@ namespace Evis.VisitorManagement.Data
         }
 
         public DbSet<Category> Category { get; set; }
-        public DbSet<Salutation> Salutation { get; set; }
+        //public DbSet<Salutation> Salutation { get; set; }
         public DbSet<ApplicationRole> ApplicationRole { get; set; }
+
+        public DbSet<Gender> Gender { get; set; }
+
+        //public DbSet<Privilage> Privilage { get; set; }
     }
 }

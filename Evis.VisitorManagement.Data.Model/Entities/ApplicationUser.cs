@@ -17,9 +17,11 @@ namespace Evis.VisitorManagement.DataProject.Model
 
         public string LastName { get; set; }
 
-        public int? SalutationId { get; set; }
-        [ForeignKey("SalutationId")]
+        public string Address { get; set; }
 
-        public virtual Salutation Salutation { get; set; }
+        public int? GenderId { get; set; }
+        [ForeignKey("GenderId")]
+
+        public virtual Gender Gender { get; set; }
     }
 }

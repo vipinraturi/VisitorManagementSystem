@@ -62,7 +62,8 @@
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\Salutation.cs" />
+    <Compile Include="Entities\Gender.cs" />
+    <Compile Include="Entities\ImageUpload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -16,22 +16,39 @@ namespace Evis.VisitorManagement.Data.Migrations
 
         protected override void Seed(VMSDbContext context)
         {
-            GenerateSalutation(context);
-            GenerateRoles(context);
-            GenerateSystemAdmin(context);
+            //GenerateSalutation(context);
+            //GenerateRoles(context);
+            //GenerateGender(context);
+            //GeneratePrivilage(context);
+            //GenerateSystemAdmin(context);
         }
 
-        private static void GenerateSalutation(VMSDbContext context)
+        private static void GenerateGender(VMSDbContext context)
         {
-            context.Salutation.Add(new Salutation { Name = "Ms.", Description = "Ms.", IsActive = true });
-            context.Salutation.Add(new Salutation { Name = "Mr.", Description = "Mr.", IsActive = true });
-            context.Salutation.Add(new Salutation { Name = "Dr.", Description = "Dr.", IsActive = true });
+            context.Gender.Add(new Gender { Name = "Male", Description = "Male.", IsActive = true });
+            context.Gender.Add(new Gender { Name = "Female", Description = "Female", IsActive = true });
+            context.Gender.Add(new Gender { Name = "Other", Description = "Other", IsActive = true });
         }
+
+        //private static void GeneratePrivilage(VMSDbContext context)
+        //{
+        //    context.Privilage.Add(new Privilage { Name = "Admin", Description = "Admin.", IsActive = true });
+        //    context.Privilage.Add(new Privilage { Name = "Supervisor", Description = "Supervisor", IsActive = true });
+        //    context.Privilage.Add(new Privilage { Name = "Security", Description = "Security", IsActive = true });
+        //}
+
+        //private static void GenerateSalutation(VMSDbContext context)
+        //{
+        //    context.Salutation.Add(new Salutation { Name = "Ms.", Description = "Ms.", IsActive = true });
+        //    context.Salutation.Add(new Salutation { Name = "Mr.", Description = "Mr.", IsActive = true });
+        //    context.Salutation.Add(new Salutation { Name = "Dr.", Description = "Dr.", IsActive = true });
+        //}
 
         private static void GenerateRoles(VMSDbContext context)
         {
-            context.Roles.Add(new ApplicationRole { Name = "SystemAdmin", Description = "System Admin" });
-            context.Roles.Add(new ApplicationRole { Name = "User", Description = "User" });
+            context.Roles.Add(new ApplicationRole { Name = "Admin", Description = "Admin" });
+            context.Roles.Add(new ApplicationRole { Name = "Supervisor", Description = "Supervisor" });
+            context.Roles.Add(new ApplicationRole { Name = "Security", Description = "Security" });
         }
 
         private void GenerateSystemAdmin(VMSDbContext context)
@@ -42,10 +59,10 @@ namespace Evis.VisitorManagement.Data.Migrations
             {
                 FirstName = "System",
                 LastName = "Admin",
-                Email = "systemadmin@rebuild.com",
+                Email = "systemadmin@evisuae.com",
                 PhoneNumber = "1234567890",
                 UserName = "systemadmin@rebuild.com",
-                SalutationId = 1,
+                GenderId =  1,
                 SecurityStamp = System.Guid.NewGuid().ToString()
             };
 

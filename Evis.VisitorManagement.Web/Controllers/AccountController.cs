@@ -19,7 +19,7 @@ namespace Evis.VisitorManagement.Web.Controllers
         }
         //
         // GET: /Account/
-        public ActionResult Index()
+        public ActionResult Login()
         {
             string test = System.Guid.NewGuid().ToString();
             var passwordHash = new Microsoft.AspNet.Identity.PasswordHasher();
