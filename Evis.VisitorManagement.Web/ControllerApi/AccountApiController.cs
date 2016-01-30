@@ -1,5 +1,6 @@
 ﻿using Evis.VisitorManagement.Business;
 using Evis.VisitorManagement.Business.Contract;
+using Evis.VisitorManagement.DataProject.Model;
 using Evis.VisitorManagement.Web.ViewModel;
 using Newtonsoft.Json;
 using System;
@@ -50,10 +51,21 @@ namespace Evis.VisitorManagement.Web.ControllerApi
         {
             //var loginViewModel = JsonConvert.DeserializeObject<List<LoginViewModel>>(loginViewModelJSON);
             //m_accountBO = new AccountBO();
-            var user = await m_accountBO.FindAsync(registerViewModel.UserName);
-            if (user == null)
-                return NotFound();
-            return Ok(user);
+            ApplicationUser applicationUser
+                = new ApplicationUser
+                {
+                    FirstName = registerViewModel.FirstName,
+                    LastName = registerViewModel.LastName,
+                    Email = registerViewModel.Email,
+                    PhoneNumber = registerViewModel.PhoneNumber,
+                    GenderId = registerViewModel.GenderId,
+                    Address = registerViewModel.Address
+
+                };
+            await m_accountBO.CreateAsync(applicationUser, "Evis@123");
+            //if (user == null)
+            //    return NotFound();
+            return Ok(applicationUser);
         }
 
         // PUT api/<controller>/5
@@ -69,7 +81,7 @@ namespace Evis.VisitorManagement.Web.ControllerApi
         public IHttpActionResult GetAllRoles()
         {
             var userRoles = m_accountBO.GetAllRoles();
-            if(userRoles == null)
+            if (userRoles == null)
             {
                 return NotFound();
             }

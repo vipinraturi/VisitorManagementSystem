@@ -54,8 +54,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Privilage</label>
-                                <select class="form-control" ng-model="register.privilageId" ng-change="OnChange()" ng-options="item.Id as item.Name for item in allPrivilage">
+                                <label>Role</label>
+                                <select class="form-control" ng-model="register.roleId" ng-change="OnChange()" ng-options="item.Id as item.Name for item in allRoles">
                                     <option value="">-- Select --</option>
                                 </select>
                             </div>
@@ -135,15 +135,16 @@
             $scope.register.email = '';
             $scope.register.phoneNumber = null;
             $scope.register.address = '';
+            $scope.register.genderId = null;
 
-            $scope.register.privilageId = null;
-            $scope.allPrivilage = [];
+            $scope.register.roleId = null;
+            $scope.allRoles = [];
 
             $http({
                 method: 'GET',
                 url: '/Api/AccountApi/GetAllRoles'
             }).success(function (result) {
-                $scope.allPrivilage = result;
+                $scope.allRoles = result;
             });
 
             $scope.OnChange = function () {
@@ -168,8 +169,9 @@
                     "LastName": $scope.register.lastName,
                     "Email": $scope.register.email,
                     "PhoneNumber": $scope.register.phoneNumber,
-                    "PrivilageId": $scope.register.privilageId,
-                    "Address": $scope.register.addressId
+                    "RoleId": $scope.register.roleId,
+                    "Address": $scope.register.addressId,
+                    "GenderId": $scope.register.genderId
                 };
 
                 //alert(JSON.stringify(viewModel));
@@ -183,7 +185,7 @@
                         }
                     }
                 ).success(function (data) {
-                    window.location.href = '@Url.Action("Index", "Dashboard")';
+                    window.location.href = '@Url.Action("Index", "ManageUsers")';
                     console.log('success post');
                 }).error(function () {
                     //debugger;

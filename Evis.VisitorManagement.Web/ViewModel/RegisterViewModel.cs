@@ -23,7 +23,9 @@ namespace Evis.VisitorManagement.Web.ViewModel
         [Required]
         [Display(Name = "Create Username")]
         [RegularExpression("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", ErrorMessage = "Invalid Email Format")]
-        public string UserName { get; set; }
+        public string Email { get; set; }
+
+        public int GenderId { get; set; }
 
         [Required]
         [Display(Name = "Phone Number")]
@@ -33,10 +35,7 @@ namespace Evis.VisitorManagement.Web.ViewModel
         [Display(Name = "Role")]
         public string RoleId { get; set; }
 
-        public string Role { get; set; }
-
-
-
+        public string Address { get; set; }
         public IEnumerable<ApplicationRole> UserRoles { get; set; }
 
         public IEnumerable<SelectListItem> AllRoles
