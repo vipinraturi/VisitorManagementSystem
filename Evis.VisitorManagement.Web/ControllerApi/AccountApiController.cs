@@ -65,5 +65,25 @@ namespace Evis.VisitorManagement.Web.ControllerApi
         public void Delete(int id)
         {
         }
+
+        public IHttpActionResult GetAllRoles()
+        {
+            var userRoles = m_accountBO.GetAllRoles();
+            if(userRoles == null)
+            {
+                return NotFound();
+            }
+            return Ok(userRoles);
+        }
+
+        public IHttpActionResult GetAllGenders()
+        {
+            var userRoles = m_accountBO.GetAllGenders();
+            if (userRoles == null)
+            {
+                return NotFound();
+            }
+            return Ok(userRoles);
+        }
     }
 }

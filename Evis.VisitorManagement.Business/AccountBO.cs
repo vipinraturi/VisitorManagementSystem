@@ -73,5 +73,10 @@ namespace Evis.VisitorManagement.Business
         {
             await m_unitOfWork.UserRepository.DeleteAsync(applicationUser);
         }
+
+        public IQueryable<Gender> GetAllGenders()
+        {
+            return m_unitOfWork.GetRepository<Gender>().GetAll();
+        }
     }
 }

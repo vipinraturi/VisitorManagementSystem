@@ -25,6 +25,7 @@ namespace Evis.VisitorManagement.Business.Contract
 
         IQueryable<ApplicationRole> GetAllRoles();
 
+        IQueryable<Gender> GetAllGenders();
         
     }
 }

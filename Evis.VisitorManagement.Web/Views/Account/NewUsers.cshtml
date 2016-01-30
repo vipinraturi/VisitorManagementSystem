@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <label for="exampleInputFname">First Name:</label>
                                 <input type="text" class="form-control" id="firstName" name="firstName" ng-model="register.firstName" placeholder="First Name" required>
-                                <span style="color:red" ng-show="registerForm.firstName.$dirty && registerForm.firstName.$invalid">
+                                <span style="color:red" ng-show="registerForm.firstName.$invalid">
                                     <span ng-show="registerForm.firstName.$error.required">First Name is required.</span>
                                 </span>
                             </div>
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" ng-model="register.email" placeholder="Email" required>
-                                <span style="color:red" ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
+                                <span style="color:red" ng-show="registerForm.email.$invalid">
                                     <span ng-show="registerForm.email.$error.required">Email is required.</span>
                                 </span>
                             </div>
@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <label for="exampleInputContact">Contact No</label>
                                 <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" ng-model="register.phoneNumber" placeholder="Contact No" required>
-                                <span style="color:red" ng-show="registerForm.phoneNumber.$dirty && registerForm.phoneNumber.$invalid">
+                                <span style="color:red" ng-show="registerForm.phoneNumber.$invalid">
                                     <span ng-show="registerForm.phoneNumber.$error.required">Phone Number is required.</span>
                                 </span>
                             </div>
@@ -84,38 +84,42 @@
                             <div class="form-group">
                                 <label for="exampleInputLastName">Last Name</label>
                                 <input type="text" class="form-control" id="lastName" name="lastName" ng-model="register.lastName" placeholder="Last Name" required>
-                                <span style="color:red" ng-show="registerForm.lastName.$dirty && registerForm.lastName.$invalid">
+                                <span style="color:red" ng-show="registerForm.lastName.$invalid">
                                     <span ng-show="registerForm.lastName.$error.required">Phone Number is required.</span>
                                 </span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputLGender">Gender</label>
+                                @*<div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                            Male
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                            Female
+                                        </label>
+                                    </div>*@
+
                                 <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                        Male
+                                    <label data-ng-repeat="gender in allGenders">
+                                        <input type="radio" name="gender"  ng-model="register.genderId" ng-value="gender.Id">{{gender.Name}}
                                     </label>
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                        Female
-                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputAddress">Address</label>
+                                    <textarea class="form-control" rows="5" id="address" name="address" placeholder="Address ..." ng-model="register.address"></textarea>
                                 </div>
 
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputAddress">Address</label>
-                                <textarea class="form-control" rows="5" id="address" name="address" placeholder="Address ..." ng-model="register.address"></textarea>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" style="float:right;" class="btn btn-primary" ng-click="Submit()">
+                                    Submit
+                                </button>
                             </div>
-
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-                            <button type="submit" style="float:right;" class="btn btn-primary" ng-click="Submit()">
-                                Submit
-                            </button>
                         </div>
                     </div>
-                </div>
             </form>
             <!--/.col (right) -->
         </div>
@@ -126,25 +130,35 @@
         var app = angular.module('app', []);
         app.controller('registerController', function ($scope, $http) {
             $scope.register = {};
-            $scope.register.firstName = 'First Name';
-            $scope.register.lastName = 'Last Name';
-            $scope.register.email = 'Email';
-            $scope.register.phoneNumber = 1234567890;
-            $scope.register.address = "Address";
+            $scope.register.firstName = '';
+            $scope.register.lastName = '';
+            $scope.register.email = '';
+            $scope.register.phoneNumber = null;
+            $scope.register.address = '';
 
             $scope.register.privilageId = null;
             $scope.allPrivilage = [];
 
             $http({
                 method: 'GET',
-                url: '/Api/AccountApi/GetAllPrivilages'
+                url: '/Api/AccountApi/GetAllRoles'
             }).success(function (result) {
                 $scope.allPrivilage = result;
             });
 
             $scope.OnChange = function () {
-                
+
             }
+
+            $scope.allGenders = [];
+            $http({
+                method: 'GET',
+                url: '/Api/AccountApi/GetAllGenders'
+            }).success(function (result) {
+                $scope.allGenders = result;
+            });
+
+
 
             $scope.Submit = function () {
                 debugger;
