@@ -2,6 +2,7 @@
 using Evis.VisitorManagement.Business.Contract;
 using Evis.VisitorManagement.Data;
 using Evis.VisitorManagement.Data.Contract;
+using Evis.VisitorManagement.Web.Mapping;
 using LightInject;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace Evis.VisitorManagement.Web.App_Start
         public static void Run()
         {
             SetLightInjectContainer();
+
+            AutoMapperConfiguration.Configure();
         }
 
         private static void SetLightInjectContainer()

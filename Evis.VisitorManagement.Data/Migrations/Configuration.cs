@@ -16,11 +16,14 @@ namespace Evis.VisitorManagement.Data.Migrations
 
         protected override void Seed(VMSDbContext context)
         {
-            //GenerateSalutation(context);
-            //GenerateRoles(context);
-            //GenerateGender(context);
-            //GeneratePrivilage(context);
-            //GenerateSystemAdmin(context);
+            GenerateRoles(context);
+            context.SaveChanges();
+
+            GenerateGender(context);
+            context.SaveChanges();
+            
+            GenerateSystemAdmin(context);
+            context.SaveChanges();
         }
 
         private static void GenerateGender(VMSDbContext context)
@@ -29,20 +32,6 @@ namespace Evis.VisitorManagement.Data.Migrations
             context.Gender.Add(new Gender { Name = "Female", Description = "Female", IsActive = true });
             context.Gender.Add(new Gender { Name = "Other", Description = "Other", IsActive = true });
         }
-
-        //private static void GeneratePrivilage(VMSDbContext context)
-        //{
-        //    context.Privilage.Add(new Privilage { Name = "Admin", Description = "Admin.", IsActive = true });
-        //    context.Privilage.Add(new Privilage { Name = "Supervisor", Description = "Supervisor", IsActive = true });
-        //    context.Privilage.Add(new Privilage { Name = "Security", Description = "Security", IsActive = true });
-        //}
-
-        //private static void GenerateSalutation(VMSDbContext context)
-        //{
-        //    context.Salutation.Add(new Salutation { Name = "Ms.", Description = "Ms.", IsActive = true });
-        //    context.Salutation.Add(new Salutation { Name = "Mr.", Description = "Mr.", IsActive = true });
-        //    context.Salutation.Add(new Salutation { Name = "Dr.", Description = "Dr.", IsActive = true });
-        //}
 
         private static void GenerateRoles(VMSDbContext context)
         {
@@ -61,8 +50,8 @@ namespace Evis.VisitorManagement.Data.Migrations
                 LastName = "Admin",
                 Email = "systemadmin@evisuae.com",
                 PhoneNumber = "1234567890",
-                UserName = "systemadmin@rebuild.com",
-                GenderId =  1,
+                UserName = "systemadmin@evisuae.com",
+                GenderId = 1,
                 SecurityStamp = System.Guid.NewGuid().ToString()
             };
 

@@ -4,13 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVIS UAE Login</title>
- 
+
     <!-- CSS -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
     <link rel="stylesheet" href="~/Content/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/assets/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Content/assets/css/form-elements.css">
     <link rel="stylesheet" href="~/Content/assets/css/style.css">
+    <link rel="stylesheet" href="~/Content/toastr.min.css">
+    <link rel="stylesheet" href="~/Content/toastr-custom.css">
+
     <!-- Favicon and touch icons -->
     <link rel="shortcut icon" href="~/Content/assets/ico/favicon.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/Content/assets/ico/apple-touch-icon-144-precomposed.png">
@@ -20,7 +23,27 @@
 
     <script src="~/Scripts/Plugin/angular.js"></script>
     <script type="text/javascript" src="~/Scripts/Plugin/jquery-2.2.0.min.js"></script>
+    <script src="~/Content/toastr.min.js"></script>
 
+    <script>
+        jQuery(document).ready(function () {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "progressBar": false,
+                "positionClass": "toast-custom",
+                "onclick": null,
+                "showDuration": "3000",
+                "hideDuration": "1000",
+                "timeOut": "10000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        });
+    </script>
 </head>
 <body>
     @RenderBody()

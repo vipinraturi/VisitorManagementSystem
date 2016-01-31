@@ -1,5 +1,6 @@
 ﻿using Evis.VisitorManagement.DataProject.Model;
 using Evis.VisitorManagement.DataProject.Model.Entities;
+using Evis.VisitorManagement.DataProject.Model.Entities.Custom;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace Evis.VisitorManagement.Business.Contract
         IQueryable<ApplicationRole> GetAllRoles();
 
         IQueryable<Gender> GetAllGenders();
+
+        Task<IEnumerable<UserList>> GetAllUsers();
         
     }
 }

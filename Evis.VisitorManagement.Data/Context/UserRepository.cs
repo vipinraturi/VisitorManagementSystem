@@ -1,6 +1,7 @@
 ﻿using Evis.VisitorManagement.Data.Contract;
 using Evis.VisitorManagement.DataProject.Model;
 using Evis.VisitorManagement.DataProject.Model.Entities;
+using Evis.VisitorManagement.DataProject.Model.Entities.Custom;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -75,6 +76,22 @@ namespace Evis.VisitorManagement.Data.Context
         public async Task DeleteAsync(ApplicationUser applicationUser)
         {
             await m_userManager.DeleteAsync(applicationUser);
+        }
+
+        public async Task<IEnumerable<UserList>> GetAll()
+        {
+            StringBuilder queryBuilder = new StringBuilder(@"SELECT DISTINCT A.Id, A.FirstName, A.LastName, A.Email, A.PhoneNumber, 
+                                                                             A.GenderId, D.Name AS Gender, B.RoleId, C.Name As Role
+                                                            FROM ASPNETUSERS A
+                                                            LEFT JOIN AspNetUserRoles B
+	                                                            ON A.Id = B.UserId
+                                                            LEFT JOIN AspNetRoles C
+	                                                            ON C.Id = B.RoleId
+                                                            LEFT JOIN Genders D
+	                                                            ON D.Id = A.GenderId
+                                                            WHERE A.Email != 'systemadmin@evisuae.com'");
+
+            return await m_dbContext.Database.SqlQuery<UserList>(queryBuilder.ToString()).ToListAsync();
         }
     }
 }

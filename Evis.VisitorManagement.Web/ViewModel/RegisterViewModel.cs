@@ -35,6 +35,8 @@ namespace Evis.VisitorManagement.Web.ViewModel
         [Display(Name = "Role")]
         public string RoleId { get; set; }
 
+        public string Role { set; get; }
+
         public string Address { get; set; }
         public IEnumerable<ApplicationRole> UserRoles { get; set; }
 

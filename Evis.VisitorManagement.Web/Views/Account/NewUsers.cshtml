@@ -90,17 +90,6 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputLGender">Gender</label>
-                                @*<div class="radio">
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                            Male
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                            Female
-                                        </label>
-                                    </div>*@
-
                                 <div class="radio">
                                     <label data-ng-repeat="gender in allGenders">
                                         <input type="radio" name="gender"  ng-model="register.genderId" ng-value="gender.Id">{{gender.Name}}
@@ -125,73 +114,6 @@
         </div>
         <!-- /.row -->
     </section>
-
-    <script>
-        var app = angular.module('app', []);
-        app.controller('registerController', function ($scope, $http) {
-            $scope.register = {};
-            $scope.register.firstName = '';
-            $scope.register.lastName = '';
-            $scope.register.email = '';
-            $scope.register.phoneNumber = null;
-            $scope.register.address = '';
-            $scope.register.genderId = null;
-
-            $scope.register.roleId = null;
-            $scope.allRoles = [];
-
-            $http({
-                method: 'GET',
-                url: '/Api/AccountApi/GetAllRoles'
-            }).success(function (result) {
-                $scope.allRoles = result;
-            });
-
-            $scope.OnChange = function () {
-
-            }
-
-            $scope.allGenders = [];
-            $http({
-                method: 'GET',
-                url: '/Api/AccountApi/GetAllGenders'
-            }).success(function (result) {
-                $scope.allGenders = result;
-            });
-
-
-
-            $scope.Submit = function () {
-                debugger;
-
-                var viewModel = {
-                    "FirstName": $scope.register.firstName,
-                    "LastName": $scope.register.lastName,
-                    "Email": $scope.register.email,
-                    "PhoneNumber": $scope.register.phoneNumber,
-                    "RoleId": $scope.register.roleId,
-                    "Address": $scope.register.addressId,
-                    "GenderId": $scope.register.genderId
-                };
-
-                //alert(JSON.stringify(viewModel));
-
-                $http.post(
-                    '/Api/AccountApi/Register',
-                    JSON.stringify(viewModel),
-                    {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }
-                ).success(function (data) {
-                    window.location.href = '@Url.Action("Index", "ManageUsers")';
-                    console.log('success post');
-                }).error(function () {
-                    //debugger;
-                    $scope.error.$invalid = "An Error has occured";
-                });
-            };
-        });
-    </script>
 </div>
+
+<script type="text/javascript" src="~/Scripts/Controllers/NewUsersController.js"></script>
