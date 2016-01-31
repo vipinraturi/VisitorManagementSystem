@@ -10,7 +10,7 @@
                 <h2><span>Manage User</span></h2>
 
                 <div class="module-table-body">
-                    <form action="">
+                    <form ng-app="app" ng-controller="manageUsercontroller" name="manageUserForm" ng-model="manageUser" novalidate>
                         <table id="myTable" class="tablesorter">
                             <thead>
                                 <tr>
@@ -107,11 +107,61 @@
                 <a href="" class="button last"><span>Last <img src="~/Content/css-admin/arrow-stop-000-small.gif" height="9" width="12" alt="Last" /></span></a>
                 <div style="clear: both;"></div>
             </div>
-
-
-
-
         </div> <!-- End .grid_12 -->
-
-
 </div>
+
+<script>
+        var app = angular.module('app', []);
+        app.controller('registerController', function ($scope, $http) {
+            $scope.manageUser = {};
+            $scope.manageUser.firstName = '';
+            $scope.manageUser.lastName = '';
+            $scope.manageUser.email = '';
+            $scope.manageUser.phoneNumber = null;
+            $scope.manageUser.address = '';
+            $scope.manageUser.genderId = null;
+
+            $scope.manageUser.roleId = null;
+            $scope.allUsers = [];
+
+            $scope.allGenders = [];
+            $http({
+                method: 'GET',
+                url: '/Api/AccountApi/GetAllUsers'
+            }).success(function (result) {
+                $scope.allUsers = result;
+            });
+
+            $scope.Submit = function () {
+                debugger;
+
+                var viewModel = {
+                    "FirstName": $scope.register.firstName,
+                    "LastName": $scope.register.lastName,
+                    "Email": $scope.register.email,
+                    "PhoneNumber": $scope.register.phoneNumber,
+                    "RoleId": $scope.register.roleId,
+                    "Address": $scope.register.addressId,
+                    "GenderId": $scope.register.genderId
+                };
+
+                //alert(JSON.stringify(viewModel));
+
+                $http.post(
+                    '/Api/AccountApi/Register',
+                    JSON.stringify(viewModel),
+                    {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                ).success(function (data) {
+                    window.location.href = '@Url.Action("Index", "ManageUsers")';
+                    console.log('success post');
+                }).error(function () {
+                    //debugger;
+                    $scope.error.$invalid = "An Error has occured";
+                });
+            };
+        });
+</script>

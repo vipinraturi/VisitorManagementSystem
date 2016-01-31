@@ -1,4 +1,5 @@
 ﻿using Evis.VisitorManagement.DataProject.Model;
+using Evis.VisitorManagement.DataProject.Model.Entities.Custom;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,7 @@ namespace Evis.VisitorManagement.Data.Contract
 
         Task DeleteAsync(string userId);
         Task DeleteAsync(ApplicationUser applicationUser);
+
+        Task<IEnumerable<UserList>> GetAll();
     }
 }

@@ -90,17 +90,6 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputLGender">Gender</label>
-                                @*<div class="radio">
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                            Male
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                            Female
-                                        </label>
-                                    </div>*@
-
                                 <div class="radio">
                                     <label data-ng-repeat="gender in allGenders">
                                         <input type="radio" name="gender"  ng-model="register.genderId" ng-value="gender.Id">{{gender.Name}}
@@ -159,8 +148,6 @@
                 $scope.allGenders = result;
             });
 
-
-
             $scope.Submit = function () {
                 debugger;
 
@@ -185,7 +172,7 @@
                         }
                     }
                 ).success(function (data) {
-                    window.location.href = '@Url.Action("Index", "ManageUsers")';
+                    window.location.href = '@Url.Action("ManageUsers", "Account")';
                     console.log('success post');
                 }).error(function () {
                     //debugger;

@@ -20,7 +20,7 @@ app.controller('loginController', function ($scope, $http) {
                 }
             }
         ).success(function (data) {
-            window.location.href = '@Url.Action("Index", "Dashboard")';
+            window.location.href ='/Dashboard/Index';
             console.log('success post');
         }).error(function () {
             //debugger;

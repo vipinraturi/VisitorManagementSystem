@@ -2,6 +2,7 @@
 using Evis.VisitorManagement.Data;
 using Evis.VisitorManagement.DataProject.Model;
 using Evis.VisitorManagement.DataProject.Model.Entities;
+using Evis.VisitorManagement.DataProject.Model.Entities.Custom;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,6 +78,11 @@ namespace Evis.VisitorManagement.Business
         public IQueryable<Gender> GetAllGenders()
         {
             return m_unitOfWork.GetRepository<Gender>().GetAll();
+        }
+
+        public async Task<IEnumerable<UserList>> GetAllUsers()
+        {
+            return await m_unitOfWork.UserRepository.GetAll();
         }
     }
 }

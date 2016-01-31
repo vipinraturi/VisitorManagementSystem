@@ -1,6 +1,8 @@
-﻿using Evis.VisitorManagement.Business;
+﻿using AutoMapper;
+using Evis.VisitorManagement.Business;
 using Evis.VisitorManagement.Business.Contract;
 using Evis.VisitorManagement.DataProject.Model;
+using Evis.VisitorManagement.DataProject.Model.Entities.Custom;
 using Evis.VisitorManagement.Web.ViewModel;
 using Newtonsoft.Json;
 using System;
@@ -62,6 +64,14 @@ namespace Evis.VisitorManagement.Web.ControllerApi
                     Address = registerViewModel.Address
 
                 };
+
+            applicationUser.Roles.Add(
+                new Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole
+                {
+                    UserId = applicationUser.Id,
+                    RoleId = registerViewModel.RoleId
+                });
+
             await m_accountBO.CreateAsync(applicationUser, "Evis@123");
             //if (user == null)
             //    return NotFound();
@@ -96,6 +106,17 @@ namespace Evis.VisitorManagement.Web.ControllerApi
                 return NotFound();
             }
             return Ok(userRoles);
+        }
+
+        public async Task<IHttpActionResult> GetAllUsers()
+        {
+            var applicationUsers = await m_accountBO.GetAllUsers();
+            //var user = Mapper.Map<IEnumerable<UserList>, IEnumerable<UserListViewModel>>(applicationUsers);
+            if (applicationUsers == null)
+            {
+                return NotFound();
+            }
+            return Ok(applicationUsers);
         }
     }
 }
