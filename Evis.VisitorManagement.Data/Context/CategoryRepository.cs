@@ -12,7 +12,7 @@
 using Evis.VisitorManagement.Data.Contract;
 using Evis.VisitorManagement.DataProject.Model;
 
-namespace Evis.VisitorManagement.Data
+namespace Evis.VisitorManagement.Data.Context
 {
     public class CategoryRepository : Repository<Evis.VisitorManagement.DataProject.Model.Category>, ICategoryRepository
     {
