@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Evis.VisitorManagement.Web.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly IAccountBO m_accountBO;
@@ -19,6 +20,7 @@ namespace Evis.VisitorManagement.Web.Controllers
         }
         //
         // GET: /Account/
+        [AllowAnonymous]
         public ActionResult Login()
         {
             string test = System.Guid.NewGuid().ToString();
@@ -27,11 +29,13 @@ namespace Evis.VisitorManagement.Web.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult ForgetPassword()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult ResetPassword()
         {
             return View();

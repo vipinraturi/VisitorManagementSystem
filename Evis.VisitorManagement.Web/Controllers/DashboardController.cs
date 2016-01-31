@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Evis.VisitorManagement.Web.Controllers
 {
+    [Authorize]
     public class DashboardController : Controller
     {
         //
@@ -14,5 +15,6 @@ namespace Evis.VisitorManagement.Web.Controllers
         {
             return View();
         }
+
 	}
 }
