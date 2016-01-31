@@ -27,6 +27,16 @@ namespace Evis.VisitorManagement.Web.Controllers
             return View();
         }
 
+        public ActionResult ForgetPassword()
+        {
+            return View();
+        }
+
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel loginViewModel)
         {
@@ -38,7 +48,7 @@ namespace Evis.VisitorManagement.Web.Controllers
             return View("Login");
         }
 
-       
+
         public ActionResult ManageUsers()
         {
             return View();
@@ -59,5 +69,29 @@ namespace Evis.VisitorManagement.Web.Controllers
             return View();
         }
 
+        public ActionResult FacilityProfile()
+        {
+            return View();
+        }
+        public ActionResult Buildings()
+        {
+            return View();
+        }
+        public ActionResult Gates()
+        {
+            return View();
+        }
+        public ActionResult NewShift()
+        {
+            return View();
+        }
+        public ActionResult ManageShift()
+        {
+            return View();
+        }
+        public ActionResult ShiftAssignment()
+        {
+            return View();
+        }
     }
 }

@@ -3,46 +3,43 @@
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
+<script src="~/Content/assets/js/jquery.backstretch.min.js"></script>
+
 <div class="top-content">
     <div class="">
         <div class="container">
             <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text">
+                    <h1><strong>EVIS UAE - </strong> Login</h1>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-6 col-sm-offset-3 form-box">
-                    <div class="form-top">
-                        <div class="form-top-left">
-                            <h3>Login to our site</h3>
-                            <p>Enter your username and password to log on:</p>
-                        </div>
-                        <div class="form-top-right">
-                            <i class="fa fa-key"></i>
-                        </div>
-                    </div>
+                    
                     <div class="form-bottom">
-                        <form ng-app="loginApp" ng-controller="loginController" name="loginForm" novalidate>
+                        <form ng-app="loginApp" class="login-form" ng-controller="loginController" name="loginForm" novalidate>
                             <div class="form-group">
-                                <p>
-                                    Username:<br>
-                                    <input id="Username" type="text" name="user" ng-model="user" class="form-username form-control" required>
+                                    <input id="Username" type="text" name="user" ng-model="user" placeholder="User Name..." class="form-username form-control" required>
                                     <span style="color:red" ng-show="loginForm.user.$invalid">
                                         <span ng-show="loginForm.user.$error.required">Username is required.</span>
                                     </span>
-                                </p>
-                                <p>
-                                    Password:<br>
-                                    <input id="Password" type="password" name="password" ng-model="password" class="form-username form-control" required>
-                                    <span style="color:red" ng-show="loginForm.password.$invalid">
-                                        <span ng-show="loginForm.password.$error.required">Password is required.</span>
-                                    </span>
-                                </p>
-                                <p>
-                                    <button id="btnSubmit" type="button" class="btn" ng-click="SignIn()"
-                                            ng-disabled="loginForm.user.$invalid || loginForm.email.$invalid">
-                                        Sign In
-                                    </button>
-                                    <span style="color:red" ng-show="loginForm.error.$invalid">
-                                        <span ng-show="loginForm.error.$error.message">Invalid User Credentials!</span>
-                                    </span>
-                                </p>
+                                </div>
+                            <div class="form-group">
+                                <input id="Password" type="password" name="password" ng-model="password" placeholder="Password..." class="form-username form-control" required>
+                                <span style="color:red" ng-show="loginForm.password.$invalid">
+                                    <span ng-show="loginForm.password.$error.required">Password is required.</span>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <button id="btnSubmit" type="button" class="btn" ng-click="SignIn()"
+                                        ng-disabled="loginForm.user.$invalid || loginForm.email.$invalid">
+                                    Sign In
+                                </button>
+                                <span style="color:red" ng-show="loginForm.error.$invalid">
+                                    <span ng-show="loginForm.error.$error.message">Invalid User Credentials!</span>
+                                </span>
+                            </div>
+                            
                             </div>
                         </form>
                         @*@using (Html.BeginForm("", "", FormMethod.Post, new { ng_app = "myApp", ng_controller = "validateCtrl", name = "myForm" }))
@@ -67,7 +64,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3 social-login">
+                    <div class="col-sm-6 col-sm-offset-3">
                         <h3>...or login with:</h3>
                         <div class="social-login-buttons">
                             <a class="btn btn-link-1 btn-link-1-facebook" href="#">
@@ -87,109 +84,5 @@
     </div>
 </div>
 
-<script>
-    var app = angular.module('loginApp', []);
-    app.controller('loginController', function ($scope, $http) {
-
-        $scope.user = '';//username@domain.com
-        $scope.password = '';//********
-
-        $scope.SignIn = function () {
-
-            var viewModel = {
-                "Username": $scope.user,
-                "Password": $scope.password
-            };
-
-            $http.post(
-                '/Api/AccountApi/Login',
-                JSON.stringify(viewModel),
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            ).success(function (data) {
-                window.location.href = '@Url.Action("Index", "Dashboard")';
-                console.log('success post');
-            }).error(function () {
-                //debugger;
-                $scope.error.$invalid = "An Error has occured";
-            });
-        };
-
-    });
-
-    @*$(document).ready(function () {
-        $("#btnSubmit").click(function () {
-
-            var viewModel = {
-                "Username": $("#UserName").val(),
-                "Password": $("#Password").val()
-            };
-            JSON.stringify(viewModel);
-            debugger;
-            $.ajax({
-                url: "http://localhost:54608/Api/AccountApi",
-                type: "Post",
-                data: JSON.stringify(viewModel), //{ Name: name,
-                contentType: 'application/json; charset=utf-8',
-                success: function (data) {
-                    debugger;
-                    console.log(data);
-                    window.location.href = '@Url.Action("Register", "Account")';
-                },
-                error: function () {
-                    alert('error');
-                }
-            });
-        });
-    });*@
-
-</script>
-
-@*<script type="text/javascript">
-
-
-
-        $(document).ready(function () {
-
-
-            var app = angular.module('myApp', []);
-
-            app.controller('validateCtrl', function ($scope) {
-                $scope.user = '';
-                $scope.password = '';
-            });
-
-
-
-            @*$("#btnSubmit").click(function () {
-
-                var viewModel = {
-                    "Username": $("#UserName").val(),
-                    "Password": $("#Password").val()
-                };
-                JSON.stringify(viewModel);
-                debugger;
-                $.ajax({
-                    url: "http://localhost:54608/Api/AccountApi",
-                    type: "Post",
-                    data: JSON.stringify(viewModel), //{ Name: name,
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (data) {
-                        debugger;
-                        console.log(data);
-                        window.location.href = '@Url.Action("Register", "Account")';
-                    },
-                    error: function () {
-                        alert('error');
-                    }
-                });
-            });
-        });
-    </script>*@
-
-
-
+<script type="text/javascript" src="~/Scripts/Controllers/LoginController.js" />
 

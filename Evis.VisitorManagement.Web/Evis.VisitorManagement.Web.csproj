@@ -345,6 +345,7 @@
     <Content Include="Scripts\bootstrap\js\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\js\npm.js" />
     <Content Include="Scripts\Controllers\CategoryController.js" />
+    <Content Include="Scripts\Controllers\LoginController.js" />
     <Content Include="Scripts\dist\css\AdminLTE.css" />
     <Content Include="Scripts\dist\css\AdminLTE.min.css" />
     <Content Include="Scripts\dist\css\skins\skin-black-light.css" />
@@ -2034,6 +2035,14 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Test.cshtml" />
+    <Content Include="Views\Account\FacilityProfile.cshtml" />
+    <Content Include="Views\Account\ShiftAssignment.cshtml" />
+    <Content Include="Views\Account\ManageShift.cshtml" />
+    <Content Include="Views\Account\NewShift.cshtml" />
+    <Content Include="Views\Account\Gates.cshtml" />
+    <Content Include="Views\Account\Buildings.cshtml" />
+    <Content Include="Views\Account\ForgetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
