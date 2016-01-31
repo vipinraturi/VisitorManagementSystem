@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Evis.VisitorManagement.Web.Controllers
 {
@@ -23,10 +24,28 @@ namespace Evis.VisitorManagement.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
+            HttpCookie authCookie = System.Web.HttpContext.Current.Request.Cookies[".ASPXAUTH"];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket != null & !authTicket.Expired)
+                {
+                    return RedirectToAction("Index", "Dashboard");
+                }
+            }
+
             string test = System.Guid.NewGuid().ToString();
             var passwordHash = new Microsoft.AspNet.Identity.PasswordHasher();
             var hashedPassword = passwordHash.HashPassword("Evis@123");
             return View();
+        }
+
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session.Clear();
+            return RedirectToAction("Login", "Account");
         }
 
         [AllowAnonymous]

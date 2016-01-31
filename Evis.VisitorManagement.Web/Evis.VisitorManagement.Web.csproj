@@ -2139,7 +2139,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs">
       <SubType>Code</SubType>

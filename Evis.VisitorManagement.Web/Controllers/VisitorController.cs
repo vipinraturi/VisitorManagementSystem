@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Evis.VisitorManagement.Web.Controllers
 {
+    [Authorize]
     public class VisitorController : Controller
     {
         // GET: Visitor

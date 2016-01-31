@@ -2,9 +2,7 @@
 @{
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
-
 <script src="~/Content/assets/js/jquery.backstretch.min.js"></script>
-
 <div class="top-content">
     <div class="">
         <div class="container">
@@ -15,20 +13,23 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3 form-box">
-                    
                     <div class="form-bottom">
                         <form ng-app="loginApp" class="login-form" ng-controller="loginController" name="loginForm" novalidate>
                             <div class="form-group">
-                                    <input id="Username" type="text" name="user" ng-model="user" placeholder="User Name..." class="form-username form-control" required>
-                                    <span style="color:red" ng-show="loginForm.user.$invalid">
-                                        <span ng-show="loginForm.user.$error.required">Username is required.</span>
-                                    </span>
-                                </div>
+                                <input id="Username" type="text" name="user" ng-model="user" placeholder="User Name..." class="form-username form-control" required>
+                                <span style="color:red" ng-show="loginForm.user.$invalid">
+                                    <span ng-show="loginForm.user.$error.required">Username is required.</span>
+                                </span>
+                            </div>
                             <div class="form-group">
-                                <input id="Password" type="password" name="password" ng-model="password" placeholder="Password..." class="form-username form-control" required>
+                                <input id="Password" type="password" name="password" ng-model="password" placeholder="Password..." 
+                                       class="form-username form-control" required />
                                 <span style="color:red" ng-show="loginForm.password.$invalid">
                                     <span ng-show="loginForm.password.$error.required">Password is required.</span>
                                 </span>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="cbSavePassword" ng-model="isPasswordSave" ng-checked="isPasswordSave" /> Remember Me
                             </div>
                             <div class="form-group">
                                 <button id="btnSubmit" type="button" class="btn" ng-click="SignIn()"
@@ -39,50 +40,30 @@
                                     <span ng-show="loginForm.error.$error.message">Invalid User Credentials!</span>
                                 </span>
                             </div>
-                            
-                            </div>
                         </form>
-                        @*@using (Html.BeginForm("", "", FormMethod.Post, new { ng_app = "myApp", ng_controller = "validateCtrl", name = "myForm" }))
-                            {
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.UserName, new { @class = "sr-only" })
-                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-username form-control", @placeholder = "Username...", ng_model = "user", required = "required" })
-                                    <span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
-                                        <span ng-show="myForm.user.$error.required">Username is required.</span>
-                                    </span>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Password, new { @class = "sr-only" })
-                                    @Html.PasswordFor(m => m.Password, new { @class = "form-username form-control", @placeholder = "Password...", ng_model = "email", ng_minlength = "8", required = "required" })
-                                    <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
-                                        <span ng-show="myForm.email.$error.required">Email is required.</span>
-                                        <span ng-show="myForm.email.$error.minlength">Password should be of 8 characters.</span>
-                                    </span>
-                                </div>
-                                <button id="btnSubmit" type="submit" class="btn">Sign in!</button>
-                            }*@
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <h3>...or login with:</h3>
-                        <div class="social-login-buttons">
-                            <a class="btn btn-link-1 btn-link-1-facebook" href="#">
-                                <i class="fa fa-facebook"></i> Facebook
-                            </a>
-                            <a class="btn btn-link-1 btn-link-1-twitter" href="#">
-                                <i class="fa fa-twitter"></i> Twitter
-                            </a>
-                            <a class="btn btn-link-1 btn-link-1-google-plus" href="#">
-                                <i class="fa fa-google-plus"></i> Google Plus
-                            </a>
-                        </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h3>...or login with:</h3>
+                    <div class="social-login-buttons">
+                        <a class="btn btn-link-1 btn-link-1-facebook" href="#">
+                            <i class="fa fa-facebook"></i> Facebook
+                        </a>
+                        <a class="btn btn-link-1 btn-link-1-twitter" href="#">
+                            <i class="fa fa-twitter"></i> Twitter
+                        </a>
+                        <a class="btn btn-link-1 btn-link-1-google-plus" href="#">
+                            <i class="fa fa-google-plus"></i> Google Plus
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
 
-<script type="text/javascript" src="~/Scripts/Controllers/LoginController.js" ></script>
+<script type="text/javascript" src="~/Scripts/Controllers/LoginController.js"></script>
 

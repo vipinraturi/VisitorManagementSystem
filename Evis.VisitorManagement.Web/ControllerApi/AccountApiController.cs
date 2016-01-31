@@ -1,18 +1,12 @@
-﻿using AutoMapper;
-using Evis.VisitorManagement.Business;
+﻿using Evis.VisitorManagement.Business;
 using Evis.VisitorManagement.Business.Contract;
 using Evis.VisitorManagement.DataProject.Model;
-using Evis.VisitorManagement.DataProject.Model.Entities.Custom;
 using Evis.VisitorManagement.Web.ViewModel;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Evis.VisitorManagement.Web.ControllerApi
 {
@@ -20,41 +14,37 @@ namespace Evis.VisitorManagement.Web.ControllerApi
     {
         private IAccountBO m_accountBO = new AccountBO();
 
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        public AccountApiController()
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        public IEnumerable<string> GetAll()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-
-            return "value";
         }
 
         // POST api/<controller>
         public async Task<IHttpActionResult> Login([FromBody]LoginViewModel loginViewModel)
         {
-            //var loginViewModel = JsonConvert.DeserializeObject<List<LoginViewModel>>(loginViewModelJSON);
             m_accountBO = new AccountBO();
             var user = await m_accountBO.FindAsync(loginViewModel.UserName, loginViewModel.Password);
-            
-            if (user == null)
+
+            if (user != null)
+            {
+                int timeout = FormsAuthentication.Timeout.Minutes; // 2 hours
+                
+                var ticket = new FormsAuthenticationTicket(loginViewModel.UserName.Trim().ToLower(), loginViewModel.isPasswordSave, timeout);
+                string encrypted = FormsAuthentication.Encrypt(ticket);
+                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
+                cookie.Expires = System.DateTime.Now.AddMinutes(timeout);
+                cookie.HttpOnly = true; // cookie not available in javascript.
+                HttpContext.Current.Response.Cookies.Add(cookie);
+            }
+            else
+            {
                 return NotFound();
+            }
 
             return Ok(user);
         }
 
         public async Task<IHttpActionResult> Register([FromBody]RegisterViewModel registerViewModel)
         {
-            //var loginViewModel = JsonConvert.DeserializeObject<List<LoginViewModel>>(loginViewModelJSON);
-            //m_accountBO = new AccountBO();
             ApplicationUser applicationUser
                 = new ApplicationUser
                 {
@@ -75,8 +65,6 @@ namespace Evis.VisitorManagement.Web.ControllerApi
                 });
 
             await m_accountBO.CreateAsync(applicationUser, "Evis@123");
-            //if (user == null)
-            //    return NotFound();
             return Ok(applicationUser);
         }
 
@@ -113,7 +101,6 @@ namespace Evis.VisitorManagement.Web.ControllerApi
         public async Task<IHttpActionResult> GetAllUsers()
         {
             var applicationUsers = await m_accountBO.GetAllUsers();
-            //var user = Mapper.Map<IEnumerable<UserList>, IEnumerable<UserListViewModel>>(applicationUsers);
             if (applicationUsers == null)
             {
                 return NotFound();
