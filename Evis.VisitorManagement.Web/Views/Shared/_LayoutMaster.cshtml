@@ -53,6 +53,10 @@
     <!-- Themes. Below are several color themes. Uncomment the line of your choice to switch to different color. All styles commented out means blue theme. -->
     <link rel="stylesheet" type="text/css" href="~/css-admin/theme-blue.css" media="screen" />
 
+    <link rel="stylesheet" href="~/Content/toastr.min.css">
+    <link rel="stylesheet" href="~/Content/toastr-custom.css">
+
+
 
     <!-- JQuery engine script-->
     <script type="text/javascript" src="~/Content/css-admin/jquery-1.3.2.min.js"></script>
@@ -75,25 +79,29 @@
     <script src="~/Scripts/Plugin/angular.js"></script>
     <script type="text/javascript" src="~/Scripts/Plugin/jquery-2.2.0.min.js"></script>
 
-    <!-- Initiate tablesorter script -->
-    @*<script type="text/javascript">
-        $(document).ready(function () {
-            $("#myTable")
-            .tablesorter({
-                // zebra coloring
-                widgets: ['zebra'],
-                // pass the headers argument and assing a object
-                headers: {
-                    // assign the sixth column (we start counting zero)
-                    6: {
-                        // disable it by setting the property sorter to false
-                        sorter: false
-                    }
-                }
-            })
-        .tablesorterPager({ container: $("#pager") });
-        });
-    </script>*@
+    <script src="~/Content/toastr.min.js"></script>
+
+    <script>
+    jQuery(document).ready(function () {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "progressBar": false,
+            "positionClass": "toast-custom",
+            "onclick": null,
+            "showDuration": "3000",
+            "hideDuration": "1000",
+            "timeOut": "10000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    });
+    </script>
+
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">

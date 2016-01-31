@@ -44,8 +44,10 @@ namespace Evis.VisitorManagement.Web.ControllerApi
             //var loginViewModel = JsonConvert.DeserializeObject<List<LoginViewModel>>(loginViewModelJSON);
             m_accountBO = new AccountBO();
             var user = await m_accountBO.FindAsync(loginViewModel.UserName, loginViewModel.Password);
+            
             if (user == null)
                 return NotFound();
+
             return Ok(user);
         }
 

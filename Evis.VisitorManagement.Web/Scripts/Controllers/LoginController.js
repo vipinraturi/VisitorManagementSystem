@@ -23,6 +23,8 @@ app.controller('loginController', function ($scope, $http) {
             window.location.href ='/Dashboard/Index';
             console.log('success post');
         }).error(function () {
+
+            toastr.error("Please enter the valid credentials");
             //debugger;
             $scope.error.$invalid = "An Error has occured";
         });
