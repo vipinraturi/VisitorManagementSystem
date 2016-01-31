@@ -84,11 +84,12 @@ namespace Evis.VisitorManagement.Data.Context
                                                                              A.GenderId, D.Name AS Gender, B.RoleId, C.Name As Role
                                                             FROM ASPNETUSERS A
                                                             LEFT JOIN AspNetUserRoles B
-	                                                            on A.Id = B.UserId
+	                                                            ON A.Id = B.UserId
                                                             LEFT JOIN AspNetRoles C
-	                                                            on C.Id = B.RoleId
+	                                                            ON C.Id = B.RoleId
                                                             LEFT JOIN Genders D
-	                                                            on D.Id = A.GenderId");
+	                                                            ON D.Id = A.GenderId
+                                                            WHERE A.Email != 'systemadmin@evisuae.com'");
 
             return await m_dbContext.Database.SqlQuery<UserList>(queryBuilder.ToString()).ToListAsync();
         }
