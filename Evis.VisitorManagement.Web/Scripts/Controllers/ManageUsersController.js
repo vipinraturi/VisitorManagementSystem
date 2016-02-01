@@ -128,6 +128,7 @@ app.controller('manageUsercontroller', function ($scope, $http) {
                     }).success(function (result) {
                         $scope.allUsers = result;
                     });
+                    toastr.success("Record is deleted successfully!")
                 }
             });
         }

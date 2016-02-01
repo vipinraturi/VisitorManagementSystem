@@ -6,6 +6,7 @@ using Evis.VisitorManagement.Web.ViewModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Http;
 using System.Web.Security;
 
@@ -67,8 +68,8 @@ namespace Evis.VisitorManagement.Web.ControllerApi
                         RoleId = registerViewModel.RoleId
                     });
 
-                //"Evis@123"
-                await m_accountBO.CreateAsync(applicationUser, registerViewModel.Email);
+                string defaultPassword = WebConfigurationManager.AppSettings["DefaultPassword"];
+                await m_accountBO.CreateAsync(applicationUser, defaultPassword);
                 return Ok(applicationUser);
             }
             else

@@ -38,8 +38,8 @@ namespace Evis.VisitorManagement.Business
 
         public async Task CreateAsync(ApplicationUser applicationUser, string password)
         {
-            string passwordHashed = GetPassword(password);
-            await m_unitOfWork.UserRepository.CreateAsync(applicationUser, passwordHashed);
+            //string passwordHashed = GetPassword(password);
+            await m_unitOfWork.UserRepository.CreateAsync(applicationUser, password);
             m_unitOfWork.Commit();
         }
 
@@ -52,15 +52,7 @@ namespace Evis.VisitorManagement.Business
             existingUserRecord.Address = applicationUser.Address;
             existingUserRecord.GenderId = applicationUser.GenderId;
             await m_unitOfWork.UserRepository.UpdateAsync(existingUserRecord);
-        }
-
-        private string GetPassword(string password)
-        {
-            var passwordHash = new Microsoft.AspNet.Identity.PasswordHasher();
-            return passwordHash.HashPassword(password);
-        }
-
-        
+        }        
 
         public IQueryable<ApplicationRole> GetAllRoles()
         {
