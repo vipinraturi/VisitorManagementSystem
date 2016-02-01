@@ -67,8 +67,6 @@ app.controller('manageUsercontroller', function ($scope, $http) {
             "UserId": $scope.register.id
         };
 
-        alert($scope.register.id);
-
         $http.post(
             '/Api/AccountApi/Register',
             JSON.stringify(viewModel),
@@ -136,6 +134,14 @@ app.controller('manageUsercontroller', function ($scope, $http) {
     };
 
     $scope.NewUser = function () {
+        $scope.register.firstName = '';
+        $scope.register.lastName = '';
+        $scope.register.email = '';
+        $scope.register.address = '';
+        $scope.register.phoneNumber = '';
+        $scope.register.roleId = '';
+        $scope.register.genderId = '';
+        $scope.register.id = '';
 
         $('#displayUsers').hide();
         $('#addEditSection').show();

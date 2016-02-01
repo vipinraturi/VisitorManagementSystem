@@ -123,7 +123,7 @@
 
                     <div class="module-table-body">
                         <form name="manageUserForm" ng-model="manageUser" novalidate>
-                            <button class="btn" ng-click="NewUser()">New User</button>
+                            <button style="float:right;margin:5px;" class="btn btn-primary" ng-click="NewUser()">New User</button>
                             <table id="myTable" class="tablesorter">
                                 <thead>
                                     <tr>
@@ -153,7 +153,7 @@
                             </table>
                         </form>
 
-                        <div class="pager" id="pager">
+                        @*<div class="pager" id="pager">
                             <form action="">
                                 <div>
                                     <img class="first" src="~/Content/css-admin/arrow-stop-180.gif" alt="first" />
@@ -169,9 +169,15 @@
                                     </select>
                                 </div>
                             </form>
-                        </div>
+                        </div>*@
                     </div>
-                    <div class="pagination">
+
+                    <pagination boundary-links="true" total-items="" items-per-page=""
+                                ng-change=""
+                                ng-model="" class="pagination-lg" previous-text="Prev"
+                                next-text="Next" first-text="First" last-text="Last"></pagination>
+
+                    @*<div class="pagination">
                         <a href="" class="button"><span><img src="~/Content/css-admin/arrow-stop-180-small.gif" height="9" width="12" alt="First" /> First</span></a>
                         <a href="" class="button"><span><img src="~/Content/css-admin/arrow-180-small.gif" height="9" width="12" alt="Previous" /> Prev</span></a>
                         <div class="numbers">
@@ -197,7 +203,7 @@
                         <a href="" class="button"><span>Next <img src="~/Content/css-admin/arrow-000-small.gif" height="9" width="12" alt="Next" /></span></a>
                         <a href="" class="button last"><span>Last <img src="~/Content/css-admin/arrow-stop-000-small.gif" height="9" width="12" alt="Last" /></span></a>
                         <div style="clear: both;"></div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>

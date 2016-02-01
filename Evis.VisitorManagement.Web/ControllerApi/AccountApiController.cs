@@ -67,7 +67,8 @@ namespace Evis.VisitorManagement.Web.ControllerApi
                         RoleId = registerViewModel.RoleId
                     });
 
-                await m_accountBO.CreateAsync(applicationUser, "Evis@123");
+                //"Evis@123"
+                await m_accountBO.CreateAsync(applicationUser, registerViewModel.Email);
                 return Ok(applicationUser);
             }
             else

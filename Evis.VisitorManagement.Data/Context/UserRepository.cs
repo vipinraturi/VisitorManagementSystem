@@ -52,6 +52,7 @@ namespace Evis.VisitorManagement.Data.Context
             // Roles
             //applicationUser.Roles.Add(new IdentityUserRole() { UserId = applicationUser.Id, RoleId = userRole });
 
+
             // Defaults for New User Creation
             applicationUser.UserName = applicationUser.Email;
             applicationUser.EmailConfirmed = false;

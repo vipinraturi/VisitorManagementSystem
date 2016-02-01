@@ -38,7 +38,7 @@ namespace Evis.VisitorManagement.Business
 
         public async Task CreateAsync(ApplicationUser applicationUser, string password)
         {
-            string passwordHashed = GetTemporaryPassword();
+            string passwordHashed = GetPassword(password);
             await m_unitOfWork.UserRepository.CreateAsync(applicationUser, passwordHashed);
             m_unitOfWork.Commit();
         }
@@ -54,10 +54,10 @@ namespace Evis.VisitorManagement.Business
             await m_unitOfWork.UserRepository.UpdateAsync(existingUserRecord);
         }
 
-        private string GetTemporaryPassword()
+        private string GetPassword(string password)
         {
             var passwordHash = new Microsoft.AspNet.Identity.PasswordHasher();
-            return passwordHash.HashPassword("Evis@123");
+            return passwordHash.HashPassword(password);
         }
 
         
