@@ -2109,13 +2109,11 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutMaster.cshtml" />
     <Content Include="Views\Account\NewUsers.cshtml" />
-    <Content Include="Views\Account\UploadFile.cshtml" />
     <Content Include="Views\Visitor\ScanVisitorCard.cshtml" />
     <Content Include="Views\Visitor\AddVisitorManually.cshtml" />
     <Content Include="Views\Visitor\VisitorList.cshtml" />
     <Content Include="Views\Account\MyProfile.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Test.cshtml" />
     <Content Include="Views\Account\FacilityProfile.cshtml" />
     <Content Include="Views\Account\ShiftAssignment.cshtml" />
@@ -2125,6 +2123,7 @@
     <Content Include="Views\Account\Buildings.cshtml" />
     <Content Include="Views\Account\ForgetPassword.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\AddGates.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />

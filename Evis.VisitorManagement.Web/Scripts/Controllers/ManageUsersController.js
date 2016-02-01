@@ -7,4 +7,11 @@ app.controller('manageUsercontroller', function ($scope, $http) {
     }).success(function (result) {
         $scope.allUsers = result;
     });
+
+    $scope.GetUser = function (Id) {
+        alert(Id);
+        alert("Get User");
+    };
+
+    $scope.DeleteUser = function () { alert("Delete Users"); };
 });

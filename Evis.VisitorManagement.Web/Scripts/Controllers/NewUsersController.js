@@ -52,7 +52,7 @@ app.controller('registerController', function ($scope, $http) {
                 }
             }
         ).success(function (data) {
-            window.location.href = 'Account/ManageUsers'; // '@Url.Action("ManageUsers", "Account")';
+            window.location.href = '/Account/ManageUsers'; // '@Url.Action("ManageUsers", "Account")';
             console.log('success post');
         }).error(function () {
             //debugger;

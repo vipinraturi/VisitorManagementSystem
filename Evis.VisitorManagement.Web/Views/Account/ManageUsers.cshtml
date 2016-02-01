@@ -2,14 +2,11 @@
     Layout = "~/Views/Shared/_LayoutMaster.cshtml";
 }
 
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <div class="container_12">
-        <!-- Example table -->
         <div class="module">
-            <h2><span>Manage User</span></h2>
-
-            <div class="module-table-body">
+         <h2><span>Manage User</span></h2>
+         <div class="module-table-body">
                 <form ng-app="app" ng-controller="manageUsercontroller" name="manageUserForm" ng-model="manageUser" novalidate>
                     <table id="myTable" class="tablesorter">
                         <thead>
@@ -24,22 +21,21 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="user in allUsers">
-                                <td><a href="">{{user.FirstName}}</a></td>
+                                <td>
+                                    <a href="#" ng-click="GetUser(user.Id)">{{user.FirstName}}</a>
+                                </td>
                                 <td>{{user.Email}}</td>
                                 <td>{{user.PhoneNumber}}</td>
                                 <td>{{user.Gender}}</td>
                                 <td>{{user.Role}}</td>
                                 <td>
-                                    <input type="checkbox" />
-                                    <a href=""><img src="~/Content/css-admin/tick-circle.gif" width="16" height="16" alt="published" /></a>
-                                    <a href=""><img src="~/Content/css-admin/pencil.gif" width="16" height="16" alt="edit" /></a>
-                                    <a href=""><img src="~/Content/css-admin/balloon.gif" width="16" height="16" alt="comments" /></a>
-                                    <a href=""><img src="~/Content/css-admin/bin.gif" width="16" height="16" alt="delete" /></a>
+                                    <a href="#" ng-click="DeleteUser()"><img src="~/Content/css-admin/bin.gif" width="16" height="16" alt="delete" title="delete" /></a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </form>
+
                 <div class="pager" id="pager">
                     <form action="">
                         <div>
@@ -57,12 +53,8 @@
                         </div>
                     </form>
                 </div>
-
-            </div> <!-- End .module-table-body -->
-        </div> <!-- End .module -->
-
-
-        <div class="pagination">
+        </div> 
+          <div class="pagination">
             <a href="" class="button"><span><img src="~/Content/css-admin/arrow-stop-180-small.gif" height="9" width="12" alt="First" /> First</span></a>
             <a href="" class="button"><span><img src="~/Content/css-admin/arrow-180-small.gif" height="9" width="12" alt="Previous" /> Prev</span></a>
             <div class="numbers">
@@ -89,7 +81,7 @@
             <a href="" class="button last"><span>Last <img src="~/Content/css-admin/arrow-stop-000-small.gif" height="9" width="12" alt="Last" /></span></a>
             <div style="clear: both;"></div>
         </div>
-    </div> <!-- End .grid_12 -->
+    </div> 
 </div>
-
+    </div>
 <script type="text/javascript" src="~/Scripts/Controllers/ManageUsersController.js"></script>

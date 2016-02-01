@@ -74,8 +74,9 @@ namespace Evis.VisitorManagement.Web.ControllerApi
         }
 
         // DELETE api/<controller>/5
-        public void Delete(int id)
+        public void Delete(string userId)
         {
+            m_accountBO.DeleteAsync(userId);
         }
 
         public IHttpActionResult GetAllRoles()
@@ -106,6 +107,16 @@ namespace Evis.VisitorManagement.Web.ControllerApi
                 return NotFound();
             }
             return Ok(applicationUsers);
+        }
+
+        public async Task<IHttpActionResult> GetUser(string userId)
+        {
+            var applicationUser = await m_accountBO.FindAsync(userId);
+            if (applicationUser == null)
+            {
+                return NotFound();
+            }
+            return Ok(applicationUser);
         }
     }
 }

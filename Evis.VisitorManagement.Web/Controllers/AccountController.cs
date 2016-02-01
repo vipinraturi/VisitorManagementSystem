@@ -96,22 +96,32 @@ namespace Evis.VisitorManagement.Web.Controllers
         {
             return View();
         }
+       
         public ActionResult Buildings()
         {
             return View();
         }
+
+        public ActionResult AddGates()
+        {
+            return View();
+        }
+
         public ActionResult Gates()
         {
             return View();
         }
+        
         public ActionResult NewShift()
         {
             return View();
         }
+
         public ActionResult ManageShift()
         {
             return View();
         }
+        
         public ActionResult ShiftAssignment()
         {
             return View();
