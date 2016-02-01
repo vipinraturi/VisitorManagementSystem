@@ -49,8 +49,9 @@ namespace Evis.VisitorManagement.Business
             existingUserRecord.FirstName = applicationUser.FirstName;
             existingUserRecord.LastName = applicationUser.LastName;
             existingUserRecord.PhoneNumber = applicationUser.PhoneNumber;
+            existingUserRecord.Address = applicationUser.Address;
+            existingUserRecord.GenderId = applicationUser.GenderId;
             await m_unitOfWork.UserRepository.UpdateAsync(existingUserRecord);
-            
         }
 
         private string GetTemporaryPassword()
@@ -66,13 +67,17 @@ namespace Evis.VisitorManagement.Business
             return m_unitOfWork.GetRepository<ApplicationRole>().GetAll();
         }
 
-        public async Task DeleteAsync(string userId)
+        public async Task<bool> DeleteAsync(string userId)
         {
             await m_unitOfWork.UserRepository.DeleteAsync(userId);
+            m_unitOfWork.Commit();
+            return true;
         }
-        public async Task DeleteAsync(ApplicationUser applicationUser)
+        public async Task<bool> DeleteAsync(ApplicationUser applicationUser)
         {
             await m_unitOfWork.UserRepository.DeleteAsync(applicationUser);
+            m_unitOfWork.Commit();
+            return true;
         }
 
         public IQueryable<Gender> GetAllGenders()

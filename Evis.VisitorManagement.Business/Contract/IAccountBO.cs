@@ -19,10 +19,8 @@ namespace Evis.VisitorManagement.Business.Contract
 
         Task UpdateAsync(ApplicationUser applicationUser);
 
-        Task DeleteAsync(string userId);
-        Task DeleteAsync(ApplicationUser applicationUser);
-
-        
+        Task<bool> DeleteAsync(string userId);
+        Task<bool> DeleteAsync(ApplicationUser applicationUser);
 
         IQueryable<ApplicationRole> GetAllRoles();
 

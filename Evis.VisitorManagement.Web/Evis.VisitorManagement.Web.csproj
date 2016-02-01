@@ -415,7 +415,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\Application\AjaxService.js" />
     <Content Include="Scripts\Application\AlertService.js" />
-    <Content Include="Scripts\Application\LearningSystemApp.js" />
+    <Content Include="Scripts\Application\VMSSystemApp.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\css\bootstrap.css" />
@@ -427,7 +427,6 @@
     <Content Include="Scripts\Controllers\CategoryController.js" />
     <Content Include="Scripts\Controllers\LoginController.js" />
     <Content Include="Scripts\Controllers\ManageUsersController.js" />
-    <Content Include="Scripts\Controllers\NewUsersController.js" />
     <Content Include="Scripts\dist\css\AdminLTE.css" />
     <Content Include="Scripts\dist\css\AdminLTE.min.css" />
     <Content Include="Scripts\dist\css\skins\skin-black-light.css" />
@@ -2108,7 +2107,6 @@
     <Content Include="Views\Account\ManageUsers.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutMaster.cshtml" />
-    <Content Include="Views\Account\NewUsers.cshtml" />
     <Content Include="Views\Visitor\ScanVisitorCard.cshtml" />
     <Content Include="Views\Visitor\AddVisitorManually.cshtml" />
     <Content Include="Views\Visitor\VisitorList.cshtml" />

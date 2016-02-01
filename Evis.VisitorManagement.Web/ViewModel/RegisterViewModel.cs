@@ -12,6 +12,8 @@ namespace Evis.VisitorManagement.Web.ViewModel
     public class RegisterViewModel
     {
 
+        public string UserId { get; set; }
+
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }

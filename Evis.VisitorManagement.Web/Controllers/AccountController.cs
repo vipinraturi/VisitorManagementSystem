@@ -77,8 +77,15 @@ namespace Evis.VisitorManagement.Web.Controllers
             return View();
         }
 
-        public ActionResult NewUsers()
+        public ActionResult Users(string userId)
         {
+            ViewBag.UserId = userId;
+            return View();
+        }
+
+        public ActionResult EditUser(string userId)
+        {
+            ViewBag.UserId = userId;
             return View();
         }
 
