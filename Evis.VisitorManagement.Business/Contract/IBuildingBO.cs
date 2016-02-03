@@ -11,17 +11,21 @@ namespace Evis.VisitorManagement.Business.Contract
     {
         Company GetCompanyInformation();
 
-        Company Insert(Company company);
+        Company InsertCompany(Company company);
 
-        void Update(Company company);
+        void UpdateCompany(Company company);
 
-        IQueryable<BuildingBO> GetAllBuildings();
+        IQueryable<Building> GetAllBuildings();
 
-        IQueryable<BuildingBO> GetManyBuidings();
+        IQueryable<Building> GetManyBuidings();
 
-        BuildingBO GetBuildingInfo(int buildingId);
+        Building GetBuildingInfo(int buildingId);
 
         bool DeleteBuilding(int buildingId);
+
+        Building InsertBuilding(Building building);
+
+        void UpdateBuilding(Building building);
 
         IQueryable<BuildingGate> GetAllBuildingGates();
 
@@ -31,6 +35,6 @@ namespace Evis.VisitorManagement.Business.Contract
 
         bool DeleteBuildingGate(int buildingGateId);
 
-        
+        IQueryable<BuildingLocation> GetAllBuildingLocations();
     }
 }

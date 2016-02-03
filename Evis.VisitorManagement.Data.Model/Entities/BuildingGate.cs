@@ -19,10 +19,10 @@ namespace Evis.VisitorManagement.DataProject.Model.Entities
         public string PhoneNumber { get; set; }
 
         [Required]
-        public int BuildingNameId { get; set; }
-        [ForeignKey("BuildingNameId")]
+        public int BuildingId { get; set; }
+        [ForeignKey("BuildingId")]
 
-        public virtual BuildingName BuildingName { get; set; }
+        public virtual Building Building { get; set; }
 
     }
 }

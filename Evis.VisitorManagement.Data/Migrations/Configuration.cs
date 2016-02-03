@@ -16,14 +16,17 @@ namespace Evis.VisitorManagement.Data.Migrations
 
         protected override void Seed(VMSDbContext context)
         {
-            //GenerateRoles(context);
             //GenerateGender(context);
+            //context.SaveChanges();
+
+            //GenerateBuidingLocations(context);
+            //context.SaveChanges();
+
+            //GenerateRoles(context);
             //context.SaveChanges();
 
             //GenerateSystemAdmin(context);
             //context.SaveChanges();
-
-            GenerateBuidingLocations(context);
         }
 
         private static void GenerateGender(VMSDbContext context)
@@ -35,7 +38,6 @@ namespace Evis.VisitorManagement.Data.Migrations
 
         private static void GenerateRoles(VMSDbContext context)
         {
-            context.Roles.Add(new ApplicationRole { Name = "Admin", Description = "Admin" });
             context.Roles.Add(new ApplicationRole { Name = "Supervisor", Description = "Supervisor" });
             context.Roles.Add(new ApplicationRole { Name = "Security", Description = "Security" });
         }

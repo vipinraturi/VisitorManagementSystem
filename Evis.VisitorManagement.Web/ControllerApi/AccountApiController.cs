@@ -174,14 +174,39 @@ namespace Evis.VisitorManagement.Web.ControllerApi
         {
             if (companyViewModel.Id == 0)
             {
-                companyViewModel = m_buildingBO.Insert(companyViewModel);
+                companyViewModel = m_buildingBO.InsertCompany(companyViewModel);
                 return Ok(companyViewModel);
             }
             else
             {
-                m_buildingBO.Update(companyViewModel);
+                m_buildingBO.UpdateCompany(companyViewModel);
                 return Ok(companyViewModel);
             }
+        }
+
+        public IHttpActionResult GetAllBuildings()
+        {
+            var allBuildings = m_buildingBO.GetAllBuildings();
+            if (allBuildings == null)
+                return NotFound();
+            return Ok(allBuildings);
+        }
+
+        public IHttpActionResult InsertBuilding([FromBody]Building building)
+        {
+            var allBuildings = m_buildingBO.InsertBuilding(building);
+            if (allBuildings == null)
+                return NotFound();
+            return Ok(allBuildings);
+        }
+
+        public IHttpActionResult GetAllBuildingLocations()
+        {
+            var allBuildingLocations = m_buildingBO.GetAllBuildingLocations();
+            if (allBuildingLocations == null)
+                return NotFound();
+            return Ok(allBuildingLocations);
+
         }
     }
 }

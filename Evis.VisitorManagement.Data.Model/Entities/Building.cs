@@ -11,6 +11,9 @@ namespace Evis.VisitorManagement.DataProject.Model.Entities
 {
     public class Building : BaseEntity<int>
     {
+        [Required]
+        public string Name { get; set; }
+
         public string Description { get; set; }
 
         public string PhoneNumber { get; set; }
@@ -22,14 +25,9 @@ namespace Evis.VisitorManagement.DataProject.Model.Entities
         public string Email { get; set; }
 
         [Required]
-        public int BuildingNameId { get; set; }
-        [ForeignKey("BuildingNameId")]
+        public int BuildingLocationId { get; set; }
+        [ForeignKey("BuildingLocationId")]
 
-        public virtual BuildingName BuildingName { get; set; }
-
-        public int? CompanyId { get; set; }
-        [ForeignKey("CompanyId")]
-
-        public virtual Company Company { get; set; }
+        public virtual BuildingLocation BuildingLocation { get; set; }
     }
 }

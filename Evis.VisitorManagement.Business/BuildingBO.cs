@@ -27,21 +27,21 @@ namespace Evis.VisitorManagement.Business
             return m_unitOfWork.GetRepository<Company>().GetAll().FirstOrDefault();
         }
 
-        public IQueryable<BuildingBO> GetAllBuildings()
+        public IQueryable<Building> GetAllBuildings()
         {
-            return m_unitOfWork.GetRepository<BuildingBO>().GetAll();
+            return m_unitOfWork.GetRepository<Building>().GetAll();
         }
 
-        public IQueryable<BuildingBO> GetManyBuidings()
+        public IQueryable<Building> GetManyBuidings()
         {
             // TO DO:
             //return m_unitOfWork.GetRepository<Building>().SearchFor(x=>x.);
             throw new NotImplementedException();
         }
 
-        public BuildingBO GetBuildingInfo(int buildingId)
+        public Building GetBuildingInfo(int buildingId)
         {
-            return m_unitOfWork.GetRepository<BuildingBO>().GetById(buildingId);
+            return m_unitOfWork.GetRepository<Building>().GetById(buildingId);
         }
 
         public bool DeleteBuilding(int buildingId)
@@ -73,14 +73,14 @@ namespace Evis.VisitorManagement.Business
             return true;
         }
 
-        public Company Insert(Company company)
+        public Company InsertCompany(Company company)
         {
             var insertedRecord = m_unitOfWork.GetRepository<Company>().Insert(company);
             m_unitOfWork.Commit();
             return insertedRecord;
         }
 
-        public void Update(Company company)
+        public void UpdateCompany(Company company)
         {
             var existingRecord = m_unitOfWork.GetRepository<Company>().GetById(company.Id);
             existingRecord.CompanyName = company.CompanyName;
@@ -94,6 +94,32 @@ namespace Evis.VisitorManagement.Business
             existingRecord.ZipCode = company.ZipCode;
             m_unitOfWork.GetRepository<Company>().Update(existingRecord);
             m_unitOfWork.Commit();
+        }
+
+        public Building InsertBuilding(Building building)
+        {
+            var insertedBuilding = m_unitOfWork.GetRepository<Building>().Insert(building);
+            m_unitOfWork.Commit();
+            return insertedBuilding;
+        }
+
+        public void UpdateBuilding(Building building)
+        {
+            var existingRecord = m_unitOfWork.GetRepository<Building>().GetById(building.Id);
+            existingRecord.Address = building.Address;
+            existingRecord.Name = building.Name;
+            existingRecord.Description = building.Description;
+            existingRecord.Email = building.Email;
+            existingRecord.PhoneNumber = building.PhoneNumber;
+            existingRecord.ZipCode = building.ZipCode;
+            existingRecord.BuildingLocation.Name = existingRecord.BuildingLocation.Name;
+            m_unitOfWork.GetRepository<Building>().Update(existingRecord);
+            m_unitOfWork.Commit();
+        }
+
+        public IQueryable<BuildingLocation> GetAllBuildingLocations()
+        {
+            return m_unitOfWork.GetRepository<BuildingLocation>().GetAll();
         }
     }
 }

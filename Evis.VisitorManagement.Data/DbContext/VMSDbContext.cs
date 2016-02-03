@@ -37,8 +37,6 @@ namespace Evis.VisitorManagement.Data
 
         public DbSet<Building> Building { get; set; }
 
-        public DbSet<BuildingName> BuildingName { get; set; }
-
         public DbSet<BuildingGate> BuildingGate { get; set; }
 
         public DbSet<BuildingLocation> BuildingLocation { get; set; }

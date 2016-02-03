@@ -88,7 +88,7 @@ namespace Evis.VisitorManagement.Data.Context
 	                                                            ON A.Id = B.UserId
                                                             LEFT JOIN AspNetRoles C
 	                                                            ON C.Id = B.RoleId
-                                                            LEFT JOIN Genders D
+                                                            LEFT JOIN Gender D
 	                                                            ON D.Id = A.GenderId
                                                             WHERE A.Email != 'systemadmin@evisuae.com'");
 

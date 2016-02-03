@@ -1,232 +1,151 @@
-﻿
-@{
-    ViewBag.Title = "Buildings";
+﻿@{
     Layout = "~/Views/Shared/_LayoutMaster.cshtml";
 }
 
-<div class="content-wrapper">
-    <style type="text/css">
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-    </style>
 
-    <section class="content">
-        <div class="row">
-            <div class="box-header with-border">
-                <h3 class="box-title">New Building Registration</h3>
-            </div>
-            <!-- left column -->
-            <form ng-app="app" ng-controller="registerController" name="registerForm" ng-model="register" novalidate>
-                <div class="col-md-6">
-
-                    <!-- general form elements -->
-                    <div class="box box-primary">
-
-                        <!-- /.box-header -->
-                        <!-- form start -->
-
-                        <div class="box-body">
-                            @*<div class="form-group">
-                                    <label for="exampleInputFname">First Name:</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" ng-model="register.firstName" placeholder="First Name" required>
-                                    <span style="color:red" ng-show="registerForm.firstName.$dirty && registerForm.firstName.$invalid">
-                                        <span ng-show="registerForm.firstName.$error.required">First Name is required.</span>
-                                    </span>
-                                </div>*@
-
-
-                            <div class="form-group">
-                                <label for="exampleBuildingName">Building Name:</label>
-                                <input type="text" class="form-control" id="BuildingName" name="buildingName" ng-model="register.buildingName" placeholder="Building Name" required>
-                                <span style="color:red" ng-show="registerForm.buildingName.$dirty && registerForm.buildingName.$invalid">
-                                    <span ng-show="registerForm.buildingName.$error.required">Building Name is required.</span>
-                                </span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputDescription">Description</label>
-                                <textarea class="form-control" rows="2" id="description" name="description" placeholder="description ..." ng-model="register.description"></textarea>
-                            </div>
-
-                            
-
-                            <div class="form-group">
-                                <label for="exampleInputContact">Contact No</label>
-                                <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" ng-model="register.phoneNumber" placeholder="Contact No" required>
-                                <span style="color:red" ng-show="registerForm.phoneNumber.$dirty && registerForm.phoneNumber.$invalid">
-                                    <span ng-show="registerForm.phoneNumber.$error.required">Phone Number is required.</span>
-                                </span>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleZipcode">Zip Code</label>
-                                <input type="number" class="form-control" id="zipcode" name="zipcode" ng-model="register.zipcode" placeholder="Zipcode" required>
-                                <span style="color:red" ng-show="registerForm.zipcode.$dirty && registerForm.zipcode.$invalid">
-                                    <span ng-show="registerForm.zipcode.$error.required">Zipcode is required.</span>
-                                </span>
-                            </div>
-
-                            @*<div class="form-group">
-                                <label for="exampleInputWebsite">Website:</label>
-                                <input type="text" class="form-control" id="website" name="website" ng-model="register.website" placeholder="Website" required>
-                                <span style="color:red" ng-show="registerForm.website.$dirty && registerForm.website.$invalid">
-                                    <span ng-show="registerForm.website.$error.required">Website is required.</span>
-                                </span>
-                            </div>*@
-
-                            @*<div class="form-group">
-                                    <label>Privilage</label>
-                                    <select class="form-control" ng-model="register.privilageId" ng-change="OnChange()" ng-options="item.Id as item.Name for item in allPrivilage">
-                                        <option value="">-- Select --</option>
-                                    </select>
+<div ng-controller="buildingController">
+    <!-- Content Wrapper. Contains page content -->
+    @* This for Add/Edit User *@
+    <div id="addEditSection" style="display:none">
+        <div class="content-wrapper">
+            <style type="text/css">
+                input[type=number]::-webkit-inner-spin-button,
+                input[type=number]::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+            </style>
+            <section class="content">
+                <div class="row">
+                    <form name="buildingForm"
+                          ng-model="building" novalidate>
+                        <div class="col-md-6">
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Building Information</h3>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Browse Image</label>
-                                    <input type="file" id="exampleInputFile">
-                                </div>*@
-                        </div>
-                        <!-- /.box-body -->
-                   
-                   
-                      
-                    </div>
-                    <!-- /.box -->
-                </div>
-                <!--/.col (left) -->
-                <!-- right column anith -->
-                <div class="col-md-6">
-
-                    <div class="box box-primary">
-
-                        <!-- /.box-header -->
-                        <!-- form start -->
-
-                        <div class="box-body">
-                            @*<div class="form-group">
-                                    <label for="exampleInputLastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName" ng-model="register.lastName" placeholder="Last Name" required>
-                                    <span style="color:red" ng-show="registerForm.lastName.$dirty && registerForm.lastName.$invalid">
-                                        <span ng-show="registerForm.lastName.$error.required">Phone Number is required.</span>
-                                    </span>
-                                </div>*@
-
-                            <div class="form-group">
-                                <label>Building Location</label>
-                                <select class="form-control"  ng-change="OnChange()" >
-                                    <option value="">-- Select --</option>
-                                    <option value="">Dubai</option>
-                                    <option value="">AbuDhabi</option>
-                                    <option value="">Sharjah</option>
-                                    <option value="">Ajman</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputAddress">Address</label>
-                                <textarea class="form-control" rows="3" id="address" name="address" placeholder="Address ..." ng-model="register.address"></textarea>
-                            </div>
-
-                           
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" id="email" name="email"  placeholder="Email" required>
-                                
-                            </div>
-                            
-                            
-
-
-
-
-
-
-                            @*<div class="form-group">
-                                    <label for="exampleInputLGender">Gender</label>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                            Male
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                            Female
-                                        </label>
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="name">Building Name:</label>
+                                        <input type="text" class="form-control" id="name" name="name" ng-model="building.name" placeholder="Building Name"
+                                               tabindex="1" required>
+                                        <span style="color:red" ng-show="buildingForm.name.$invalid">
+                                            <span ng-show="buildingForm.name.$error.required">Building Name is required.</span>
+                                        </span>
                                     </div>
 
-                                </div>*@
-                           
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" rows="3" id="description" name="description" placeholder="Description..." ng-model="building.description"></textarea>
+                                        <span style="color:red" ng-show="buildingForm.description.$invalid">
+                                            <span ng-show="buildingForm.description.$error.required">Phone Number is required.</span>
+                                        </span>
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label for="phoneNumber">Phone Number</label>
+                                        <input type="number" class="form-control" tabindex="5" id="phoneNumber" name="phoneNumber" ng-model="building.phoneNumber" placeholder="Phone Number" required>
+                                        <span style="color:red" ng-show="buildingForm.phoneNumber.$invalid">
+                                            <span ng-show="buildingForm.phoneNumber.$error.required">Phone Number is required.</span>
+                                        </span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="zipcode">Zip Code</label>
+                                        <input type="number" class="form-control" id="zipcode" name="zipcode" ng-model="building.zipcode" placeholder="Zip Code" required>
+                                        <span style="color:red" ng-show="buildingForm.zipcode.$invalid">
+                                            <span ng-show="buildingForm.zipcode.$error.required">Zipcode is required.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-                            <button type="submit" style="float:right;" class="btn btn-primary" ng-click="Submit()">
-                                Submit
-                            </button>
+                        <div class="col-md-6">
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"></h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label>Building Location</label>
+                                        <select class="form-control" ng-model="building.buildingLocationId" tabindex="6" ng-change="OnChange()" ng-options="item.Id as item.Name for item in allBuildingLocations">
+                                            <option value="">-- Select --</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <textarea class="form-control" rows="3" id="address" name="address" placeholder="Address ..." ng-model="building.address"></textarea>
+                                        <span style="color:red" ng-show="buildingForm.address.$invalid">
+                                            <span ng-show="buildingForm.address.$error.required">Phone Number is required.</span>
+                                        </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        <input type="email" class="form-control" tabindex="3" id="email" name="email" ng-model="building.email" placeholder="Email" required>
+                                        <span style="color:red" ng-show="buildingForm.email.$invalid">
+                                            <span ng-show="buildingForm.email.$error.required">Email is required.</span>
+                                        </span>
+                                    </div>
+                                    <!-- /.box-body -->
+                                    <div class="box-footer">
+                                        <button type="submit" tabindex="9" style="float:right;" class="btn btn-primary" ng-click="Submit()">
+                                            Submit
+                                        </button>
+                                        &nbsp; &nbsp;
+                                        <button type="button" tabindex="10" style="float:right;" class="btn btn-primary" ng-click="Cancel()">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
-            <!--/.col (right) -->
+            </section>
         </div>
-        <!-- /.row -->
-    </section>
+    </div>
 
-    <script>
-        var app = angular.module('app', []);
-        app.controller('registerController', function ($scope, $http) {
-            $scope.register = {};
-            $scope.register.buildingName = 'First Name';
-            $scope.register.description = 'Last Name';
-          //  $scope.register.email = 'Email';
-            //$scope.register.phoneNumber = ;
-            $scope.register.address = "Address";
-
-            //$scope.register.privilageId = null;
-            //$scope.allPrivilage = [];
-
-            $http({
-                method: 'GET',
-                url: '/Api/AccountApi/GetAllPrivilages'
-            }).success(function (result) {
-                $scope.allPrivilage = result;
-            });
-
-            $scope.OnChange = function () {
-
-            }
-
-            $scope.Submit = function () {
-                debugger;
-
-                var viewModel = {
-                    "FirstName": $scope.register.firstName,
-                    "LastName": $scope.register.lastName,
-                   // "Email": $scope.register.email,
-                    "PhoneNumber": $scope.register.phoneNumber,
-                   // "PrivilageId": $scope.register.privilageId,
-                    "Address": $scope.register.addressId
-                };
-
-                //alert(JSON.stringify(viewModel));
-
-                $http.post(
-                    '/Api/AccountApi/Register',
-                    JSON.stringify(viewModel),
-                    {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }
-                ).success(function (data) {
-                    window.location.href = '@Url.Action("Index", "Dashboard")';
-                    console.log('success post');
-                }).error(function () {
-                    //debugger;
-                    $scope.error.$invalid = "An Error has occured";
-                });
-            };
-        });
-    </script>
+    @* For Displaying the Users *@
+    <div id="displayBuildings">
+        <div class="content-wrapper">
+            <div class="container_12">
+                <div class="module">
+                    <h2><span>New Building Registration</span></h2>
+                    <div class="module-table-body">
+                        <button style="float:right;margin:5px;" class="btn btn-primary" ng-click="NewUser()">New User</button>
+                        <table id="myTable" class="tablesorter">
+                            <thead>
+                                <tr>
+                                    <th style="width:20%">Building Name</th>
+                                    <th style="width:21%">Building Location</th>
+                                    <th style="width:13%">Address</th>
+                                    <th style="width:13%">Phone Number</th>
+                                    <th style="width:15%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="building in allBuildings">
+                                    <td>{{building.Name}}</td>
+                                    <td>{{building.Location}}</td>
+                                    <td>{{building.Address}}</td>
+                                    <td>{{building.PhoneNumber}}</td>
+                                    <td>
+                                        <a href="" ng-click="Edit(building.Id)"><img src="~/Content/css-admin/pencil.gif" title="Edit" width="16" height="16" alt="Edit" /></a>
+                                        <a href="" ng-click="Delete(building.Id)"><img src="~/Content/css-admin/bin.gif" title="Delete" width="16" height="16" alt="Delete" /></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    @*<pagination boundary-links="true" total-items="" items-per-page=""
+                                ng-change=""
+                                ng-model="" class="pagination-lg" previous-text="Prev"
+                                next-text="Next" first-text="First" last-text="Last"></pagination>*@
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript" src="~/Scripts/Controllers/BuildingController.js"></script>

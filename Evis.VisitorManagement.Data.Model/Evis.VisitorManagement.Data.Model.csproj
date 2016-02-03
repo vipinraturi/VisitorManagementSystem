@@ -63,7 +63,6 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Building.cs" />
     <Compile Include="Entities\BuildingGate.cs" />
-    <Compile Include="Entities\BuildingName.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\Custom\UserList.cs" />
