@@ -13,6 +13,7 @@ namespace Evis.VisitorManagement.Data
     /// Represents a Unit of work for EDIS DbContext
     /// </summary>
     public class UnitOfWork : IUnitOfWork
+
     {
         /// <summary>
         /// Factory to create repository

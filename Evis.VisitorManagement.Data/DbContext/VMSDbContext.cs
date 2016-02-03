@@ -1,5 +1,6 @@
 ﻿using Evis.VisitorManagement.DataProject.Model;
 using Evis.VisitorManagement.DataProject.Model.Entities;
+using Evis.VisitorManagement.DataProject.Model.Entities.Custom;
 using Microsoft.AspNet.Identity.EntityFramework;
 /********************************************************************************
  * File Name    : VMSDbContext.cs
@@ -10,6 +11,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
  *******************************************************************************/
 using System;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Evis.VisitorManagement.Data
 {
@@ -24,6 +26,7 @@ namespace Evis.VisitorManagement.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
         public DbSet<Category> Category { get; set; }
@@ -32,6 +35,14 @@ namespace Evis.VisitorManagement.Data
 
         public DbSet<Gender> Gender { get; set; }
 
-        //public DbSet<Privilage> Privilage { get; set; }
+        public DbSet<Building> Building { get; set; }
+
+        public DbSet<BuildingName> BuildingName { get; set; }
+
+        public DbSet<BuildingGate> BuildingGate { get; set; }
+
+        public DbSet<BuildingLocation> BuildingLocation { get; set; }
+
+        public DbSet<Company> Company { get; set; }
     }
 }

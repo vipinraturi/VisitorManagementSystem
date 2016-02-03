@@ -16,14 +16,14 @@ namespace Evis.VisitorManagement.Data.Migrations
 
         protected override void Seed(VMSDbContext context)
         {
-            GenerateRoles(context);
-            context.SaveChanges();
+            //GenerateRoles(context);
+            //GenerateGender(context);
+            //context.SaveChanges();
 
-            GenerateGender(context);
-            context.SaveChanges();
-            
-            GenerateSystemAdmin(context);
-            context.SaveChanges();
+            //GenerateSystemAdmin(context);
+            //context.SaveChanges();
+
+            GenerateBuidingLocations(context);
         }
 
         private static void GenerateGender(VMSDbContext context)
@@ -69,6 +69,20 @@ namespace Evis.VisitorManagement.Data.Migrations
                 });
 
             context.Users.AddOrUpdate(systemAdminUser);
+        }
+
+        private void GenerateBuidingLocations(VMSDbContext context)
+        {
+            context.BuildingLocation.Add(new BuildingLocation { Name = "Abu Dhabi", IsActive = true });
+            context.BuildingLocation.Add(new BuildingLocation { Name = "Ajman", IsActive = true });
+            context.BuildingLocation.Add(new BuildingLocation { Name = "Al Ain", IsActive = true });
+            context.BuildingLocation.Add(new BuildingLocation { Name = "Dibba Al-Hisn", IsActive = true });
+            context.BuildingLocation.Add(new BuildingLocation { Name = "Dubai", IsActive = true });
+            context.BuildingLocation.Add(new BuildingLocation { Name = "Fujairah", IsActive = true });
+            context.BuildingLocation.Add(new BuildingLocation { Name = "Khor Fakkan", IsActive = true });
+            context.BuildingLocation.Add(new BuildingLocation { Name = "Ras Al-Khaimah  ", IsActive = true });
+            context.BuildingLocation.Add(new BuildingLocation { Name = "Sharjah", IsActive = true });
+            context.BuildingLocation.Add(new BuildingLocation { Name = "Umm Al-Quwain", IsActive = true });
         }
     }
 }

@@ -425,6 +425,7 @@
     <Content Include="Scripts\bootstrap\js\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\js\npm.js" />
     <Content Include="Scripts\Controllers\CategoryController.js" />
+    <Content Include="Scripts\Controllers\CompanyController.js" />
     <Content Include="Scripts\Controllers\LoginController.js" />
     <Content Include="Scripts\Controllers\ManageUsersController.js" />
     <Content Include="Scripts\dist\css\AdminLTE.css" />

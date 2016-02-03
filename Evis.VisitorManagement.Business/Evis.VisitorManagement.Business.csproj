@@ -59,8 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountBO.cs" />
+    <Compile Include="BuildingBO.cs" />
     <Compile Include="CategoryBO.cs" />
     <Compile Include="Contract\IAccountBO.cs" />
+    <Compile Include="Contract\IBuildingBO.cs" />
     <Compile Include="Contract\ICategoryBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -2,6 +2,7 @@
 using Evis.VisitorManagement.Business;
 using Evis.VisitorManagement.Business.Contract;
 using Evis.VisitorManagement.DataProject.Model;
+using Evis.VisitorManagement.DataProject.Model.Entities;
 using Evis.VisitorManagement.Web.ViewModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace Evis.VisitorManagement.Web.ControllerApi
     public class AccountApiController : ApiController
     {
         private IAccountBO m_accountBO = new AccountBO();
+        private IBuildingBO m_buildingBO = new BuildingBO();
 
         public AccountApiController()
         {
@@ -155,6 +157,31 @@ namespace Evis.VisitorManagement.Web.ControllerApi
                 return NotFound();
             }
             return Ok(isDeleted);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetCompanyInformation()
+        {
+            var comapanyInfo = m_buildingBO.GetCompanyInformation();
+            if (comapanyInfo == null)
+            {
+                return NotFound();
+            }
+            return Ok(comapanyInfo);
+        }
+
+        public IHttpActionResult SaveCompany([FromBody]Company companyViewModel)
+        {
+            if (companyViewModel.Id == 0)
+            {
+                companyViewModel = m_buildingBO.Insert(companyViewModel);
+                return Ok(companyViewModel);
+            }
+            else
+            {
+                m_buildingBO.Update(companyViewModel);
+                return Ok(companyViewModel);
+            }
         }
     }
 }

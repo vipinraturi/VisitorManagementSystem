@@ -16,5 +16,6 @@ namespace Evis.VisitorManagement.Data.Context
 {
     public class CategoryRepository : Repository<Evis.VisitorManagement.DataProject.Model.Category>, ICategoryRepository
     {
+        
     }
 }

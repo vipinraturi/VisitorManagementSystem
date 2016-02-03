@@ -13,7 +13,7 @@ namespace Evis.VisitorManagement.Web.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly IAccountBO m_accountBO;
+        private readonly IAccountBO m_accountBO;   
 
         public AccountController(IAccountBO accountBO)
         {

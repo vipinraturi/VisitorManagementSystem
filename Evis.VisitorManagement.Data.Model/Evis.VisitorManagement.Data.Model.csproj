@@ -61,10 +61,15 @@
     <Compile Include="Entities\ApplicationRole.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Building.cs" />
+    <Compile Include="Entities\BuildingGate.cs" />
+    <Compile Include="Entities\BuildingName.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\Custom\UserList.cs" />
     <Compile Include="Entities\Gender.cs" />
     <Compile Include="Entities\ImageUpload.cs" />
+    <Compile Include="Entities\BuildingLocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
