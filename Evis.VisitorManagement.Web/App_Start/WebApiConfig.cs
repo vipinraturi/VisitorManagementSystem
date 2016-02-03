@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -32,6 +33,8 @@ namespace Evis.VisitorManagement.Web
             var json = config.Formatters.JsonFormatter;
             json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
             config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+            //((DefaultContractResolver)config.Formatters.JsonFormatter.SerializerSettings.ContractResolver).IgnoreSerializableAttribute = true;
         }
     }
 }

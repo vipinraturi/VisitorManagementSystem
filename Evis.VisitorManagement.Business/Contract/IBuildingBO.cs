@@ -25,7 +25,7 @@ namespace Evis.VisitorManagement.Business.Contract
 
         Building InsertBuilding(Building building);
 
-        void UpdateBuilding(Building building);
+        bool UpdateBuilding(Building building);
 
         IQueryable<BuildingGate> GetAllBuildingGates();
 

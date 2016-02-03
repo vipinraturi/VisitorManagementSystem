@@ -194,10 +194,20 @@ namespace Evis.VisitorManagement.Web.ControllerApi
 
         public IHttpActionResult InsertBuilding([FromBody]Building building)
         {
-            var allBuildings = m_buildingBO.InsertBuilding(building);
-            if (allBuildings == null)
+            if (building.Id == 0)
+            {
+                var allBuildings = m_buildingBO.InsertBuilding(building);
+                if (allBuildings == null)
+                    return NotFound();
+                return Ok(allBuildings);
+            }
+            else
+            {
+                var isSuccess = m_buildingBO.UpdateBuilding(building);
+                if (isSuccess)
+                    return Ok(building);
                 return NotFound();
-            return Ok(allBuildings);
+            }
         }
 
         public IHttpActionResult GetAllBuildingLocations()
@@ -206,6 +216,23 @@ namespace Evis.VisitorManagement.Web.ControllerApi
             if (allBuildingLocations == null)
                 return NotFound();
             return Ok(allBuildingLocations);
+
+        }
+
+        public IHttpActionResult GetBuildingInfo(int buildingId)
+        {
+            var building = m_buildingBO.GetBuildingInfo(buildingId);
+            if (building == null)
+                return NotFound();
+            return Ok(building);
+        }
+
+        public IHttpActionResult DeleteBuilding(int buildingId)
+        {
+            var building = m_buildingBO.DeleteBuilding(buildingId);
+            if (building)
+                return Ok(building);
+            return NotFound();
 
         }
     }

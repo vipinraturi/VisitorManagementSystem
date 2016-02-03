@@ -46,7 +46,7 @@ namespace Evis.VisitorManagement.Business
 
         public bool DeleteBuilding(int buildingId)
         {
-            m_unitOfWork.GetRepository<BuildingBO>().DeleteById(buildingId);
+            m_unitOfWork.GetRepository<Building>().DeleteById(buildingId);
             m_unitOfWork.Commit();
             return true;
         }
@@ -103,7 +103,7 @@ namespace Evis.VisitorManagement.Business
             return insertedBuilding;
         }
 
-        public void UpdateBuilding(Building building)
+        public bool UpdateBuilding(Building building)
         {
             var existingRecord = m_unitOfWork.GetRepository<Building>().GetById(building.Id);
             existingRecord.Address = building.Address;
@@ -112,9 +112,10 @@ namespace Evis.VisitorManagement.Business
             existingRecord.Email = building.Email;
             existingRecord.PhoneNumber = building.PhoneNumber;
             existingRecord.ZipCode = building.ZipCode;
-            existingRecord.BuildingLocation.Name = existingRecord.BuildingLocation.Name;
+            existingRecord.BuildingLocationId = existingRecord.BuildingLocationId;
             m_unitOfWork.GetRepository<Building>().Update(existingRecord);
             m_unitOfWork.Commit();
+            return true;
         }
 
         public IQueryable<BuildingLocation> GetAllBuildingLocations()
