@@ -4,5 +4,259 @@
     Layout = "~/Views/Shared/_LayoutMaster.cshtml";
 }
 
-<h2>ShiftAssignment</h2>
 
+<div ng-controller="manageUsercontroller">
+    <!-- Content Wrapper. Contains page content -->
+    @* This for Add/Edit User *@
+    @*<div id="addEditSection" style="display:none">*@
+
+    <div class="content-wrapper">
+        <style type="text/css">
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        </style>
+
+
+
+        <section class="content">
+            <div class="row">
+                <div class="box-header with-border">
+                    <h3 class="box-title">New Shift Assign</h3>
+                </div>
+                <!-- left column -->
+                <form ng-app="app" ng-controller="registerController" name="registerForm" ng-model="register" novalidate>
+                    <div class="col-md-6">
+
+                        <!-- general form elements -->
+                        <div class="box box-primary">
+
+                            <!-- /.box-header -->
+                            <!-- form start -->
+
+                            <div class="box-body">
+
+                                <div class="form-group">
+                                    <label>Building Name</label>
+                                    <select class="form-control" ng-change="OnChange()">
+                                        <option value="">-- Select --</option>
+                                        <option value="">Emergency</option>
+                                        <option value="">Cardiac</option>
+                                        <option value="">Laboratory</option>
+                                        <option value="">Canteen</option>
+                                    </select>
+                                </div>
+
+
+
+
+
+
+
+
+                                <div class="form-group">
+                                    <label>Shift Type</label>
+                                    <select class="form-control" ng-change="OnChange()">
+                                        <option value="">-- Select --</option>
+                                        <option value="">Morning</option>
+                                        <option value="">Afternoon</option>
+                                        <option value="">Night</option>
+                                        <option value="">Others</option>
+                                    </select>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label>Select Employee</label>
+                                    <select class="form-control" ng-change="OnChange()">
+                                        <option value="">-- Select --</option>
+                                        <option value="">Supervisor</option>
+                                        <option value="">Security</option>
+                                        <option value="">Administration</option>
+                                        <option value="">Others</option>
+                                    </select>
+                                </div>
+
+
+
+                            </div>
+                            <!-- /.box-body -->
+
+
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column anith -->
+                    <div class="col-md-6">
+
+                        <div class="box box-primary">
+
+                            <!-- /.box-header -->
+                            <!-- form start -->
+
+                            <div class="box-body">
+
+
+                                <div class="form-group">
+                                    <label>Select Gate No</label>
+                                    <select class="form-control" ng-change="OnChange()">
+                                        <option value="">-- Select --</option>
+                                        <option value="">Gate 1</option>
+                                        <option value="">Gate 2</option>
+                                        <option value="">Gate 3</option>
+                                        <option value="">Gate 4</option>
+                                    </select>
+                                </div>
+
+
+
+
+
+                                <div class="form-group">
+                                    <label>Shift Timing</label>
+                                    <select class="form-control" ng-change="OnChange()">
+                                        <option value="">-- Select --</option>
+                                        <option value="">5am to 12pm</option>
+                                        <option value="">1pm to 8pm</option>
+                                        <option value="">9pm to4am</option>
+                                        <option value="">Others</option>
+                                    </select>
+                                </div>
+
+
+
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" style="float:right;" class="btn btn-primary" ng-click="Submit()">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!--/.col (right) -->
+            </div>
+            <!-- /.row -->
+        </section>
+
+        <script>
+            var app = angular.module('app', []);
+            app.controller('registerController', function ($scope, $http) {
+                $scope.register = {};
+                $scope.register.buildingName = 'First Name';
+                $scope.register.description = 'Last Name';
+                //  $scope.register.email = 'Email';
+                //$scope.register.phoneNumber = ;
+                $scope.register.address = "Address";
+
+                //$scope.register.privilageId = null;
+                //$scope.allPrivilage = [];
+
+                $http({
+                    method: 'GET',
+                    url: '/Api/AccountApi/GetAllPrivilages'
+                }).success(function (result) {
+                    $scope.allPrivilage = result;
+                });
+
+                $scope.OnChange = function () {
+
+                }
+
+                $scope.Submit = function () {
+                    debugger;
+
+                    var viewModel = {
+                        "FirstName": $scope.register.firstName,
+                        "LastName": $scope.register.lastName,
+                        // "Email": $scope.register.email,
+                        "PhoneNumber": $scope.register.phoneNumber,
+                        // "PrivilageId": $scope.register.privilageId,
+                        "Address": $scope.register.addressId
+                    };
+
+                    //alert(JSON.stringify(viewModel));
+
+                    $http.post(
+                        '/Api/AccountApi/Register',
+                        JSON.stringify(viewModel),
+                        {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }
+                    ).success(function (data) {
+                        window.location.href = '@Url.Action("Index", "Dashboard")';
+                        console.log('success post');
+                    }).error(function () {
+                        //debugger;
+                        $scope.error.$invalid = "An Error has occured";
+                    });
+                };
+            });
+        </script>
+    </div>
+
+    @*</div>*@
+
+    @* For Displaying the Users *@
+                @*<div id="displayUsers">
+            <div class="content-wrapper">
+                <div class="container_12">
+                    <div class="module">
+                        <h2><span>Manage Shift</span></h2>
+
+                        <div class="module-table-body">
+                            <form name="manageUserForm" ng-model="manageUser" novalidate>
+                                <button style="float:right;margin:5px;" class="btn btn-primary" ng-click="NewUser()">New Shift</button>
+                                <table id="myTable" class="tablesorter">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:20%">Building Name</th>
+                                             <th style="width:21%">Gate No</th>
+                                            <th style="width:21%">Shift Type</th>
+                                             <th style="width:13%">Shift Timing</th>
+                                            <th style="width:13%">Employee</th>
+
+
+                                            <th style="width:15%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="user in allUsers">
+                                            <td>
+                                                {{user.FirstName}}
+                                            </td>
+                                            <td>{{user.Email}}</td>
+                                            <td>{{user.PhoneNumber}}</td>
+                                            <td>{{user.Gender}}</td>
+                                            <td>{{user.Role}}</td>
+                                            <td>
+                                                <a href="" ng-click="Edit(user.Id)"><img src="~/Content/css-admin/pencil.gif" title="Edit" width="16" height="16" alt="Edit" /></a>
+                                                <a href="" ng-click="Delete(user.Id)"><img src="~/Content/css-admin/bin.gif" title="Delete" width="16" height="16" alt="Delete" /></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+
+                        </div>
+
+                        <pagination boundary-links="true" total-items="" items-per-page=""
+                                    ng-change=""
+                                    ng-model="" class="pagination-lg" previous-text="Prev"
+                                    next-text="Next" first-text="First" last-text="Last"></pagination>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+</div>
+<script type="text/javascript" src="~/Scripts/Controllers/ManageUsersController.js"></script>
