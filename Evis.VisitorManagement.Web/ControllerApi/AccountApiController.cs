@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.Http;
 using System.Web.Security;
+using System.Linq;
 
 namespace Evis.VisitorManagement.Web.ControllerApi
 {
@@ -234,6 +235,78 @@ namespace Evis.VisitorManagement.Web.ControllerApi
                 return Ok(building);
             return NotFound();
 
+        }
+
+        public IHttpActionResult InsertGate([FromBody]BuildingGate buildingGate)
+        {
+            if (buildingGate.Id == 0)
+            {
+                var allBuildings = m_buildingBO.InsertBuildingGate(buildingGate);
+                if (allBuildings == null)
+                    return NotFound();
+                return Ok(allBuildings);
+            }
+            else
+            {
+                var isSuccess = m_buildingBO.UpdateBuildingGate(buildingGate);
+                if (isSuccess)
+                    return Ok(buildingGate);
+                return NotFound();
+            }
+        }
+
+        public IHttpActionResult GetAllGates()
+        {
+            var allBuildingsGates = m_buildingBO.GetAllBuildingGates();
+            if (allBuildingsGates == null)
+                return NotFound();
+
+            var buildingsGates = allBuildingsGates.Select(x => new
+            {
+                Id = x.Id,
+                BuildingName = x.Building.Name,
+                GateNumber = x.GateNumber,
+                Description = x.Description,
+                PhoneNumber = x.PhoneNumber,
+                BuildingId = x.BuildingId,
+                Region = x.Building.Region,
+                Country = x.Building.Country,
+                State = x.Building.State,
+                City = x.Building.City
+            });
+
+            return Ok(buildingsGates);
+        }
+
+        public IHttpActionResult GetBuildingGateInfo(int gateId)
+        {
+            var buildingGate = m_buildingBO.GetBuildingGateInfo(gateId);
+            if (buildingGate == null)
+                return NotFound();
+
+            var buildingGateInfo = new
+            {
+                Id = buildingGate.Id,
+                BuildingName = buildingGate.Building.Name,
+                GateNumber = buildingGate.GateNumber,
+                Description = buildingGate.Description,
+                PhoneNumber = buildingGate.PhoneNumber,
+                BuildingId = buildingGate.BuildingId,
+                Region = buildingGate.Building.Region,
+                Country = buildingGate.Building.Country,
+                State = buildingGate.Building.State,
+                City = buildingGate.Building.City
+            };
+
+            return Ok(buildingGateInfo);
+        }
+
+        public IHttpActionResult DeleteBuildingGate(int gateId)
+        {
+            var isDeleted = m_buildingBO.DeleteBuildingGate(gateId);
+            if (isDeleted)
+                return Ok(isDeleted);
+            return NotFound();
         }
     }
 }

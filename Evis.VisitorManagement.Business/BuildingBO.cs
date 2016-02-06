@@ -121,6 +121,25 @@ namespace Evis.VisitorManagement.Business
             return true;
         }
 
+        public BuildingGate InsertBuildingGate(BuildingGate buildingGate)
+        {
+            var insertedBuildingGate = m_unitOfWork.GetRepository<BuildingGate>().Insert(buildingGate);
+            m_unitOfWork.Commit();
+            return insertedBuildingGate;
+        }
+
+        public bool UpdateBuildingGate(BuildingGate buildingGate)
+        {
+            var existingRecord = m_unitOfWork.GetRepository<BuildingGate>().GetById(buildingGate.Id);
+            existingRecord.GateNumber = buildingGate.GateNumber;
+            existingRecord.Description = buildingGate.Description;
+            existingRecord.PhoneNumber = buildingGate.PhoneNumber;
+            existingRecord.BuildingId = buildingGate.BuildingId;
+            m_unitOfWork.GetRepository<BuildingGate>().Update(existingRecord);
+            m_unitOfWork.Commit();
+            return true;
+        }
+
         public IQueryable<BuildingLocation> GetAllBuildingLocations()
         {
             return m_unitOfWork.GetRepository<BuildingLocation>().GetAll();

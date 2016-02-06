@@ -19,45 +19,55 @@
 
 
             <section class="content">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{headerText}}</h3>
+                </div>
                 <div class="row">
-                    <form name="registerForm"
-                          ng-model="register" novalidate>
+                    <form name="registerForm" ng-model="register" novalidate ng-submit="registerForm.$valid && Submit()">
                         <div class="col-md-6">
                             <div class="box box-primary">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">User Registration</h3>
-                                </div>
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="exampleInputFname">First Name:</label>
                                         <input type="text" class="form-control" id="firstName" name="firstName" ng-model="register.firstName" placeholder="First Name"
-                                               tabindex="1" required>
+                                               tabindex="1" ng-minlength="3" ng-maxlength="15" required>
                                         <span style="color:red" ng-show="registerForm.firstName.$invalid">
                                             <span ng-show="registerForm.firstName.$error.required">First Name is required.</span>
+                                            <span ng-show="registerForm.firstName.$error.minlength">First Name is required to be at least 3 characters.</span>
+                                            <span ng-show="registerForm.firstName.$error.maxlength">First Name cannot be longer than 15 characters.</span>
                                         </span>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
-                                        <input type="email" class="form-control" tabindex="3" id="email" name="email" ng-model="register.email" placeholder="Email" required>
+                                        <input type="email" class="form-control" tabindex="3" id="email" name="email" ng-model="register.email" placeholder="Email"
+                                               ng-maxlength="30" required>
                                         <span style="color:red" ng-show="registerForm.email.$invalid">
                                             <span ng-show="registerForm.email.$error.required">Email is required.</span>
+                                            <span ng-show="registerForm.email.$error.email">Invalid email format.</span>
+                                            <span ng-show="registerForm.email.$error.maxlength">Email cannot be longer than 30 characters.</span>
                                         </span>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputContact">Contact No</label>
-                                        <input type="number" class="form-control" tabindex="5" id="phoneNumber" name="phoneNumber" ng-model="register.phoneNumber" placeholder="Contact No" required>
+                                        <input type="number" class="form-control" tabindex="5" id="phoneNumber" name="phoneNumber" ng-model="register.phoneNumber"
+                                               placeholder="Contact No" ng-minlength="9" ng-maxlength="9" required>
                                         <span style="color:red" ng-show="registerForm.phoneNumber.$invalid">
                                             <span ng-show="registerForm.phoneNumber.$error.required">Phone Number is required.</span>
+                                            <span ng-show="registerForm.phoneNumber.$error.minlength">Phone Number must be of 9 digits.</span>
+                                            <span ng-show="registerForm.phoneNumber.$error.maxlength">Phone Number  must be of 9 digits.</span>
                                         </span>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Role</label>
-                                        <select class="form-control" ng-model="register.roleId" tabindex="6" ng-change="OnChange()" ng-options="item.Id as item.Name for item in allRoles">
-                                            <option value="">-- Select --</option>
-                                        </select>
+                                        <select class="form-control" id="roleId" name="roleId" ng-model="register.roleId" tabindex="6" ng-change="OnChange()"
+                                                ng-options="item.Id as item.Name for item in allRoles" required>
+                                            <option value="">-- Select Role--</option>
+                                        </select><span style="color:red" ng-show="registerForm.roleId.$invalid">
+                                            <span ng-show="registerForm.roleId.$error.required">Role is required.</span>
+                                        </span>
                                     </div>
 
                                     <div class="form-group">
@@ -69,15 +79,15 @@
                         </div>
                         <div class="col-md-6">
                             <div class="box box-primary">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title"></h3>
-                                </div>
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="exampleInputLastName">Last Name</label>
-                                        <input type="text" class="form-control" tabindex="2" id="lastName" name="lastName" ng-model="register.lastName" placeholder="Last Name" required>
+                                        <input type="text" class="form-control" tabindex="2" id="lastName" name="lastName" ng-model="register.lastName" placeholder="Last Name" 
+                                               ng-minlength="3" ng-maxlength="20" required>
                                         <span style="color:red" ng-show="registerForm.lastName.$invalid">
-                                            <span ng-show="registerForm.lastName.$error.required">Phone Number is required.</span>
+                                            <span ng-show="registerForm.lastName.$error.required">Last name is required.</span>
+                                            <span ng-show="registerForm.lastName.$error.minlength">Last name is required to be at least 3 characters.</span>
+                                            <span ng-show="registerForm.lastName.$error.maxlength">Last name cannot be longer than 15 characters.</span>
                                         </span>
                                     </div>
 
@@ -85,23 +95,23 @@
                                         <label for="exampleInputLGender">Gender</label>
                                         <div class="radio">
                                             <label data-ng-repeat="gender in allGenders">
-                                                <input type="radio" name="gender" tabindex="4" ng-model="register.genderId" ng-value="gender.Id">{{gender.Name}}
+                                                <input type="radio" id="gender" name="gender" tabindex="4" ng-model="register.genderId" ng-value="gender.Id" required>{{gender.Name}}
                                             </label>
+                                            <span style="color:red" ng-show="registerForm.gender.$invalid">
+                                                <span ng-show="registerForm.gender.$error.required">Gender is required.</span>
+                                            </span>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputAddress">Address</label>
                                             <textarea class="form-control" rows="5" tabindex="7" id="address" name="address" placeholder="Address ..." ng-model="register.address"></textarea>
                                         </div>
-
                                     </div>
                                     <!-- /.box-body -->
 
                                     <div class="box-footer">
-                                        <button type="submit" tabindex="9" style="float:right;" class="btn btn-primary" ng-click="Submit()">
-                                            Submit
-                                        </button>
-                                        &nbsp; &nbsp; 
-                                        <button type="button" tabindex="10" style="float:right;" class="btn btn-primary" ng-click="Cancel()">
+                                        <input type="submit" tabindex="12" style="float:right;" class="btn btn-primary" value="{{submitButtonText}}" />
+                                        &nbsp; &nbsp;
+                                        <button type="button" tabindex="11" style="float:right;" class="btn btn-primary" ng-click="Cancel()">
                                             Cancel
                                         </button>
                                     </div>
@@ -117,10 +127,11 @@
     @* For Displaying the Users *@
     <div id="displayUsers">
         <div class="content-wrapper">
+            <div class="box-header with-border">
+                <h3 class="box-title">Building Information</h3>
+            </div>
             <div class="container_12">
                 <div class="module">
-                    <h2><span>Manage User</span></h2>
-
                     <div class="module-table-body">
                         <form name="manageUserForm" ng-model="manageUser" novalidate>
                             <button style="float:right;margin:5px;" class="btn btn-primary" ng-click="NewUser()">New User</button>
@@ -136,7 +147,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="user in allUsers">
+                                    <tr ng-show="allUsers.length != 0" ng-repeat="user in allUsers">
                                         <td>
                                             {{user.FirstName}}
                                         </td>
@@ -149,61 +160,66 @@
                                             <a href="" ng-click="Delete(user.Id)"><img src="~/Content/css-admin/bin.gif" title="Delete" width="16" height="16" alt="Delete" /></a>
                                         </td>
                                     </tr>
+                                    <tr ng-show="allUsers.length == 0">
+                                        <td colspan="6" style="text-align:center">
+                                            <span> No record found </span>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </form>
 
                         @*<div class="pager" id="pager">
-                            <form action="">
-                                <div>
-                                    <img class="first" src="~/Content/css-admin/arrow-stop-180.gif" alt="first" />
-                                    <img class="prev" src="~/Content/css-admin/arrow-180.gif" alt="prev" />
-                                    <input type="text" class="pagedisplay input-short align-center" />
-                                    <img class="next" src="~/Content/css-admin/arrow.gif" alt="next" />
-                                    <img class="last" src="~/Content/css-admin/arrow-stop.gif" alt="last" />
-                                    <select class="pagesize input-short align-center">
-                                        <option value="10" selected="selected">10</option>
-                                        <option value="20">20</option>
-                                        <option value="30">30</option>
-                                        <option value="40">40</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>*@
+                                <form action="">
+                                    <div>
+                                        <img class="first" src="~/Content/css-admin/arrow-stop-180.gif" alt="first" />
+                                        <img class="prev" src="~/Content/css-admin/arrow-180.gif" alt="prev" />
+                                        <input type="text" class="pagedisplay input-short align-center" />
+                                        <img class="next" src="~/Content/css-admin/arrow.gif" alt="next" />
+                                        <img class="last" src="~/Content/css-admin/arrow-stop.gif" alt="last" />
+                                        <select class="pagesize input-short align-center">
+                                            <option value="10" selected="selected">10</option>
+                                            <option value="20">20</option>
+                                            <option value="30">30</option>
+                                            <option value="40">40</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>*@
                     </div>
 
                     @*<pagination boundary-links="true" total-items="" items-per-page=""
-                                ng-change=""
-                                ng-model="" class="pagination-lg" previous-text="Prev"
-                                next-text="Next" first-text="First" last-text="Last"></pagination>*@
+                        ng-change=""
+                        ng-model="" class="pagination-lg" previous-text="Prev"
+                        next-text="Next" first-text="First" last-text="Last"></pagination>*@
 
                     @*<div class="pagination">
-                        <a href="" class="button"><span><img src="~/Content/css-admin/arrow-stop-180-small.gif" height="9" width="12" alt="First" /> First</span></a>
-                        <a href="" class="button"><span><img src="~/Content/css-admin/arrow-180-small.gif" height="9" width="12" alt="Previous" /> Prev</span></a>
-                        <div class="numbers">
-                            <span>Page:</span>
-                            <a href="">1</a>
-                            <span>|</span>
-                            <a href="">2</a>
-                            <span>|</span>
-                            <span class="current">3</span>
-                            <span>|</span>
-                            <a href="">4</a>
-                            <span>|</span>
-                            <a href="">5</a>
-                            <span>|</span>
-                            <a href="">6</a>
-                            <span>|</span>
-                            <a href="">7</a>
-                            <span>|</span>
-                            <span>...</span>
-                            <span>|</span>
-                            <a href="">99</a>
-                        </div>
-                        <a href="" class="button"><span>Next <img src="~/Content/css-admin/arrow-000-small.gif" height="9" width="12" alt="Next" /></span></a>
-                        <a href="" class="button last"><span>Last <img src="~/Content/css-admin/arrow-stop-000-small.gif" height="9" width="12" alt="Last" /></span></a>
-                        <div style="clear: both;"></div>
-                    </div>*@
+                            <a href="" class="button"><span><img src="~/Content/css-admin/arrow-stop-180-small.gif" height="9" width="12" alt="First" /> First</span></a>
+                            <a href="" class="button"><span><img src="~/Content/css-admin/arrow-180-small.gif" height="9" width="12" alt="Previous" /> Prev</span></a>
+                            <div class="numbers">
+                                <span>Page:</span>
+                                <a href="">1</a>
+                                <span>|</span>
+                                <a href="">2</a>
+                                <span>|</span>
+                                <span class="current">3</span>
+                                <span>|</span>
+                                <a href="">4</a>
+                                <span>|</span>
+                                <a href="">5</a>
+                                <span>|</span>
+                                <a href="">6</a>
+                                <span>|</span>
+                                <a href="">7</a>
+                                <span>|</span>
+                                <span>...</span>
+                                <span>|</span>
+                                <a href="">99</a>
+                            </div>
+                            <a href="" class="button"><span>Next <img src="~/Content/css-admin/arrow-000-small.gif" height="9" width="12" alt="Next" /></span></a>
+                            <a href="" class="button last"><span>Last <img src="~/Content/css-admin/arrow-stop-000-small.gif" height="9" width="12" alt="Last" /></span></a>
+                            <div style="clear: both;"></div>
+                        </div>*@
                 </div>
             </div>
         </div>

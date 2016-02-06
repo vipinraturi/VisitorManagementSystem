@@ -11,6 +11,8 @@
     $scope.building.country = '';
     $scope.building.state = '';
     $scope.building.city = '';
+    $scope.submitButtonText = 'Save';
+    $scope.headerText = 'Add New Building';
 
     // Initializing all the regions.
     $scope.allRegions = allRegions;
@@ -115,6 +117,8 @@
             });
             $scope.building.city = result.City;
 
+            $scope.submitButtonText = 'Update';
+            $scope.headerText = 'Edit Existing Building';
             $('#displayBuildings').hide();
             $('#addEditSection').show();
         });
@@ -156,16 +160,12 @@
                 console.log(result);
                 $scope.allBuildings = result;
             });
+            toastr.success("Saved Successfully!");
         }).error(function () {
             //$scope.error.$invalid = "An Error has occured";
-            toastr.error("Oops!! Looks like there is an issue while saving")
+            toastr.error("Oops!! Looks like there is an issue while saving");
         });
     };
-
-    $scope.Cancel = function () {
-        $('#displayBuildings').show();
-        $('#addEditSection').hide();
-    }
 
     $http({
         method: 'GET',
@@ -210,8 +210,14 @@
         $scope.building.email = '';
         $scope.building.zipcode = null;
         $scope.building.city = '';
-
+        $scope.submitButtonText = 'Save';
+        $scope.headerText = 'Add New Building';
         $('#displayBuildings').hide();
         $('#addEditSection').show();
     };
+
+    $scope.Cancel = function () {
+        $('#displayBuildings').show();
+        $('#addEditSection').hide();
+    }
 });

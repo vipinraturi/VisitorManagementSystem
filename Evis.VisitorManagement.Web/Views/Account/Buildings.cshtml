@@ -17,27 +17,29 @@
             </style>
 
             <section class="content">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{headerText}}</h3>
+                </div>
                 <div class="row">
-                    <form name="buildingForm"
-                          ng-model="building" novalidate>
+                    <form name="buildingForm" ng-model="building" novalidate ng-submit="buildingForm.$valid && Submit()">
                         <div class="col-md-6">
                             <div class="box box-primary">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Building Information</h3>
-                                </div>
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="name">Building Name:</label>
                                         <input type="text" class="form-control" id="name" name="name" ng-model="building.name" placeholder="Building Name"
-                                               tabindex="1" required>
+                                               tabindex="1" ng-minlength=3 ng-maxlength=30 required>
                                         <span style="color:red" ng-show="buildingForm.name.$invalid">
                                             <span ng-show="buildingForm.name.$error.required">Building Name is required.</span>
+                                            <span ng-show="buildingForm.name.$error.minlength">Building Name is required to be at least 3 characters.</span>
+                                            <span ng-show="buildingForm.name.$error.maxlength">Building Name cannot be longer than 30 characters.</span>
                                         </span>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="description">Description</label>
-                                        <textarea class="form-control" rows="3" id="description" name="description" placeholder="Description..." ng-model="building.description"></textarea>
+                                        <textarea class="form-control" rows="3" id="description" name="description" placeholder="Description..."
+                                                  tabindex="2" ng-model="building.description"></textarea>
                                         <span style="color:red" ng-show="buildingForm.description.$invalid">
                                             <span ng-show="buildingForm.description.$error.required">Phone Number is required.</span>
                                         </span>
@@ -46,7 +48,8 @@
 
                                     <div class="form-group">
                                         <label for="address">Address</label>
-                                        <textarea class="form-control" rows="2" id="address" name="address" placeholder="Address ..." ng-model="building.address"></textarea>
+                                        <textarea class="form-control" rows="2" id="address" name="address" placeholder="Address ..."
+                                                  tabindex="3" ng-model="building.address"></textarea>
                                         <span style="color:red" ng-show="buildingForm.address.$invalid">
                                             <span ng-show="buildingForm.address.$error.required">Phone Number is required.</span>
                                         </span>
@@ -54,17 +57,23 @@
 
                                     <div class="form-group">
                                         <label for="phoneNumber">Contact No</label>
-                                        <input type="number" class="form-control" tabindex="5" id="phoneNumber" name="phoneNumber" ng-model="building.phoneNumber" placeholder="Phone Number" required>
+                                        <input type="number" class="form-control" tabindex="4" id="phoneNumber" name="phoneNumber" ng-model="building.phoneNumber" placeholder="Phone Number"
+                                               ng-minlength="9" ng-maxlength="9" required>
                                         <span style="color:red" ng-show="buildingForm.phoneNumber.$invalid">
-                                            <span ng-show="buildingForm.phoneNumber.$error.required">Contact No is required.</span>
+                                            <span ng-show="buildingForm.phoneNumber.$error.required">Phone Number is required.</span>
+                                            <span ng-show="buildingForm.phoneNumber.$error.minlength">Phone Number must be of 9 digits.</span>
+                                            <span ng-show="buildingForm.phoneNumber.$error.maxlength">Phone Number  must be of 9 digits.</span>
                                         </span>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="zipcode">Zip Code</label>
-                                        <input type="number" class="form-control" id="zipcode" name="zipcode" ng-model="building.zipcode" placeholder="Zip Code" required>
+                                        <input type="number" class="form-control" id="zipcode" name="zipcode" ng-model="building.zipcode" placeholder="Zip Code"
+                                               tabindex="5" ng-minlength="4" ng-maxlength="6" required>
                                         <span style="color:red" ng-show="buildingForm.zipcode.$invalid">
                                             <span ng-show="buildingForm.zipcode.$error.required">Zipcode is required.</span>
+                                            <span ng-show="buildingForm.zipcode.$error.minlength">Zipcode is minimum of 4 digits.</span>
+                                            <span ng-show="buildingForm.zipcode.$error.maxlength">Zipcode is maximum of 6 digits.</span>
                                         </span>
                                     </div>
                                 </div>
@@ -72,66 +81,66 @@
                         </div>
                         <div class="col-md-6">
                             <div class="box box-primary">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title"></h3>
-                                </div>
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label>Region</label>
-                                        <select class="form-control" ng-model="building.region" tabindex="6" ng-change="OnChangeRegion(building.region)">
+                                        <select class="form-control" id="region" name="region" ng-model="building.region" tabindex="6" ng-change="OnChangeRegion(building.region)" required>
                                             <option value="">-- Select Region--</option>
                                             <option ng-repeat="(key, value) in allRegions" value="{{key}}">{{key}}</option>
                                         </select>
+                                        <span style="color:red" ng-show="buildingForm.region.$invalid">
+                                            <span ng-show="buildingForm.region.$error.required">Region is required.</span>
+                                        </span>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Country</label>
-                                        <select class="form-control" ng-model="building.country" tabindex="6" ng-change="OnChangeCountry(building.country)">
+                                        <select class="form-control" id="country" name="country" ng-model="building.country" tabindex="7" ng-change="OnChangeCountry(building.country)" required>
                                             <option value="">-- Select Country--</option>
                                             <option ng-repeat="(key, value) in allCountries" value="{{value}}">{{value}}</option>
                                         </select>
+                                        <span style="color:red" ng-show="buildingForm.country.$invalid">
+                                            <span ng-show="buildingForm.country.$error.required">Country is required.</span>
+                                        </span>
                                     </div>
 
                                     <div class="form-group">
                                         <label>State</label>
-                                        <select class="form-control" ng-model="building.state" tabindex="6" ng-change="OnChangeState(building.state)">
+                                        <select class="form-control" id="state" name="state" ng-model="building.state" tabindex="8" ng-change="OnChangeState(building.state)" required>
                                             <option value="">-- Select State--</option>
                                             <option ng-repeat="(key, value) in allStates" value="{{value}}">{{value}}</option>
                                         </select>
+                                        <span style="color:red" ng-show="buildingForm.state.$invalid">
+                                            <span ng-show="buildingForm.state.$error.required">State is required.</span>
+                                        </span>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>State</label>
-                                        <select class="form-control" ng-model="building.city" tabindex="6">
+                                        <label>City</label>
+                                        <select class="form-control" id="city" name="city" ng-model="building.city" tabindex="9" required>
                                             <option value="">-- Select City--</option>
                                             <option ng-repeat="(key, value) in allCities" value="{{value}}">{{value}}</option>
                                         </select>
+                                        <span style="color:red" ng-show="buildingForm.city.$invalid">
+                                            <span ng-show="buildingForm.city.$error.required">City is required.</span>
+                                        </span>
                                     </div>
-
-                                    @*<div class="form-group">
-                                        <select id="ddlCity" name="city" class="form-control"></select>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" id="txtJobloc" name="loc" class="form-control" />
-                                    </div>*@
-
-
-
 
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
-                                        <input type="email" class="form-control" tabindex="3" id="email" name="email" ng-model="building.email" placeholder="Email" required>
+                                        <input type="email" class="form-control" tabindex="10" id="email" name="email" ng-model="building.email" placeholder="Email"
+                                               ng-maxlength="30" required>
                                         <span style="color:red" ng-show="buildingForm.email.$invalid">
                                             <span ng-show="buildingForm.email.$error.required">Email is required.</span>
+                                            <span ng-show="buildingForm.email.$error.email">Invalid email format.</span>
+                                            <span ng-show="buildingForm.email.$error.maxlength">Email cannot be longer than 30 characters.</span>
                                         </span>
                                     </div>
                                     <!-- /.box-body -->
                                     <div class="box-footer">
-                                        <button type="submit" tabindex="9" style="float:right;" class="btn btn-primary" ng-click="Submit()">
-                                            Submit
-                                        </button>
+                                        <input type="submit" tabindex="12" style="float:right;" class="btn btn-primary" value="{{submitButtonText}}" />
                                         &nbsp; &nbsp;
-                                        <button type="button" tabindex="10" style="float:right;" class="btn btn-primary" ng-click="Cancel()">
+                                        <button type="button" tabindex="11" style="float:right;" class="btn btn-primary" ng-click="Cancel()">
                                             Cancel
                                         </button>
                                     </div>
@@ -147,9 +156,11 @@
     @* For Displaying the Users *@
     <div id="displayBuildings">
         <div class="content-wrapper">
+            <div class="box-header with-border">
+                <h3 class="box-title">Building Information</h3>
+            </div>
             <div class="container_12">
                 <div class="module">
-                    <h2><span>New Building Registration</span></h2>
                     <div class="module-table-body">
                         <button style="float:right;margin:5px;" class="btn btn-primary" ng-click="NewBuilding()">New Building</button>
                         <table id="myTable" class="tablesorter">
@@ -163,7 +174,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="building in allBuildings">
+                                <tr ng-show="allBuildings.length!=0" ng-repeat="building in allBuildings">
                                     <td>{{building.Name}}</td>
                                     <td>{{building.Country}}</td>
                                     <td>{{building.Address}}</td>
@@ -171,6 +182,11 @@
                                     <td>
                                         <a href="" ng-click="Edit(building.Id)"><img src="~/Content/css-admin/pencil.gif" title="Edit" width="16" height="16" alt="Edit" /></a>
                                         <a href="" ng-click="Delete(building.Id)"><img src="~/Content/css-admin/bin.gif" title="Delete" width="16" height="16" alt="Delete" /></a>
+                                    </td>
+                                </tr>
+                                <tr ng-show="allBuildings.length==0">
+                                    <td colspan="5" style="text-align:center">
+                                        <span> No record found </span>
                                     </td>
                                 </tr>
                             </tbody>

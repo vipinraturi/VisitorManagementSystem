@@ -13,11 +13,11 @@
     </style>
 
     <section class="content">
+        <div class="box-header with-border">
+            <h3 class="box-title">Client Registration</h3>
+        </div>
         <div class="row">
-            <div class="box-header with-border">
-                <h3 class="box-title">New Client Registration</h3>
-            </div>
-            <form ng-app="app" ng-controller="companyController" name="companyForm" ng-model="company" novalidate>
+            <form ng-app="app" ng-controller="companyController" name="companyForm" ng-model="company" novalidate ng-submit="companyForm.$valid && SaveCompany()">
                 <!-- left column -->
                 <div class="col-md-6">
                     <div class="box box-primary">
@@ -25,15 +25,18 @@
                             <input type="hidden" id="id" name="id" ng-model="company.id" />
                             <div class="form-group">
                                 <label for="companyName">Company Name:</label>
-                                <input type="text" class="form-control" id="companyName" name="companyName" ng-model="company.companyName" placeholder="Company Name" required>
+                                <input type="text" class="form-control" id="companyName" name="companyName" ng-model="company.companyName"
+                                       placeholder="Company Name" ng-minlength=3 ng-maxlength=30 required>
                                 <span style="color:red" ng-show="companyForm.companyName.$invalid">
                                     <span ng-show="companyForm.companyName.$error.required">Company Name is required.</span>
+                                    <span ng-show="companyForm.companyName.$error.minlength">Company Name is required to be at least 3 characters.</span>
+                                    <span ng-show="companyForm.companyName.$error.maxlength">Company Name cannot be longer than 30 characters.</span>
                                 </span>
                             </div>
 
                             <div class="form-group">
                                 <label for="companyDescription">Description</label>
-                                <textarea class="form-control" rows="2" id="companyDescription" name="companyDescription" placeholder="Description ..." ng-model="company.companyDescription" required></textarea>
+                                <textarea class="form-control" rows="2" id="companyDescription" name="companyDescription" placeholder="Description ..." maxlength="100" ng-model="company.companyDescription" required></textarea>
                                 <span style="color:red" ng-show="companyForm.companyDescription.$invalid">
                                     <span ng-show="companyForm.companyDescription.$error.required">Description is required.</span>
                                 </span>
@@ -43,14 +46,23 @@
 
                             <div class="form-group">
                                 <label for="mobileNumber">Mobile No</label>
-                                <input type="number" class="form-control" id="mobileNumber" name="mobileNumber" ng-model="company.mobileNumber" placeholder="Mobile Number" required>
+                                <input type="number" class="form-control" id="mobileNumber" name="mobileNumber" ng-model="company.mobileNumber" placeholder="Mobile Number"
+                                       ng-minlength="10" ng-maxlength="10" required>
+                                <span style="color:red" ng-show="companyForm.mobileNumber.$invalid">
+                                    <span ng-show="companyForm.mobileNumber.$error.required">Mobile Name is required.</span>
+                                    <span ng-show="companyForm.mobileNumber.$error.minlength">Mobile Number must be of 10 digits.</span>
+                                    <span ng-show="companyForm.mobileNumber.$error.maxlength">Mobile Number must be of 10 digits.</span>
+                                </span>
                             </div>
 
                             <div class="form-group">
                                 <label for="fax">Fax</label>
-                                <input type="number" class="form-control" id="fax" name="fax" ng-model="company.fax" placeholder="Fax" required>
+                                <input type="number" class="form-control" id="fax" name="fax" ng-model="company.fax" placeholder="Fax"
+                                       ng-minlength="10" ng-maxlength="10" required >
                                 <span style="color:red" ng-show="companyForm.fax.$invalid">
                                     <span ng-show="companyForm.fax.$error.required">Fax is required.</span>
+                                    <span ng-show="companyForm.fax.$error.minlength">Fax must be of 10 digits.</span>
+                                    <span ng-show="companyForm.fax.$error.maxlength">Fax must be of 10 digits.</span>
                                 </span>
                             </div>
 
@@ -71,42 +83,46 @@
                     <div class="box box-primary">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" ng-model="company.email" placeholder="Email" required>
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" ng-model="company.email" placeholder="Email"
+                                       ng-maxlength="30" required>
                                 <span style="color:red" ng-show="companyForm.email.$invalid">
                                     <span ng-show="companyForm.email.$error.required">Email is required.</span>
+                                    <span ng-show="companyForm.email.$error.email">Invalid email format.</span>
+                                    <span ng-show="companyForm.email.$error.maxlength">Email cannot be longer than 30 characters.</span>
                                 </span>
                             </div>
 
                             <div class="form-group">
                                 <label for="phoneNumber">Contact No</label>
-                                <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" ng-model="company.phoneNumber" placeholder="Phone Number" required>
+                                <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" ng-model="company.phoneNumber" placeholder="Phone Number"
+                                       ng-minlength="9" ng-maxlength="9" required>
                                 <span style="color:red" ng-show="companyForm.phoneNumber.$invalid">
                                     <span ng-show="companyForm.phoneNumber.$error.required">Phone Number is required.</span>
+                                    <span ng-show="companyForm.phoneNumber.$error.minlength">Phone Number must be of 9 digits.</span>
+                                    <span ng-show="companyForm.phoneNumber.$error.maxlength">Phone Number  must be of 9 digits.</span>
                                 </span>
                             </div>
                             <div class="form-group">
                                 <label for="address">Address</label>
                                 <textarea class="form-control" rows="3" id="address" name="address" placeholder="Address ..." ng-model="company.address"></textarea>
-                                <span style="color:red" ng-show="companyForm.address.$invalid">
-                                    <span ng-show="companyForm.address.$error.required">Phone Number is required.</span>
-                                </span>
                             </div>
 
                             <div class="form-group">
                                 <label for="zipcode">Zip Code</label>
-                                <input type="number" class="form-control" id="zipcode" name="zipcode" ng-model="company.zipcode" placeholder="Zip Code" required>
+                                <input type="number" class="form-control" id="zipcode" name="zipcode" ng-model="company.zipcode" placeholder="Zip Code"
+                                       ng-minlength="4" ng-maxlength="6" required>
                                 <span style="color:red" ng-show="companyForm.zipcode.$invalid">
                                     <span ng-show="companyForm.zipcode.$error.required">Zipcode is required.</span>
+                                    <span ng-show="companyForm.zipcode.$error.minlength">Zipcode is minimum of 4 digits.</span>
+                                    <span ng-show="companyForm.zipcode.$error.maxlength">Zipcode is maximum of 6 digits.</span>
                                 </span>
                             </div>
 
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
-                            <button type="submit" style="float:right;" class="btn btn-primary" ng-click="SaveCompany()">
-                                Submit
-                            </button>
+                            <input type="submit" style="float:right;" class="btn btn-primary" value="{{submitButtonText}}" />
                         </div>
                     </div>
                 </div>

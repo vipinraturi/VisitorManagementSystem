@@ -9,6 +9,8 @@ app.controller('manageUsercontroller', function ($scope, $http) {
     $scope.register.phoneNumber = null;
     $scope.register.address = '';
     $scope.register.genderId = null;
+    $scope.submitButtonText = 'Save';
+    $scope.headerText = 'Add New User';
 
     $scope.register.roleId = null;
     $scope.allRoles = [];
@@ -50,6 +52,8 @@ app.controller('manageUsercontroller', function ($scope, $http) {
             $scope.register.roleId = result.Roles[0].RoleId;
             $scope.register.genderId = result.Gender.Id;
             $scope.register.id = userId;
+            $scope.submitButtonText = 'Update';
+            $scope.headerText = 'Edit Existing User';
             $('#displayUsers').hide();
             $('#addEditSection').show();
         });
@@ -87,9 +91,7 @@ app.controller('manageUsercontroller', function ($scope, $http) {
                 //debugger;
                 $scope.allUsers = result;
             });
-
-            //$scope.$apply();
-
+            toastr.success("Saved Successfully!");
         }).error(function () {
             //debugger;
             $scope.error.$invalid = "An Error has occured";
@@ -143,7 +145,8 @@ app.controller('manageUsercontroller', function ($scope, $http) {
         $scope.register.roleId = '';
         $scope.register.genderId = '';
         $scope.register.id = '';
-
+        $scope.submitButtonText = 'Save';
+        $scope.headerText = 'Add New User';
         $('#displayUsers').hide();
         $('#addEditSection').show();
     };

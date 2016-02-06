@@ -10,13 +10,13 @@
     $scope.company.phoneNumber = null;
     $scope.company.address = '';
     $scope.company.zipcode = null;
+    $scope.submitButtonText = 'Save';
 
     $http({
         method: 'GET',
         url: '/Api/AccountApi/GetCompanyInformation'
     }).success(function (result) {
         if (result != null) {
-            debugger;
             $scope.company.id = result.Id;
             $scope.company.companyName = result.CompanyName;
             $scope.company.companyDescription = result.Description;
@@ -27,6 +27,7 @@
             $scope.company.phoneNumber = parseInt(result.PhoneNumber)
             $scope.company.address = result.Address;
             $scope.company.zipcode = parseInt(result.ZipCode);
+            $scope.submitButtonText = 'Update';
         }
     });
 
@@ -55,8 +56,9 @@
                 }
             }
         ).success(function (data) {
-            //window.location.href = '/Dashboard/Index';  
-            toastr.success("Save Successfully!");
+            $scope.company.id = data.Id;
+            $scope.submitButtonText = 'Update';
+            toastr.success("Saved Successfully!");
         }).error(function () {
             toastr.error("Please enter the valid credentials");
         });
