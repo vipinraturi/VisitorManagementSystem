@@ -112,7 +112,10 @@ namespace Evis.VisitorManagement.Business
             existingRecord.Email = building.Email;
             existingRecord.PhoneNumber = building.PhoneNumber;
             existingRecord.ZipCode = building.ZipCode;
-            existingRecord.BuildingLocationId = existingRecord.BuildingLocationId;
+            existingRecord.Region = building.Region;
+            existingRecord.Country = building.Country;
+            existingRecord.State = building.State;
+            existingRecord.City = building.City;
             m_unitOfWork.GetRepository<Building>().Update(existingRecord);
             m_unitOfWork.Commit();
             return true;

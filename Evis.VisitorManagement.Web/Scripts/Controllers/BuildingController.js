@@ -2,28 +2,69 @@
     $scope.building = {};
     $scope.building.id = null;
     $scope.building.Name = '';
-    $scope.building.buildingLocationId = null;
+    $scope.building.region = '';
     $scope.building.description = '';
     $scope.building.phoneNumber = null;
     $scope.building.address = '';
     $scope.building.email = '';
     $scope.building.zipcode = null;
+    $scope.building.country = '';
+    $scope.building.state = '';
+    $scope.building.city = '';
 
-    $scope.allBuildingLocations = [];
-    $http({
-        method: 'GET',
-        url: '/Api/AccountApi/GetAllBuildingLocations'
-    }).success(function (result) {
-        $scope.allBuildingLocations = result;
-    });
+    // Initializing all the regions.
+    $scope.allRegions = allRegions;
 
-    $scope.OnChange = function () {
+    // Initializing all the countries based on selected region.
+    $scope.allCountries = [];
+    $scope.OnChangeRegion = function (selectedRegion) {
+        debugger;
+        if (selectedRegion != '') {
+            angular.forEach($scope.allRegions, function (value, key) {
+                if (key == selectedRegion) {
+                    $scope.allCountries.length = 0;
+                    value = value.split('|');
+                    angular.forEach(value, function (value, key) {
+                        $scope.allCountries.push(value);
+                    });
+                }
+            });
+        }
+        else {
 
+        }
+    };
+
+    // Initializing all the states based on selected country.
+    $scope.allStates = [];
+    $scope.OnChangeCountry = function (selectedCountry) {
+        angular.forEach(allStates, function (value, key) {
+            debugger;
+            if (key == selectedCountry) {
+                $scope.allStates.length = 0;
+                value = value.split('|');
+                angular.forEach(value, function (value, key) {
+                    $scope.allStates.push(value);
+                });
+            }
+        });
+    }
+
+    $scope.allCities = [];
+    $scope.OnChangeState = function (selectedState) {
+        angular.forEach(allCities, function (value, key) {
+            debugger;
+            if (key == selectedState) {
+                $scope.allCities.length = 0;
+                value = value.split('|');
+                angular.forEach(value, function (value, key) {
+                    $scope.allCities.push(value);
+                });
+            }
+        });
     }
 
     $scope.Edit = function (buildingId) {
-        //window.location.href = '/Account/Users?userId=' + userId;
-        debugger;
         $http({
             method: 'GET',
             url: '/Api/AccountApi/GetBuildingInfo',
@@ -34,18 +75,53 @@
             debugger;
             $scope.building.id = result.Id;
             $scope.building.name = result.Name;
-            $scope.building.buildingLocationId = result.BuildingLocationId;
+            $scope.building.region = result.Region;
             $scope.building.description = result.Description;
             $scope.building.phoneNumber = parseInt(result.PhoneNumber);
             $scope.building.address = result.Address;
             $scope.building.email = result.Email;
             $scope.building.zipcode = parseInt(result.ZipCode);
+
+            angular.forEach($scope.allRegions, function (value, key) {
+                if (key == result.Region) {
+                    $scope.allCountries.length = 0;
+                    value = value.split('|');
+                    angular.forEach(value, function (value, key) {
+                        $scope.allCountries.push(value);
+                    });
+                }
+            });
+            $scope.building.country = result.Country;
+
+            angular.forEach(allStates, function (value, key) {
+                if (key == result.Country) {
+                    $scope.allStates.length = 0;
+                    value = value.split('|');
+                    angular.forEach(value, function (value, key) {
+                        $scope.allStates.push(value);
+                    });
+                }
+            });
+            $scope.building.state = result.State;
+
+            angular.forEach(allCities, function (value, key) {
+                if (key == result.State) {
+                    $scope.allCities.length = 0;
+                    value = value.split('|');
+                    angular.forEach(value, function (value, key) {
+                        $scope.allCities.push(value);
+                    });
+                }
+            });
+            $scope.building.city = result.City;
+
             $('#displayBuildings').hide();
             $('#addEditSection').show();
         });
     };
 
     $scope.Submit = function () {
+        debugger;
         var viewModel = {
             "Id": $scope.building.id,
             "Name": $scope.building.name,
@@ -54,7 +130,10 @@
             "ZipCode": $scope.building.zipcode,
             "Address": $scope.building.address,
             "Email": $scope.building.email,
-            "BuildingLocationId": $scope.building.buildingLocationId
+            "Region": $scope.building.region,
+            "State": $scope.building.state,
+            "Country": $scope.building.country,
+            "City": $scope.building.city
         };
 
         $http.post(
@@ -88,7 +167,6 @@
         $('#addEditSection').hide();
     }
 
-    $scope.allBuildings = [];
     $http({
         method: 'GET',
         url: '/Api/AccountApi/GetAllBuildings'
@@ -122,19 +200,18 @@
 
     $scope.NewBuilding = function () {
         $scope.building.id = null;
-        $scope.building.Name = '';
-        $scope.building.buildingLocationId = null;
+        $scope.building.name = '';
+        $scope.building.region = '';
+        $scope.building.country = '';
+        $scope.building.state = '';
         $scope.building.description = '';
         $scope.building.phoneNumber = null;
         $scope.building.address = '';
         $scope.building.email = '';
         $scope.building.zipcode = null;
+        $scope.building.city = '';
 
         $('#displayBuildings').hide();
         $('#addEditSection').show();
     };
 });
-
-//app.controller('manageUsercontroller', function ($scope, $http) {
-
-//});

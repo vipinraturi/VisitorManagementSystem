@@ -24,10 +24,12 @@ namespace Evis.VisitorManagement.DataProject.Model.Entities
 
         public string Email { get; set; }
 
-        [Required]
-        public int BuildingLocationId { get; set; }
-        [ForeignKey("BuildingLocationId")]
+        public string Region { get; set; }
 
-        public virtual BuildingLocation BuildingLocation { get; set; }
+        public string Country { get; set; }
+
+        public string State { get; set; }
+
+        public string City { get; set; }
     }
 }

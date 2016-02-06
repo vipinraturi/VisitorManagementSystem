@@ -39,7 +39,7 @@ namespace Evis.VisitorManagement.Data
 
         public DbSet<BuildingGate> BuildingGate { get; set; }
 
-        public DbSet<BuildingLocation> BuildingLocation { get; set; }
+        //public DbSet<BuildingLocation> BuildingLocation { get; set; }
 
         public DbSet<Company> Company { get; set; }
     }

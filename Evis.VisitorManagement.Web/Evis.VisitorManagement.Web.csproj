@@ -427,6 +427,7 @@
     <Content Include="Scripts\Controllers\BuildingController.js" />
     <Content Include="Scripts\Controllers\CategoryController.js" />
     <Content Include="Scripts\Controllers\CompanyController.js" />
+    <Content Include="Scripts\Controllers\CountriesInformation.js" />
     <Content Include="Scripts\Controllers\LoginController.js" />
     <Content Include="Scripts\Controllers\ManageUsersController.js" />
     <Content Include="Scripts\dist\css\AdminLTE.css" />
@@ -2100,7 +2101,9 @@
     <Content Include="Scripts\Plugin\respond.min.js" />
     <Content Include="Scripts\Plugin\select2.js" />
     <Content Include="Scripts\Plugin\select2.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\Plugin\jquery-2.2.0.min.map" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
