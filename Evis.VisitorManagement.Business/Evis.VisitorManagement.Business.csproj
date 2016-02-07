@@ -64,7 +64,9 @@
     <Compile Include="Contract\IAccountBO.cs" />
     <Compile Include="Contract\IBuildingBO.cs" />
     <Compile Include="Contract\ICategoryBO.cs" />
+    <Compile Include="Contract\IVisitorBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisitorBO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

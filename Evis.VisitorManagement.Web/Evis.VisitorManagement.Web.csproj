@@ -2128,9 +2128,11 @@
     <Content Include="Views\Account\ForgetPassword.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\AddGates.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\LightInjectDependencyInjector.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs">
@@ -2220,11 +2222,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Evis.VisitorManagement.Business\Evis.VisitorManagement.Business.csproj">
       <Project>{83ad8e29-a17f-469c-af0b-b8f47d2829d7}</Project>
-      <Name>Evis.eLearning.Business</Name>
+      <Name>Evis.VisitorManagement.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\Evis.VisitorManagement.Data.Model\Evis.VisitorManagement.Data.Model.csproj">
       <Project>{db779669-4879-4584-ba13-6e793979a21b}</Project>
-      <Name>Evis.eLearning.Data.Model</Name>
+      <Name>Evis.VisitorManagement.Data.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Evis.VisitorManagement.Data\Evis.VisitorManagement.Data.csproj">
       <Project>{1279c2a3-94a0-4a1b-a196-e52f32b4eb32}</Project>

@@ -63,12 +63,17 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Building.cs" />
     <Compile Include="Entities\BuildingGate.cs" />
+    <Compile Include="Entities\CardType.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\Custom\UserList.cs" />
     <Compile Include="Entities\Gender.cs" />
     <Compile Include="Entities\ImageUpload.cs" />
     <Compile Include="Entities\BuildingLocation.cs" />
+    <Compile Include="Entities\Relation.cs" />
+    <Compile Include="Entities\Salutation.cs" />
+    <Compile Include="Entities\Visitor.cs" />
+    <Compile Include="Entities\VisitorDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -144,5 +144,7 @@ namespace Evis.VisitorManagement.Business
         {
             return m_unitOfWork.GetRepository<BuildingLocation>().GetAll();
         }
+
+        //common method
     }
 }

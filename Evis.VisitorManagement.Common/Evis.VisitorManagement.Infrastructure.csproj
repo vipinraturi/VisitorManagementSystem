@@ -44,7 +44,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Evis.VisitorManagement.Data\Evis.VisitorManagement.Data.csproj">
       <Project>{1279c2a3-94a0-4a1b-a196-e52f32b4eb32}</Project>
-      <Name>Evis.eLearning.Data</Name>
+      <Name>Evis.VisitorManagement.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

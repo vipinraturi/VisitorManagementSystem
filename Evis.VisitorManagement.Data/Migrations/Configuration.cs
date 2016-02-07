@@ -17,17 +17,17 @@ namespace Evis.VisitorManagement.Data.Migrations
 
         protected override void Seed(VMSDbContext context)
         {
-            //GenerateGender(context);
-            //context.SaveChanges();
+            GenerateGender(context);
+            context.SaveChanges();
 
             //GenerateBuidingLocations(context);
             //context.SaveChanges();
 
-            //GenerateRoles(context);
-            //context.SaveChanges();
+            GenerateRoles(context);
+            context.SaveChanges();
 
-            //GenerateSystemAdmin(context);
-            //context.SaveChanges();
+            GenerateSystemAdmin(context);
+            context.SaveChanges();
         }
 
         private static void GenerateGender(VMSDbContext context)

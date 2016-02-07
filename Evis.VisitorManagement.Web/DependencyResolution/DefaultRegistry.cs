@@ -20,6 +20,7 @@ namespace Evis.VisitorManagement.Web.DependencyResolution {
             For<IUserRepository>().Use<UserRepository>();
             For<ICategoryRepository>().Use<CategoryRepository>();
             For<IAccountBO>().Use<AccountBO>();
+            For<IVisitorBO>().Use<VisitorBO>();
             //need to add all Repository along with particular Interface
         }
 
