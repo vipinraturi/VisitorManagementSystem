@@ -29,6 +29,7 @@ namespace Evis.VisitorManagement.Web.App_Start
             container.Register(typeof(Repository<>), typeof(IRepository<>));
             container.Register<IAccountBO, AccountBO>(new PerScopeLifetime());
             container.Register<IVisitorBO, VisitorBO>(new PerScopeLifetime());
+            container.Register<IVisitorDetailsBO, VisitorDetailsBO>(new PerScopeLifetime());
             container.EnableMvc();
         }
     }

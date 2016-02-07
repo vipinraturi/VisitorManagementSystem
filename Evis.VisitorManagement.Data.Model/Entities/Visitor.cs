@@ -11,20 +11,14 @@ namespace Evis.VisitorManagement.DataProject.Model.Entities
         {
             this.VisitorDetails = new HashSet<VisitorDetails>();
         }
-        //public long Id { get; set; }
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MidName { get; set; }
-        
         public string EmailId { get; set; }
         public string ContactNo { get; set; }
         public string FaxNo { get; set; }
         public byte Image { get; set; }
-        
         public bool IsActive { get; set; }
-
-        
 
         [Required]
         public int GenderId { get; set; }

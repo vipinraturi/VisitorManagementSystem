@@ -2,87 +2,361 @@
     Layout = "~/Views/Shared/_LayoutMaster.cshtml";
 }
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <div class="container_12">
-        <!-- Example table -->
-        <div class="module">
-            <h2><span>Visitor Details</span></h2>
-            <div class="module-table-body">
-                <form action="">
-                    <table id="myTable" class="tablesorter">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Visitor Name</th>
-                                <th>Mail Id</th>
-                                <th>Contact No</th>
-                                <th>Gender</th>
-                                <th>Country</th>
-                                @*<th></th>*@
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="align-center">1</td>
-                                <td><a href="" title="Visitor Details">Anith Raj</a></td>
-                                <td>Anith.raj@evisuae.com</td>
-                                <td>0562923893</td>
-                                <td>Male</td>
-                                <td>UAE</td>
-                                @*<td>
-                                    <input type="checkbox" />
-                                    <a href=""><img src="~/Content/css-admin/pencil.gif" width="16" height="16" alt="edit" /></a>
-                                </td>*@
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
-                <div class="pager" id="pager">
-                    <form action="">
-                        <div>
-                            <img class="first" src="~/Content/css-admin/arrow-stop-180.gif" alt="first" />
-                            <img class="prev" src="~/Content/css-admin/arrow-180.gif" alt="prev" />
-                            <input type="text" class="pagedisplay input-short align-center" />
-                            <img class="next" src="~/Content/css-admin/arrow.gif" alt="next" />
-                            <img class="last" src="~/Content/css-admin/arrow-stop.gif" alt="last" />
-                            <select class="pagesize input-short align-center">
-                                <option value="10" selected="selected">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                            </select>
-                        </div>
-                    </form>
+<div ng-controller="visitorController">
+    <div id="addVisitorSection" style="display:none">
+
+        <div class="content-wrapper">
+
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add Visitor Details</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" tabindex="11" style="float:right;" class="btn btn-primary" ng-click="Cancel()">
+                            Cancel
+                        </button>
+
+                        <button type="button" style="float:right;" class="btn btn-primary">Check-out</button>
+                        <button type="button" style="float:right;" class="btn btn-primary">Check-in</button>
+                    </div>
                 </div>
-            </div> <!-- End .module-table-body -->
-        </div> <!-- End .module -->
-        <div class="pagination">
-            <a href="" class="button"><span><img src="~/Content/css-admin/arrow-stop-180-small.gif" height="9" width="12" alt="First" /> First</span></a>
-            <a href="" class="button"><span><img src="~/Content/css-admin/arrow-180-small.gif" height="9" width="12" alt="Previous" /> Prev</span></a>
-            <div class="numbers">
-                <span>Page:</span>
-                <a href="">1</a>
-                <span>|</span>
-                <a href="">2</a>
-                <span>|</span>
-                <span class="current">3</span>
-                <span>|</span>
-                <a href="">4</a>
-                <span>|</span>
-                <a href="">5</a>
-                <span>|</span>
-                <a href="">6</a>
-                <span>|</span>
-                <a href="">7</a>
-                <span>|</span>
-                <span>...</span>
-                <span>|</span>
-                <a href="">99</a>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- general form elements -->
+                            <div>
+                                <!-- form start -->
+                                <form role="form" class="" name="visitorForm" ng-model="visitor" novalidate ng-submit="visitorForm.$valid && Submit()">
+                                    <div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button type="submit" style="float:right;" class="btn btn-primary">Save</button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="exampleInputFname" class="">First Name</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="First Name" ng-model="visitor.FirstName"
+                                                           ng-minlength="3" ng-maxlength="15" required>
+                                                    <span style="color:red" ng-show="visitorForm.FirstName.$invalid">
+                                                        <span ng-show="visitorForm.FirstName.$error.required">First Name is required.</span>
+                                                        <span ng-show="visitorForm.FirstName.$error.minlength">First Name is required to be at least 3 characters.</span>
+                                                        <span ng-show="visitorForm.FirstName.$error.maxlength">First Name cannot be longer than 15 characters.</span>
+                                                    </span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="exampleInputLastName">Last Name</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" id="txtLastName" placeholder="Last Name" ng-model="visitor.LastName">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="exampleInputLGender">Gender</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label>
+                                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                                                Male
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label>
+                                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                                Female
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="exampleInputAddress">Address</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <textarea class="form-control" rows="3" placeholder="Address ..." ng-model="visitor.Address"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="exampleInputEmail1">Email</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="visitor.EmailId">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="exampleInputContact">Contact No</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="number" class="form-control" id="exampleInputContact" placeholder="Contact No" ng-model="visitor.ContactNo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="exampleInputContact">Fax No</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="number" class="form-control" id="exampleInputContact" placeholder="Fax No" ng-model="visitor.FaxNo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label>Type Of Card</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <select class="form-control">
+                                                        <option>--Select--</option>
+                                                        <option>Emirate Id</option>
+                                                        <option>Driving Licence</option>
+                                                        <option>Other</option>
+                                                    </select>
+                                                    <input style="display:none" type="text" class="form-control" id="otherIdCard" placeholder="Card Type Other">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="exampleInputContact">Identity Number</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="number" class="form-control" id="identityNumber" placeholder="Identity Number">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="exampleInputFile">Browse Image</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="file" id="exampleInputFile">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="">
+                                <form role="form">
+                                    <table id="myTable" class="tablesorter">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Date</th>
+                                                <th>Check-In Time</th>
+                                                <th>Check-Out Time</th>
+                                                <th>Minutes Stay</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="align-center">1</td>
+                                                <td>Jan 01, 2016</td>
+                                                <td>5:14:23 PM</td>
+                                                <td>5:30:23 PM</td>
+                                                <td>16 mins 20 Sec</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-center">2</td>
+                                                <td>Jan 02, 2016</td>
+                                                <td>5:00:23 PM</td>
+                                                <td>5:30:00 PM</td>
+                                                <td>29 mins 30 Secs</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </form>
+                                <div class="pager" id="pager">
+                                    <form action="">
+                                        <div>
+                                            <img class="first" src="~/Content/css-admin/arrow-stop-180.gif" alt="first" />
+                                            <img class="prev" src="~/Content/css-admin/arrow-180.gif" alt="prev" />
+                                            <input type="text" class="pagedisplay input-short align-center" />
+                                            <img class="next" src="~/Content/css-admin/arrow.gif" alt="next" />
+                                            <img class="last" src="~/Content/css-admin/arrow-stop.gif" alt="last" />
+                                            <select class="pagesize input-short align-center">
+                                                <option value="10" selected="selected">10</option>
+                                                <option value="20">20</option>
+                                                <option value="30">30</option>
+                                                <option value="40">40</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="pagination">
+                                <a href="" class="button"><span><img src="~/Content/css-admin/arrow-stop-180-small.gif" height="9" width="12" alt="First" /> First</span></a>
+                                <a href="" class="button"><span><img src="~/Content/css-admin/arrow-180-small.gif" height="9" width="12" alt="Previous" /> Prev</span></a>
+                                <div class="numbers">
+                                    <span>Page:</span>
+                                    <a href="">1</a>
+                                    <span>|</span>
+                                    <a href="">2</a>
+                                    <span>|</span>
+                                    <span class="current">3</span>
+                                    <span>|</span>
+                                    <a href="">4</a>
+                                    <span>|</span>
+                                    <a href="">5</a>
+                                </div>
+                                <a href="" class="button"><span>Next <img src="~/Content/css-admin/arrow-000-small.gif" height="9" width="12" alt="Next" /></span></a>
+                                <a href="" class="button last"><span>Last <img src="~/Content/css-admin/arrow-stop-000-small.gif" height="9" width="12" alt="Last" /></span></a>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+
+                </div>
             </div>
-            <a href="" class="button"><span>Next <img src="~/Content/css-admin/arrow-000-small.gif" height="9" width="12" alt="Next" /></span></a>
-            <a href="" class="button last"><span>Last <img src="~/Content/css-admin/arrow-stop-000-small.gif" height="9" width="12" alt="Last" /></span></a>
-            <div style="clear: both;"></div>
+
+
         </div>
-    </div> <!-- End .grid_12 -->
+    </div>
+    <div id="visitorListSection">
+        <div class="content-wrapper">
+            <div class="container_12">
+                <!-- Example table -->
+                <div class="module">
+                    <h2><span>Visitor Details</span></h2>
+                    <button type="button" style="float:right;" class="btn btn-primary" ng-click="NewVisitor()">New Visitor</button>
+                    <div class="module-table-body">
+                        <form action="">
+                            <table id="myTable" class="tablesorter">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Visitor Name</th>
+                                        <th>Mail Id</th>
+                                        <th>Contact No</th>
+                                        <th>Gender</th>
+                                        <th>Country</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-show="visitorList.length != 0" ng-repeat="visitor in visitorList">
+                                        <td>
+                                            {{visitor.FirstName}} &nbsp; {{visitor.LastName}}
+                                        </td>
+                                        <td>{{visitor.EmailId}}</td>
+                                        <td>{{visitor.ContactNo}}</td>
+                                        <td>{{visitor.GenderId}}</td>
+                                        <td></td>
+                                        <td>
+                                            <a href="" ng-click="Edit(visitor.Id)"><img src="~/Content/css-admin/pencil.gif" title="Edit" width="16" height="16" alt="Edit" /></a>
+                                            <a href="" ng-click="Delete(visitor.Id)"><img src="~/Content/css-admin/bin.gif" title="Delete" width="16" height="16" alt="Delete" /></a>
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="visitorList.length == 0">
+                                        <td colspan="6" style="text-align:center">
+                                            <span> No record found </span>
+                                        </td>
+                                    </tr>
+
+
+                                    @*<tr>
+                                            <td class="align-center">1</td>
+                                            <td><a href="" title="Visitor Details">Anith Raj</a></td>
+                                            <td>Anith.raj@evisuae.com</td>
+                                            <td>0562923893</td>
+                                            <td>Male</td>
+                                            <td>UAE</td>
+
+                                        </tr>*@
+                                </tbody>
+                            </table>
+                        </form>
+                        <div class="pager" id="pager">
+                            <form action="">
+                                <div>
+                                    <img class="first" src="~/Content/css-admin/arrow-stop-180.gif" alt="first" />
+                                    <img class="prev" src="~/Content/css-admin/arrow-180.gif" alt="prev" />
+                                    <input type="text" class="pagedisplay input-short align-center" />
+                                    <img class="next" src="~/Content/css-admin/arrow.gif" alt="next" />
+                                    <img class="last" src="~/Content/css-admin/arrow-stop.gif" alt="last" />
+                                    <select class="pagesize input-short align-center">
+                                        <option value="10" selected="selected">10</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                        <option value="40">40</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div> <!-- End .module-table-body -->
+                </div> <!-- End .module -->
+                <div class="pagination">
+                    <a href="" class="button"><span><img src="~/Content/css-admin/arrow-stop-180-small.gif" height="9" width="12" alt="First" /> First</span></a>
+                    <a href="" class="button"><span><img src="~/Content/css-admin/arrow-180-small.gif" height="9" width="12" alt="Previous" /> Prev</span></a>
+                    <div class="numbers">
+                        <span>Page:</span>
+                        <a href="">1</a>
+                        <span>|</span>
+                        <a href="">2</a>
+                        <span>|</span>
+                        <span class="current">3</span>
+                        <span>|</span>
+                        <a href="">4</a>
+                        <span>|</span>
+                        <a href="">5</a>
+                        <span>|</span>
+                        <a href="">6</a>
+                        <span>|</span>
+                        <a href="">7</a>
+                        <span>|</span>
+                        <span>...</span>
+                        <span>|</span>
+                        <a href="">99</a>
+                    </div>
+                    <a href="" class="button"><span>Next <img src="~/Content/css-admin/arrow-000-small.gif" height="9" width="12" alt="Next" /></span></a>
+                    <a href="" class="button last"><span>Last <img src="~/Content/css-admin/arrow-stop-000-small.gif" height="9" width="12" alt="Last" /></span></a>
+                    <div style="clear: both;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<script type="text/javascript" src="~/Scripts/Controllers/VisitorController.js"></script>

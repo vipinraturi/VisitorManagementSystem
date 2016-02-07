@@ -431,6 +431,7 @@
     <Content Include="Scripts\Controllers\CountriesInformation.js" />
     <Content Include="Scripts\Controllers\LoginController.js" />
     <Content Include="Scripts\Controllers\ManageUsersController.js" />
+    <Content Include="Scripts\Controllers\VisitorController.js" />
     <Content Include="Scripts\dist\css\AdminLTE.css" />
     <Content Include="Scripts\dist\css\AdminLTE.min.css" />
     <Content Include="Scripts\dist\css\skins\skin-black-light.css" />
@@ -2139,6 +2140,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ControllerApi\VisitorApiController.cs" />
     <Compile Include="ControllerApi\AccountApiController.cs" />
     <Compile Include="ControllerApi\CategoryApiController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
