@@ -9,10 +9,6 @@ namespace Evis.VisitorManagement.DataProject.Model.Entities
 {
     public class Gender : BaseEntity<int>
     {
-        public Gender() {
-            this.Visitor = new HashSet<Visitor>();
-        }
-
         #region Properties
         [Required]
         [StringLength(15)]
@@ -22,8 +18,6 @@ namespace Evis.VisitorManagement.DataProject.Model.Entities
         public string Description { get; set; }
 
         public bool IsActive { get; set; }
-
-        public virtual ICollection<Visitor> Visitor { get; set; } 
 
         #endregion
     }

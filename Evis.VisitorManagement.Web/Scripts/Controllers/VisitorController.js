@@ -6,6 +6,7 @@
     $scope.visitor.FirstName = '';
     $scope.visitor.LastName = '';
     $scope.visitor.MidName = '';
+    $scope.visitor.Address = '';
     $scope.visitor.EmailId = '';
     $scope.visitor.ContactNo = '';
     $scope.visitor.FaxNo = '';
@@ -16,23 +17,26 @@
     $scope.headerText = 'Add New Visitor';
     $scope.visitor.roleId = null;
     $scope.visitorList = [];
-    $scope.allGenders = [];
-
-
-    $http({
-        method: 'GET',
-        url: '/Api/VisitorApi/GetAllVisitors'
-    }).success(function (result) {
-        $scope.visitorList = result;
-    });
-
+    $scope.genderList = [];
 
     $http({
         method: 'GET',
-        url: '/Api/AccountApi/GetAllGenders'
+        url: '/Api/VisitorApi/GetAllGender'
     }).success(function (result) {
-        $scope.allGenders = result;
+        $scope.genderList = result;
     });
+
+    var vmVisitors = this;
+    vmVisitors.GetAllVisitors = function () {
+        $http({
+            method: 'GET',
+            url: '/Api/VisitorApi/GetAllVisitors'
+        }).success(function (result) {
+            $scope.visitorList = result;
+        });
+    }
+
+    vmVisitors.GetAllVisitors();
 
     $scope.Edit = function (visitorId) {
 
@@ -48,11 +52,13 @@
             $scope.visitor.LastName = result.LastName;
             $scope.visitor.MidName = result.MidName;
             $scope.visitor.EmailId = result.EmailId;
+            $scope.visitor.Address = result.Address
             $scope.visitor.ContactNo = result.ContactNo;
             $scope.visitor.FaxNo = result.FaxNo;
             $scope.visitor.Image = null;
             $scope.visitor.IsActive = result.IsActive;
             $scope.visitor.GenderId = result.GenderId;
+            $scope.visitor.Id = visitorId;
             $scope.submitButtonText = 'Update';
             $scope.headerText = 'Edit Existing User';
             $('#visitorListSection').hide();
@@ -62,10 +68,11 @@
 
     $scope.Submit = function () {
         var viewModel = {
-
+            "Id": $scope.visitor.Id,
             "FirstName": $scope.visitor.FirstName,
             "LastName": $scope.visitor.LastName,
             "MidName": $scope.visitor.MidName,
+            "Address": $scope.visitor.Address,
             "EmailId": $scope.visitor.EmailId,
             "ContactNo": $scope.visitor.ContactNo,
             "FaxNo": $scope.visitor.FaxNo,
@@ -87,14 +94,7 @@
             $('#addVisitorSection').hide();
             console.log('success post');
 
-            //TODO: create common methods here
-            $http({
-                method: 'GET',
-                url: '/Api/VisitorApi/GetAllVisitors'
-            }).success(function (result) {
-                $scope.visitorList = result;
-            });
-
+            vmVisitors.GetAllVisitors();
          
         }).error(function () {
             //debugger;
@@ -119,13 +119,7 @@
                 }
             }).success(function (result) {
                 if (result) {
-                    //TODO: create common methods here
-                    $http({
-                        method: 'GET',
-                        url: '/Api/VisitorApi/GetAllVisitors'
-                    }).success(function (result) {
-                        $scope.visitorList = result;
-                    });
+                    vmVisitors.GetAllVisitors();
                     toastr.success("Record is deleted successfully!")
                 }
             });
@@ -133,9 +127,11 @@
     };
 
     $scope.NewVisitor = function () {
+        $scope.visitor.id = 0;
         $scope.visitor.FirstName = '';
         $scope.visitor.LastName = '';
         $scope.visitor.MidName = '';
+        $scope.visitor.Address = '';
         $scope.visitor.EmailId = '';
         $scope.visitor.ContactNo = '';
         $scope.visitor.FaxNo = '';

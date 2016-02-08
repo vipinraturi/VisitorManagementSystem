@@ -64,8 +64,10 @@
     <Compile Include="Contract\IAccountBO.cs" />
     <Compile Include="Contract\IBuildingBO.cs" />
     <Compile Include="Contract\ICategoryBO.cs" />
+    <Compile Include="Contract\IGenderBO.cs" />
     <Compile Include="Contract\IVisitorBO.cs" />
     <Compile Include="Contract\IVisitorDetailsBO.cs" />
+    <Compile Include="GenderBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisitorBO.cs" />
     <Compile Include="VisitorDetailsBO.cs" />

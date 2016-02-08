@@ -2,6 +2,8 @@
 using Evis.VisitorManagement.Business.Contract;
 using Evis.VisitorManagement.DataProject.Model.Entities;
 using System.Web.Http;
+using System.Linq;
+
 
 namespace Evis.VisitorManagement.Web.ControllerApi
 {
@@ -10,8 +12,12 @@ namespace Evis.VisitorManagement.Web.ControllerApi
 
         #region Member Variables 
 
-        private readonly IVisitorBO _visitorBO;
-        private readonly IVisitorDetailsBO _visitorDetailsBO;
+        //private readonly IVisitorBO _visitorBO;
+        //private readonly IVisitorDetailsBO _visitorDetailsBO;
+        //private readonly IGenderBO _genderBO;
+        VisitorBO _visitorBO = null;
+        VisitorDetailsBO _visitorDetailsBO = null;
+        GenderBO _genderBO = null;
 
         #endregion
 
@@ -19,8 +25,11 @@ namespace Evis.VisitorManagement.Web.ControllerApi
 
         public VisitorApiController()
         {
+            //_visitorBO = new VisitorBO();
+            //_visitorDetailsBO = new VisitorDetailsBO();
             _visitorBO = new VisitorBO();
             _visitorDetailsBO = new VisitorDetailsBO();
+            _genderBO = new GenderBO();
         }
 
         #endregion
@@ -29,7 +38,7 @@ namespace Evis.VisitorManagement.Web.ControllerApi
 
         public IHttpActionResult GetAllVisitors()
         {
-            var visitorList = _visitorBO.GetAll().GetEnumerator();
+            var visitorList = _visitorBO.GetAll().ToList();
             if (visitorList == null)
                 return NotFound();
             return Ok(visitorList);
@@ -37,6 +46,7 @@ namespace Evis.VisitorManagement.Web.ControllerApi
 
         public IHttpActionResult InsertUpdateVisitor([FromBody]Visitor visitor)
         {
+            visitor.IsActive = true; ;
             if (visitor.Id == 0)
             {
                 var visitorFromDb = _visitorBO.Insert(visitor);
@@ -100,6 +110,13 @@ namespace Evis.VisitorManagement.Web.ControllerApi
             return Ok(visitorDetailsList);
         }
 
+        public IHttpActionResult GetAllGender()
+        {
+            var genderList = _genderBO.GetAll();
+            if (genderList == null)
+                return NotFound();
+            return Ok(genderList);
+        }
         #endregion
     }
 }

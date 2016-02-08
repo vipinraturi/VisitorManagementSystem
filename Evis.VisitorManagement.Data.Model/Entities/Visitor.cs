@@ -15,6 +15,7 @@ namespace Evis.VisitorManagement.DataProject.Model.Entities
         public string LastName { get; set; }
         public string MidName { get; set; }
         public string EmailId { get; set; }
+        public string Address { get; set; }
         public string ContactNo { get; set; }
         public string FaxNo { get; set; }
         public byte Image { get; set; }

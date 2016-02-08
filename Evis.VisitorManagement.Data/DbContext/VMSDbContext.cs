@@ -42,5 +42,12 @@ namespace Evis.VisitorManagement.Data
         //public DbSet<BuildingLocation> BuildingLocation { get; set; }
 
         public DbSet<Company> Company { get; set; }
+
+        public DbSet<Visitor> Visitor { get; set; }
+        public DbSet<VisitorDetails> VisitorDetails { get; set; }
+        public DbSet<CardType> CardType { get; set; }
+        public DbSet<Relation> Relation { get; set; }
+
+
     }
 }
