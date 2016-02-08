@@ -38,7 +38,7 @@ namespace Evis.VisitorManagement.Web.ControllerApi
 
         public IHttpActionResult GetAllVisitors()
         {
-            var visitorList = _visitorBO.GetAll().ToList();
+            var visitorList = _visitorBO.GetAll().Where(x=> x.IsActive==true).ToList();
             if (visitorList == null)
                 return NotFound();
             return Ok(visitorList);
@@ -73,11 +73,11 @@ namespace Evis.VisitorManagement.Web.ControllerApi
 
         public IHttpActionResult DeleteVisitor(int visitorId)
         {
-            var visitorFromDb = _visitorBO.DeleteById(visitorId);
-            if (visitorFromDb)
-                return Ok(visitorFromDb);
-            return NotFound();
+            Visitor visitor=_visitorBO.GetById(visitorId);
+            visitor.IsActive=false;
+           _visitorBO.Update(visitor);
 
+            return Ok(visitor);
         }
 
         #endregion

@@ -2,7 +2,7 @@
 
 
     $scope.visitor = {};
-    $scope.visitor.id = 0;
+    $scope.visitor.Id = 0;
     $scope.visitor.FirstName = '';
     $scope.visitor.LastName = '';
     $scope.visitor.MidName = '';
@@ -90,6 +90,11 @@
                 }
             }
         ).success(function (data) {
+            if($scope.visitor.Id==0)
+                toastr.success("Saved successfully!")
+            else
+                toastr.success("Updated successfully!")
+
             $('#visitorListSection').show();
             $('#addVisitorSection').hide();
             console.log('success post');
@@ -127,7 +132,7 @@
     };
 
     $scope.NewVisitor = function () {
-        $scope.visitor.id = 0;
+        $scope.visitor.Id = 0;
         $scope.visitor.FirstName = '';
         $scope.visitor.LastName = '';
         $scope.visitor.MidName = '';
