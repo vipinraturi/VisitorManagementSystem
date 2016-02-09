@@ -112,7 +112,7 @@
     $scope.Edit = function (gateId) {
         $http({
             method: 'GET',
-            url: '/Api/AccountApi/GetBuildingGateInfo',
+            url: '/Api/MasterApi/GetBuildingGateInfo',
             params: {
                 gateId: gateId
             }
@@ -179,7 +179,7 @@
         };
 
         $http.post(
-            '/Api/AccountApi/InsertGate',
+            '/Api/MasterApi/InsertGate',
             JSON.stringify(viewModel),
             {
                 headers: {
@@ -193,7 +193,7 @@
 
             $http({
                 method: 'GET',
-                url: '/Api/AccountApi/GetAllGates'
+                url: '/Api/MasterApi/GetAllGates'
             }).success(function (result) {
                 console.log(result);
                 $scope.allGates = result;
@@ -215,7 +215,7 @@
     // To get all gates and to bind with grid
     $http({
         method: 'GET',
-        url: '/Api/AccountApi/GetAllGates'
+        url: '/Api/MasterApi/GetAllGates'
     }).success(function (result) {
         debugger;
         $scope.allGates = result;
@@ -224,7 +224,7 @@
     // To get all buildings and to bind with building name dropdown
     $http({
         method: 'GET',
-        url: '/Api/AccountApi/GetAllBuildings'
+        url: '/Api/MasterApi/GetAllBuildings'
     }).success(function (result) {
         debugger;
         $scope.allBuildings = result;
@@ -240,7 +240,7 @@
         if (result) {
             $http({
                 method: 'DELETE',
-                url: '/Api/AccountApi/DeleteBuildingGate',
+                url: '/Api/MasterApi/DeleteBuildingGate',
                 params: {
                     gateId: gateId
                 }
@@ -249,7 +249,7 @@
                 if (result) {
                     $http({
                         method: 'GET',
-                        url: '/Api/AccountApi/GetAllGates'
+                        url: '/Api/MasterApi/GetAllGates'
                     }).success(function (result) {
                         $scope.allGates = result;
                     });

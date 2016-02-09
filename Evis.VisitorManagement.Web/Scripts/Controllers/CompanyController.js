@@ -14,7 +14,7 @@
 
     $http({
         method: 'GET',
-        url: '/Api/AccountApi/GetCompanyInformation'
+        url: '/Api/MasterApi/GetCompanyInformation'
     }).success(function (result) {
         if (result != null) {
             $scope.company.id = result.Id;
@@ -47,7 +47,7 @@
         };
         console.log(viewModel);
         $http.post(
-            '/Api/AccountApi/SaveCompany',
+            '/Api/MasterApi/SaveCompany',
             JSON.stringify(viewModel),
             {
                 headers:

@@ -2,6 +2,8 @@
 app.controller('manageUsercontroller', function ($scope, $http) {
 
     $scope.register = {};
+    $scope.manageUser = {};
+
     $scope.register.id = '';
     $scope.register.firstName = '';
     $scope.register.lastName = '';
@@ -9,15 +11,76 @@ app.controller('manageUsercontroller', function ($scope, $http) {
     $scope.register.phoneNumber = null;
     $scope.register.address = '';
     $scope.register.genderId = null;
+
+    $scope.manageUser.CurrentPageNumber = 1;
+    $scope.manageUser.sortExpression = "CompanyName";
+    $scope.manageUser.sortDirection = "ASC";
+    $scope.manageUser.PageSize = 5;
+    $scope.manageUser.totalUsers = 0;
+    $scope.manageUser.TotalPages = 2;
+    
+    //$scope.register = null;
+
     $scope.submitButtonText = 'Save';
     $scope.headerText = 'Add New User';
-
     $scope.register.roleId = null;
     $scope.allRoles = [];
 
+    $scope.pageChanged = function () {
+        alert('paging changes');
+    }
+
+    var vmUsers = this;
+    vmUsers.GetAll = function () {
+        var pagingObj = new Object();
+
+        pagingObj.CurrentPageNumber = 1;
+        pagingObj.sortExpression = 'test';
+        pagingObj.sortDirection = 'test';
+        pagingObj.PageSize = 5;
+        pagingObj.TotalPages = 2;
+        $scope.allUsers = [];
+
+        $http.post(
+       '/Api/MasterApi/GetAllUsers',
+       JSON.stringify(pagingObj),
+       {
+           headers: {
+               'Content-Type': 'application/json'
+           }
+       }
+       ).success(function (result) {
+
+           $scope.manageUser.CurrentPageNumber = result.CurrentPageNumber;
+           $scope.manageUser.sortExpression = result.sortExpression;
+           $scope.manageUser.sortDirection = result.sortDirection;
+           $scope.manageUser.PageSize = result.PageSize;
+           $scope.manageUser.totalUsers = result.totalUsers;
+           $scope.manageUser.TotalPages = result.TotalPages;
+           $scope.allUsers = result.UsersList;
+       });
+
+        //$http({
+        //    method: 'GET',
+        //    url: '/Api/MasterApi/GetAllUsers',
+        //    pagingInformation: JSON.stringify(pagingObj)
+        //})
+    }
+
+    vmUsers.GetAll();
+
+    $scope.allGenders = [];
+
     $http({
         method: 'GET',
-        url: '/Api/AccountApi/GetAllRoles'
+        url: '/Api/MasterApi/GetAllGenders'
+    }).success(function (result) {
+        $scope.allGenders = result;
+    });
+
+    $http({
+        method: 'GET',
+        url: '/Api/MasterApi/GetAllRoles'
     }).success(function (result) {
         $scope.allRoles = result;
     });
@@ -26,20 +89,13 @@ app.controller('manageUsercontroller', function ($scope, $http) {
 
     }
 
-    $scope.allGenders = [];
-    $http({
-        method: 'GET',
-        url: '/Api/AccountApi/GetAllGenders'
-    }).success(function (result) {
-        $scope.allGenders = result;
-    });
+    
 
     $scope.Edit = function (userId) {
         //window.location.href = '/Account/Users?userId=' + userId;
-        debugger;
         $http({
             method: 'GET',
-            url: '/Api/AccountApi/GetUser',
+            url: '/Api/MasterApi/GetUser',
             params: {
                 userId: userId
             }
@@ -72,28 +128,18 @@ app.controller('manageUsercontroller', function ($scope, $http) {
         };
 
         $http.post(
-            '/Api/AccountApi/Register',
+            '/Api/MasterApi/Register',
             JSON.stringify(viewModel),
             {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                headers: { 'Content-Type': 'application/json' }
             }
         ).success(function (data) {
             $('#displayUsers').show();
             $('#addEditSection').hide();
-            console.log('success post');
 
-            $http({
-                method: 'GET',
-                url: '/Api/AccountApi/GetAllUsers'
-            }).success(function (result) {
-                //debugger;
-                $scope.allUsers = result;
-            });
+            vmUsers.GetAll();
             toastr.success("Saved Successfully!");
         }).error(function () {
-            //debugger;
             $scope.error.$invalid = "An Error has occured";
         });
     };
@@ -103,14 +149,6 @@ app.controller('manageUsercontroller', function ($scope, $http) {
         $('#addEditSection').hide();
     }
 
-    $scope.allUsers = [];
-    $http({
-        method: 'GET',
-        url: '/Api/AccountApi/GetAllUsers'
-    }).success(function (result) {
-        //debugger;
-        $scope.allUsers = result;
-    });
 
     $scope.Delete = function (userId) {
 
@@ -118,18 +156,13 @@ app.controller('manageUsercontroller', function ($scope, $http) {
         if (result) {
             $http({
                 method: 'DELETE',
-                url: '/Api/AccountApi/DeleteUser',
+                url: '/Api/MasterApi/DeleteUser',
                 params: {
                     userId: userId
                 }
             }).success(function (result) {
                 if (result) {
-                    $http({
-                        method: 'GET',
-                        url: '/Api/AccountApi/GetAllUsers'
-                    }).success(function (result) {
-                        $scope.allUsers = result;
-                    });
+                    vmUsers.GetAll();
                     toastr.success("Record is deleted successfully!")
                 }
             });

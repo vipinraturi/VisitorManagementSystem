@@ -3,11 +3,8 @@
 }
 
 <div ng-controller="manageUsercontroller">
-    <!-- Content Wrapper. Contains page content -->
-    @* This for Add/Edit User *@
     <div id="addEditSection" style="display:none">
         <div class="content-wrapper">
-
             <style type="text/css">
                 input[type=number]::-webkit-inner-spin-button,
                 input[type=number]::-webkit-outer-spin-button {
@@ -15,9 +12,6 @@
                     margin: 0;
                 }
             </style>
-
-
-
             <section class="content">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{headerText}}</h3>
@@ -82,7 +76,7 @@
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="exampleInputLastName">Last Name</label>
-                                        <input type="text" class="form-control" tabindex="2" id="lastName" name="lastName" ng-model="register.lastName" placeholder="Last Name" 
+                                        <input type="text" class="form-control" tabindex="2" id="lastName" name="lastName" ng-model="register.lastName" placeholder="Last Name"
                                                ng-minlength="3" ng-maxlength="20" required>
                                         <span style="color:red" ng-show="registerForm.lastName.$invalid">
                                             <span ng-show="registerForm.lastName.$error.required">Last name is required.</span>
@@ -123,12 +117,10 @@
             </section>
         </div>
     </div>
-
-    @* For Displaying the Users *@
     <div id="displayUsers">
         <div class="content-wrapper">
             <div class="box-header with-border">
-                <h3 class="box-title">Building Information</h3>
+                <h3 class="box-title">Users Information</h3>
             </div>
             <div class="container_12">
                 <div class="module">
@@ -138,7 +130,8 @@
                             <table id="myTable" class="tablesorter">
                                 <thead>
                                     <tr>
-                                        <th style="width:20%">Name</th>
+                                        <td style="width:5%">#</td>
+                                        <th style="width:15%">Name</th>
                                         <th style="width:21%">Email Id</th>
                                         <th style="width:13%">Contact No</th>
                                         <th style="width:13%">Gender</th>
@@ -148,7 +141,8 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-show="allUsers.length != 0" ng-repeat="user in allUsers">
-                                        <td>
+                                        <td>{{$index +1}}</td>
+                                         <td>
                                             {{user.FirstName}}
                                         </td>
                                         <td>{{user.Email}}</td>
@@ -167,59 +161,22 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            currentPageNumber {{manageUser.CurrentPageNumber}}
+                            <ul class="pagination">
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                            </ul>
+                            <pager num-pages="manageUser.TotalPages" current-page="manageUser.CurrentPageNumber"></pager>
+                            <pagination boundary-links="true" total-items="manageUser.TotalPages" items-per-page="manageUser.PageSize" ng-change="pageChanged()"
+                                        ng-model="manageUser.CurrentPageNumber" class="pagination-lg" previous-text="Prev" next-text="Next" first-text="First"
+                                        last-text="Last"></pagination>
+
                         </form>
-
-                        @*<div class="pager" id="pager">
-                                <form action="">
-                                    <div>
-                                        <img class="first" src="~/Content/css-admin/arrow-stop-180.gif" alt="first" />
-                                        <img class="prev" src="~/Content/css-admin/arrow-180.gif" alt="prev" />
-                                        <input type="text" class="pagedisplay input-short align-center" />
-                                        <img class="next" src="~/Content/css-admin/arrow.gif" alt="next" />
-                                        <img class="last" src="~/Content/css-admin/arrow-stop.gif" alt="last" />
-                                        <select class="pagesize input-short align-center">
-                                            <option value="10" selected="selected">10</option>
-                                            <option value="20">20</option>
-                                            <option value="30">30</option>
-                                            <option value="40">40</option>
-                                        </select>
-                                    </div>
-                                </form>
-                            </div>*@
                     </div>
-
-                    @*<pagination boundary-links="true" total-items="" items-per-page=""
-                        ng-change=""
-                        ng-model="" class="pagination-lg" previous-text="Prev"
-                        next-text="Next" first-text="First" last-text="Last"></pagination>*@
-
-                    @*<div class="pagination">
-                            <a href="" class="button"><span><img src="~/Content/css-admin/arrow-stop-180-small.gif" height="9" width="12" alt="First" /> First</span></a>
-                            <a href="" class="button"><span><img src="~/Content/css-admin/arrow-180-small.gif" height="9" width="12" alt="Previous" /> Prev</span></a>
-                            <div class="numbers">
-                                <span>Page:</span>
-                                <a href="">1</a>
-                                <span>|</span>
-                                <a href="">2</a>
-                                <span>|</span>
-                                <span class="current">3</span>
-                                <span>|</span>
-                                <a href="">4</a>
-                                <span>|</span>
-                                <a href="">5</a>
-                                <span>|</span>
-                                <a href="">6</a>
-                                <span>|</span>
-                                <a href="">7</a>
-                                <span>|</span>
-                                <span>...</span>
-                                <span>|</span>
-                                <a href="">99</a>
-                            </div>
-                            <a href="" class="button"><span>Next <img src="~/Content/css-admin/arrow-000-small.gif" height="9" width="12" alt="Next" /></span></a>
-                            <a href="" class="button last"><span>Last <img src="~/Content/css-admin/arrow-stop-000-small.gif" height="9" width="12" alt="Last" /></span></a>
-                            <div style="clear: both;"></div>
-                        </div>*@
+                   
                 </div>
             </div>
         </div>

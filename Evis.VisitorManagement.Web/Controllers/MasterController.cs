@@ -11,11 +11,11 @@ using System.Web.Security;
 namespace Evis.VisitorManagement.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class MasterController : Controller
     {
-        private readonly IAccountBO m_accountBO;
+        private readonly IAccountBO m_accountBO;   
 
-        public AccountController(IAccountBO accountBO)
+        public MasterController(IAccountBO accountBO)
         {
             m_accountBO = accountBO;
         }
@@ -99,6 +99,39 @@ namespace Evis.VisitorManagement.Web.Controllers
             return View();
         }
 
+        public ActionResult FacilityProfile()
+        {
+            return View();
+        }
+       
+        public ActionResult Buildings()
+        {
+            return View();
+        }
 
+        public ActionResult AddGates()
+        {
+            return View();
+        }
+
+        public ActionResult Gates()
+        {
+            return View();
+        }
+        
+        public ActionResult NewShift()
+        {
+            return View();
+        }
+
+        public ActionResult ManageShift()
+        {
+            return View();
+        }
+        
+        public ActionResult ShiftAssignment()
+        {
+            return View();
+        }
     }
 }

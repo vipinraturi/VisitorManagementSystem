@@ -2111,24 +2111,24 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
-    <Content Include="Views\Account\ManageUsers.cshtml" />
+    <Content Include="Views\Master\ManageUsers.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutMaster.cshtml" />
     <Content Include="Views\Visitor\ScanVisitorCard.cshtml" />
     <Content Include="Views\Visitor\AddVisitorManually.cshtml" />
     <Content Include="Views\Visitor\VisitorList.cshtml" />
-    <Content Include="Views\Account\MyProfile.cshtml" />
+    <Content Include="Views\Master\MyProfile.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Test.cshtml" />
-    <Content Include="Views\Account\FacilityProfile.cshtml" />
-    <Content Include="Views\Account\ShiftAssignment.cshtml" />
-    <Content Include="Views\Account\ManageShift.cshtml" />
-    <Content Include="Views\Account\NewShift.cshtml" />
-    <Content Include="Views\Account\Gates.cshtml" />
-    <Content Include="Views\Account\Buildings.cshtml" />
+    <Content Include="Views\Master\Test.cshtml" />
+    <Content Include="Views\Master\FacilityProfile.cshtml" />
+    <Content Include="Views\Master\ShiftAssignment.cshtml" />
+    <Content Include="Views\Master\ManageShift.cshtml" />
+    <Content Include="Views\Master\NewShift.cshtml" />
+    <Content Include="Views\Master\Gates.cshtml" />
+    <Content Include="Views\Master\Buildings.cshtml" />
     <Content Include="Views\Account\ForgetPassword.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\AddGates.cshtml" />
+    <Content Include="Views\Master\AddGates.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -2141,9 +2141,10 @@
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ControllerApi\VisitorApiController.cs" />
-    <Compile Include="ControllerApi\AccountApiController.cs" />
+    <Compile Include="ControllerApi\MasterApiController.cs" />
     <Compile Include="ControllerApi\CategoryApiController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
@@ -2172,6 +2173,7 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\UserListViewModel.cs" />
+    <Compile Include="ViewModel\UsersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -2225,6 +2227,10 @@
     <ProjectReference Include="..\Evis.VisitorManagement.Business\Evis.VisitorManagement.Business.csproj">
       <Project>{83ad8e29-a17f-469c-af0b-b8f47d2829d7}</Project>
       <Name>Evis.VisitorManagement.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evis.VisitorManagement.Common\Evis.VisitorManagement.Common.csproj">
+      <Project>{59ab9cd2-5e0d-4f06-8ba2-b97d50deb532}</Project>
+      <Name>Evis.VisitorManagement.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Evis.VisitorManagement.Data.Model\Evis.VisitorManagement.Data.Model.csproj">
       <Project>{db779669-4879-4584-ba13-6e793979a21b}</Project>

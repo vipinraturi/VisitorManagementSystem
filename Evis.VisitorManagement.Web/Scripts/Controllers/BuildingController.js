@@ -69,7 +69,7 @@
     $scope.Edit = function (buildingId) {
         $http({
             method: 'GET',
-            url: '/Api/AccountApi/GetBuildingInfo',
+            url: '/Api/MasterApi/GetBuildingInfo',
             params: {
                 buildingId: buildingId
             }
@@ -141,7 +141,7 @@
         };
 
         $http.post(
-            '/Api/AccountApi/InsertBuilding',
+            '/Api/MasterApi/InsertBuilding',
             JSON.stringify(viewModel),
             {
                 headers: {
@@ -155,7 +155,7 @@
 
             $http({
                 method: 'GET',
-                url: '/Api/AccountApi/GetAllBuildings'
+                url: '/Api/MasterApi/GetAllBuildings'
             }).success(function (result) {
                 console.log(result);
                 $scope.allBuildings = result;
@@ -169,7 +169,7 @@
 
     $http({
         method: 'GET',
-        url: '/Api/AccountApi/GetAllBuildings'
+        url: '/Api/MasterApi/GetAllBuildings'
     }).success(function (result) {
         debugger;
         $scope.allBuildings = result;
@@ -180,7 +180,7 @@
         if (result) {
             $http({
                 method: 'DELETE',
-                url: '/Api/AccountApi/DeleteBuilding',
+                url: '/Api/MasterApi/DeleteBuilding',
                 params: {
                     buildingId: buildingId
                 }
@@ -188,7 +188,7 @@
                 if (result) {
                     $http({
                         method: 'GET',
-                        url: '/Api/AccountApi/GetAllBuildings'
+                        url: '/Api/MasterApi/GetAllBuildings'
                     }).success(function (result) {
                         $scope.allUsers = result;
                     });

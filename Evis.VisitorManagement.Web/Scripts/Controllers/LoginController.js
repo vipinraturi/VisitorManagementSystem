@@ -15,7 +15,7 @@ app.controller('loginController', function ($scope, $http) {
         };
 
         $http.post(
-            '/Api/AccountApi/Login',
+            '/Api/MasterApi/Login',
             JSON.stringify(viewModel),
             {
                 headers:

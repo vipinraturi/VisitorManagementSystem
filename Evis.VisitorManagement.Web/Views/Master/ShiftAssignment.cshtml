@@ -159,7 +159,7 @@
 
                 $http({
                     method: 'GET',
-                    url: '/Api/AccountApi/GetAllPrivilages'
+                    url: '/Api/MasterApi/GetAllPrivilages'
                 }).success(function (result) {
                     $scope.allPrivilage = result;
                 });
@@ -183,7 +183,7 @@
                     //alert(JSON.stringify(viewModel));
 
                     $http.post(
-                        '/Api/AccountApi/Register',
+                        '/Api/MasterApi/Register',
                         JSON.stringify(viewModel),
                         {
                             headers: {

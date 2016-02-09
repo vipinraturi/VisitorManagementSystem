@@ -11,22 +11,32 @@ using System.Web.Configuration;
 using System.Web.Http;
 using System.Web.Security;
 using System.Linq;
+using System.Net.Http;
+using Evis.VisitorManagement.Common;
 
 namespace Evis.VisitorManagement.Web.ControllerApi
 {
-    public class AccountApiController : ApiController
+    public class MasterApiController : ApiController
     {
-        private IAccountBO m_accountBO = new AccountBO();
-        private IBuildingBO m_buildingBO = new BuildingBO();
+        #region Member variables
 
-        public AccountApiController()
+        private IAccountBO m_accountBO = null;
+        private IBuildingBO m_buildingBO = null;
+
+
+        #endregion
+
+        public MasterApiController()
         {
+            m_buildingBO = new BuildingBO();
+            m_accountBO = new AccountBO();
         }
 
-        // POST api/<controller>
+        #region Login
+
         public async Task<IHttpActionResult> Login([FromBody]LoginViewModel loginViewModel)
         {
-            m_accountBO = new AccountBO();
+            
             var user = await m_accountBO.FindAsync(loginViewModel.UserName, loginViewModel.Password);
 
             if (user != null)
@@ -47,6 +57,35 @@ namespace Evis.VisitorManagement.Web.ControllerApi
 
             return Ok(user);
         }
+
+        #endregion
+
+        #region Master Data
+
+        public IHttpActionResult GetAllRoles()
+        {
+            var userRoles = m_accountBO.GetAllRoles();
+            if (userRoles == null)
+            {
+                return NotFound();
+            }
+            return Ok(userRoles);
+        }
+
+        public IHttpActionResult GetAllGenders()
+        {
+            var genders = m_accountBO.GetAllGenders();
+            if (genders == null)
+            {
+                return NotFound();
+            }
+            return Ok(genders.ToList());
+        }
+
+
+        #endregion
+
+        #region Manage Users
 
         public async Task<IHttpActionResult> Register([FromBody]RegisterViewModel registerViewModel)
         {
@@ -84,46 +123,33 @@ namespace Evis.VisitorManagement.Web.ControllerApi
             }
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
 
-        // DELETE api/<controller>/5
-        public void Delete(string userId)
-        {
-            m_accountBO.DeleteAsync(userId);
-        }
-
-        public IHttpActionResult GetAllRoles()
-        {
-            var userRoles = m_accountBO.GetAllRoles();
-            if (userRoles == null)
-            {
-                return NotFound();
-            }
-            return Ok(userRoles);
-        }
-
-        public IHttpActionResult GetAllGenders()
-        {
-            var userRoles = m_accountBO.GetAllGenders();
-            if (userRoles == null)
-            {
-                return NotFound();
-            }
-            return Ok(userRoles);
-        }
-
-        public async Task<IHttpActionResult> GetAllUsers()
+        [HttpPost]
+        public async Task<IHttpActionResult> GetAllUsers(HttpRequestMessage request, PagingInformation pagingInformation)
         {
             var applicationUsers = await m_accountBO.GetAllUsers();
+
+            applicationUsers = applicationUsers.ToList().OrderBy(item => item.FirstName).Skip((pagingInformation.CurrentPageNumber - 1) * pagingInformation.PageSize).Take(pagingInformation.PageSize).ToList();
+
+            //applicationUsers = applicationUsers.ToList().OrderBy(item => item.FirstName).Skip(0).Take(1).ToList();
+
             if (applicationUsers == null)
             {
                 return NotFound();
             }
-            return Ok(applicationUsers);
+
+            var userViewModel = new UsersViewModel();
+            userViewModel.CurrentPageNumber = pagingInformation.CurrentPageNumber;
+            userViewModel.SortDirection = pagingInformation.SortDirection;
+            userViewModel.SortExpression = pagingInformation.SortExpression;
+            userViewModel.TotalPages = pagingInformation.TotalPages;
+            userViewModel.TotalRows = applicationUsers.Count();
+            userViewModel.UsersList = applicationUsers;
+
+
+            return Ok(userViewModel);
         }
+
 
         public async Task<IHttpActionResult> GetAllUsers(string id)
         {
@@ -160,6 +186,16 @@ namespace Evis.VisitorManagement.Web.ControllerApi
             return Ok(isDeleted);
         }
 
+        // DELETE api/<controller>/5
+        public void Delete(string userId)
+        {
+            m_accountBO.DeleteAsync(userId);
+        }
+
+        #endregion
+
+        #region Client Profile
+
         [HttpGet]
         public IHttpActionResult GetCompanyInformation()
         {
@@ -184,6 +220,10 @@ namespace Evis.VisitorManagement.Web.ControllerApi
                 return Ok(companyViewModel);
             }
         }
+
+        #endregion
+
+        #region Buildings
 
         public IHttpActionResult GetAllBuildings()
         {
@@ -236,6 +276,10 @@ namespace Evis.VisitorManagement.Web.ControllerApi
             return NotFound();
 
         }
+
+        #endregion
+
+        #region Gates
 
         public IHttpActionResult InsertGate([FromBody]BuildingGate buildingGate)
         {
@@ -308,5 +352,7 @@ namespace Evis.VisitorManagement.Web.ControllerApi
                 return Ok(isDeleted);
             return NotFound();
         }
+
+        #endregion
     }
 }

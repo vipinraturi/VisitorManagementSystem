@@ -2,14 +2,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>EVIS UAE | Dashboard</title>
+    <title>EVIS UAE</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="~/Scripts/bootstrap/css/bootstrap.min.css">
+    
+
     <!-- Font Awesome -->
     <script src="~/Scripts/js/lumino.glyphs.js"></script>
-
+    
     <link rel="stylesheet" href="~/Content/fonts/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="~/Content/fonts/ionicons.min.css">
@@ -76,11 +78,13 @@
     <!-- JQuery thickbox plugin script -->
     <script type="text/javascript" src="~/Content/css-admin/thickbox.js"></script>
 
+    @*<script src="~/Content/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Plugin/angular-ui/ui-bootstrap.js"></script>*@
+    
     <script src="~/Scripts/Plugin/angular.js"></script>
+
     <script type="text/javascript" src="~/Scripts/Plugin/jquery-2.2.0.min.js"></script>
-
     <script src="~/Content/toastr.min.js"></script>
-
     <script type="text/javascript" src="~/Scripts/Application/VMSSystemApp.js"></script>
 
     <script>
@@ -146,10 +150,10 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="~/Account/MyProfile" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="~/Master/MyProfile" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="~/Account/Logout" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="~/Master/Logout" class="btn btn-default btn-flat">Sign out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -196,38 +200,37 @@
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-fw fa-users"></i><i class="fa fa-angle-left pull-right"></i>
+                            <i class="fa fa-fw fa-users"></i><i class=""></i>
                             <span>Administration</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/Account/FacilityProfile"><i class="fa fa-fw fa-user-plus"></i>Client Profile</a></li>
-                            <li><a href="~/Account/Buildings"><i class="fa fa-fw fa-user-plus"></i>Manage Buildings</a></li>
-                            <li><a href="~/Account/Gates"><i class="fa fa-fw fa-user-plus"></i>Manage Gates</a></li>
-                            <li><a href="~/Account/ManageUsers"><i class="fa fa-fw fa-user"></i> Manage User</a></li>
-                            <li><a href="~/Account/NewShift"><i class="fa fa-fw fa-user-plus"></i>Manage Shift</a></li>
-                            @*<li><a href="~/Account/ManageShift"><i class="fa fa-fw fa-user-plus"></i>Manage Shift</a></li>*@
-                            <li><a href="~/Account/ShiftAssignment"><i class="fa fa-fw fa-user-plus"></i>Manage Shift Assignment</a></li>
+                            <li><a href="~/Master/FacilityProfile"><i class="fa fa-user"></i>Client Profile</a></li>
+                            <li><a href="~/Master/Buildings"><i class="fa fa-building"></i>Manage Buildings</a></li>
+                            <li><a href="~/Master/Gates"><i class=""></i>Manage Gates</a></li>
+                            <li><a href="~/Master/ManageUsers"><i class="fa fa-users"></i> Manage User</a></li>
+                            <li><a href="~/Master/NewShift"><i class=""></i>Manage Shift</a></li>
+                            <li><a href="~/Master/ShiftAssignment"><i class=""></i>Manage Shift Assignment</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-pie-chart"></i>
+                            <i class=""></i>
                             <span>Visitor</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/Visitor/ScanVisitorCard"><i class="fa fa-fw fa-user-plus"></i> Scan Visitor Card</a></li>
-                            <li><a href="~/Visitor/AddVisitorManually"><i class="fa fa-fw fa-user-plus"></i> Add Visitor Manually</a></li>
-                            <li><a href="~/Visitor/VisitorList"><i class="fa fa-fw fa-user"></i> Visitors Detail</a></li>
+                            <li><a href="~/Visitor/ScanVisitorCard"><i class=""></i> Scan Visitor Card</a></li>
+                            <li><a href="~/Visitor/AddVisitorManually"><i class=""></i> Add Visitor Manually</a></li>
+                            <li><a href="~/Visitor/VisitorList"><i class=""></i> Visitors Detail</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-pie-chart"></i>
+                            <i class=""></i>
                             <span>Reporting</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/Visitor/ScanVisitorCard"><i class="fa fa-fw fa-user-plus"></i>Visitor Details</a></li>
-                            <li><a href="~/Visitor/AddVisitorManually"><i class="fa fa-fw fa-user-plus"></i>Shift Details</a></li>
+                            <li><a href="~/Visitor/ScanVisitorCard"><i class=""></i>Visitor Details</a></li>
+                            <li><a href="~/Visitor/AddVisitorManually"><i class=""></i>Shift Details</a></li>
                         </ul>
                     </li>
 

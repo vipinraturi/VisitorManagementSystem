@@ -7,8 +7,8 @@
     <ProjectGuid>{59AB9CD2-5E0D-4F06-8BA2-B97D50DEB532}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Evis.VisitorManagement.Infrastructure</RootNamespace>
-    <AssemblyName>Evis.VisitorManagement.Infrastructure</AssemblyName>
+    <RootNamespace>Evis.VisitorManagement.Common</RootNamespace>
+    <AssemblyName>Evis.VisitorManagement.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PagingInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

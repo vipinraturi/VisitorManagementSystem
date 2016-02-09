@@ -28,7 +28,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evis.VisitorManagement.Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evis.VisitorManagement.Data.Model", "Evis.VisitorManagement.Data.Model\Evis.VisitorManagement.Data.Model.csproj", "{DB779669-4879-4584-BA13-6E793979A21B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evis.VisitorManagement.Infrastructure", "Evis.VisitorManagement.Common\Evis.VisitorManagement.Infrastructure.csproj", "{59AB9CD2-5E0D-4F06-8BA2-B97D50DEB532}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evis.VisitorManagement.Common", "Evis.VisitorManagement.Common\Evis.VisitorManagement.Common.csproj", "{59AB9CD2-5E0D-4F06-8BA2-B97D50DEB532}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evis.VisitorManagement.Web", "Evis.VisitorManagement.Web\Evis.VisitorManagement.Web.csproj", "{924D7539-2A16-4515-AC4D-392A5C5776FE}"
 EndProject
