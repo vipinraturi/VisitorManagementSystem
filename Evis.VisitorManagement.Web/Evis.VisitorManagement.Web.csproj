@@ -1252,6 +1252,10 @@
     <Content Include="Scripts\Plugin\angular-ui-ieshiv.min.js" />
     <Content Include="Scripts\Plugin\angular-ui.js" />
     <Content Include="Scripts\Plugin\angular-ui.min.js" />
+    <Content Include="Scripts\Plugin\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\Plugin\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\Plugin\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\Plugin\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\Plugin\angular.js" />
     <Content Include="Scripts\Plugin\angular.min.js" />
     <Content Include="Scripts\Plugin\bootstrap.js" />
@@ -2134,6 +2138,10 @@
     <Content Include="Views\Master\AddGates.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Master\ImageCrop.cshtml" />
+    <Content Include="Views\Master\Pager.cshtml" />
+    <Content Include="Views\Master\PagingSorting.cshtml">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -2176,6 +2184,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
+    <Compile Include="ViewModel\User.cs" />
     <Compile Include="ViewModel\UserListViewModel.cs" />
     <Compile Include="ViewModel\UsersViewModel.cs" />
   </ItemGroup>
@@ -2243,6 +2252,10 @@
     <ProjectReference Include="..\Evis.VisitorManagement.Data\Evis.VisitorManagement.Data.csproj">
       <Project>{1279c2a3-94a0-4a1b-a196-e52f32b4eb32}</Project>
       <Name>Evis.VisitorManagement.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Evis.VisitorManagement.Utilities\Evis.VisitorManagement.Utilities.csproj">
+      <Project>{98f50ff0-2f03-4aaa-8f0a-e1fd2c75653c}</Project>
+      <Name>Evis.VisitorManagement.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

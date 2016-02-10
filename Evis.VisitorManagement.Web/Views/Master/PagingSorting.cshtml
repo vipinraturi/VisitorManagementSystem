@@ -1,0 +1,133 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PagingSorting</title>
+
+    @*<script src="~/Scripts/Plugin/angular.js"></script>*@
+    @*<script src="~/Scripts/Plugin/angular-ui/ui-bootstrap.js"></script>
+        <script src="~/Scripts/Plugin/angular-ui/ui-bootstrap-tpls.js"></script>*@
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.1.2.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div ng-controller="Users.HomeController">
+        <form class="form-inline" ng-submit="search()" role="form">
+            <div class="form-group">
+                <input type="text" class="form-control input-sm" ng-model="pagingInfo.search" placeholder="Search...">
+                <button type="submit" class="btn btn-info btn-sm"><strong>Search</strong></button>
+            </div>
+        </form>
+
+        <table class="table table-striped table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th><a href="" ng-click="sort('FirstName')">First Name</a></th>
+                    <th><a href="" ng-click="sort('LastName')">Last Name</a></th>
+                    <th><a href="" ng-click="sort('Username')">Username</a></th>
+                    <th><a href="" ng-click="sort('Email')">Email</a></th>
+                    <th><a href="" ng-click="sort('Role')">Role</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td>{{user.FirstName}}</td>
+                    <td>{{user.LastName}}</td>
+                    <td>{{user.Username}}</td>
+                    <td>{{user.Email}}</td>
+                    <td>{{user.Role}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        @*pagingInfo.totalItems{{pagingInfo.totalItems}}
+        pagingInfo.page {{pagingInfo.page}}*@
+
+        <uib-pagination total-items="pagingInfo.totalItems" ng-model="pagingInfo.page"
+                        items-per-page="pagingInfo.itemsPerPage"
+                        class="pagination-sm" boundary-links="true" ng-change="selectPage(pagingInfo.page)">
+
+        </uib-pagination>
+
+        @*<pagination page="pagingInfo.page"
+            ng-model="pagingInfo.page"
+            current-page="pagingInfo.page"
+            total-items="pagingInfo.totalItems"
+            items-per-page="pagingInfo.itemsPerPage"
+            on-select-page="selectPage(page)"
+            max-size="10"
+            rotate="false"
+            boundary-links="true"></pagination>*@
+    </div>
+    <script type="text/javascript">
+        'use strict';
+
+        angular.module('app', ['ngAnimate', 'ui.bootstrap']);
+
+        angular.module('app').factory('UserService', ['$http',
+         function ($http) {
+             var service = {};
+             service.GetUsers = function (pagingInfo) {
+                 return $http.get('/Api/MasterApi/Get/', { params: pagingInfo });
+             };
+             return service;
+         }]);
+
+        angular.module('app').controller('Users.HomeController',
+            ['$scope', 'UserService',
+            function ($scope, UserService) {
+                $scope.pagingInfo = {
+                    page: 1,
+                    itemsPerPage: 2,
+                    sortBy: 'FirstName',
+                    reverse: false,
+                    search: '',
+                    totalItems: 0,
+                };
+
+                $scope.search = function () {
+                    $scope.pagingInfo.page = 1;
+                    loadUsers();
+                };
+
+                $scope.sort = function (sortBy) {
+                    if (sortBy === $scope.pagingInfo.sortBy) {
+                        $scope.pagingInfo.reverse = !$scope.pagingInfo.reverse;
+                    } else {
+                        $scope.pagingInfo.sortBy = sortBy;
+                        $scope.pagingInfo.reverse = false;
+                    }
+                    $scope.pagingInfo.page = 1;
+                    loadUsers();
+                };
+
+                $scope.selectPage = function (page) {
+                    console.log(page);
+                    $scope.pagingInfo.page = page;
+                    loadUsers();
+                };
+
+                function loadUsers() {
+                    $scope.users = null;
+                    UserService.GetUsers($scope.pagingInfo).success(function (data) {
+                        $scope.users = data.data;
+                        $scope.pagingInfo.totalItems = data.count;
+
+                        //data.count;
+                    });
+                }
+
+                // initial table load
+                loadUsers();
+            }]);
+    </script>
+</body>
+</html>
+

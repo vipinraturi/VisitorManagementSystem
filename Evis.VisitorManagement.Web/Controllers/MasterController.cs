@@ -137,5 +137,15 @@ namespace Evis.VisitorManagement.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult PagingSorting()
+        {
+            return View();
+        }
+
+        public ActionResult Pager()
+        {
+            return View();
+        }
     }
 }
