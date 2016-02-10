@@ -12,22 +12,22 @@ namespace Evis.VisitorManagement.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            //AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(VMSDbContext context)
         {
-            GenerateGender(context);
-            context.SaveChanges();
-
-            //GenerateBuidingLocations(context);
+            //GenerateGender(context);
             //context.SaveChanges();
 
-            GenerateRoles(context);
-            context.SaveChanges();
+            ////GenerateBuidingLocations(context);
+            ////context.SaveChanges();
 
-            GenerateSystemAdmin(context);
-            context.SaveChanges();
+            //GenerateRoles(context);
+            //context.SaveChanges();
+
+            //GenerateSystemAdmin(context);
+            //context.SaveChanges();
         }
 
         private static void GenerateGender(VMSDbContext context)

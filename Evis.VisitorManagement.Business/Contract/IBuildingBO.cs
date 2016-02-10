@@ -40,5 +40,11 @@ namespace Evis.VisitorManagement.Business.Contract
         bool DeleteBuildingGate(int buildingGateId);
 
         IQueryable<BuildingLocation> GetAllBuildingLocations();
+
+        FileUpload InsertImage(FileUpload fileUpload);
+
+        bool UpdateImage(FileUpload fileUpload);
+
+        FileUpload GetImage(string userId);
     }
 }

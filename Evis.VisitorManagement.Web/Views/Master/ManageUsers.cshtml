@@ -130,7 +130,7 @@
                             <table id="myTable" class="tablesorter">
                                 <thead>
                                     <tr>
-                                        <td style="width:5%">#</td>
+                                        <th style="width:5%">#</th>
                                         <th style="width:15%">Name</th>
                                         <th style="width:21%">Email Id</th>
                                         <th style="width:13%">Contact No</th>
@@ -142,7 +142,7 @@
                                 <tbody>
                                     <tr ng-show="allUsers.length != 0" ng-repeat="user in allUsers">
                                         <td>{{$index +1}}</td>
-                                         <td>
+                                        <td>
                                             {{user.FirstName}}
                                         </td>
                                         <td>{{user.Email}}</td>
@@ -152,10 +152,13 @@
                                         <td>
                                             <a href="" ng-click="Edit(user.Id)"><img src="~/Content/css-admin/pencil.gif" title="Edit" width="16" height="16" alt="Edit" /></a>
                                             <a href="" ng-click="Delete(user.Id)"><img src="~/Content/css-admin/bin.gif" title="Delete" width="16" height="16" alt="Delete" /></a>
+                                            <a href="#" ng-click="ImageUpload(user.Id)">
+                                                <span class="glyphicon glyphicon-picture"></span>
+                                            </a>
                                         </td>
                                     </tr>
                                     <tr ng-show="allUsers.length == 0">
-                                        <td colspan="6" style="text-align:center">
+                                        <td colspan="7" style="text-align:center">
                                             <span> No record found </span>
                                         </td>
                                     </tr>
@@ -176,7 +179,7 @@
 
                         </form>
                     </div>
-                   
+
                 </div>
             </div>
         </div>

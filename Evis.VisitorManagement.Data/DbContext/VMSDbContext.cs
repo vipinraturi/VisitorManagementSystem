@@ -47,7 +47,6 @@ namespace Evis.VisitorManagement.Data
         public DbSet<VisitorDetails> VisitorDetails { get; set; }
         public DbSet<CardType> CardType { get; set; }
         public DbSet<Relation> Relation { get; set; }
-
-
+        public DbSet<FileUpload> FileUpload { get; set; }
     }
 }

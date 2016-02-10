@@ -145,6 +145,28 @@ namespace Evis.VisitorManagement.Business
             return m_unitOfWork.GetRepository<BuildingLocation>().GetAll();
         }
 
+        public FileUpload InsertImage(FileUpload fileUpload)
+        {
+            var insertedFileUpload = m_unitOfWork.GetRepository<FileUpload>().Insert(fileUpload);
+            m_unitOfWork.Commit();
+            return insertedFileUpload;
+        }
+
+        public bool UpdateImage(FileUpload fileUpload)
+        {
+            var existingRecord = m_unitOfWork.GetRepository<FileUpload>().GetById(fileUpload.Id);
+            existingRecord.FileName = fileUpload.FileName;
+            existingRecord.ImageContent = fileUpload.ImageContent;
+            existingRecord.ImageType = fileUpload.ImageType;
+            m_unitOfWork.GetRepository<FileUpload>().Update(existingRecord);
+            m_unitOfWork.Commit();
+            return true;
+        }
+        public FileUpload GetImage(string userId)
+        {
+            var imageRecord = m_unitOfWork.GetRepository<FileUpload>().SearchFor(x => x.UserId == userId).FirstOrDefault();
+            return imageRecord;
+        }
         //common method
     }
 }

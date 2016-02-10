@@ -89,8 +89,6 @@ app.controller('manageUsercontroller', function ($scope, $http) {
 
     }
 
-    
-
     $scope.Edit = function (userId) {
         //window.location.href = '/Account/Users?userId=' + userId;
         $http({
@@ -183,6 +181,11 @@ app.controller('manageUsercontroller', function ($scope, $http) {
         $('#displayUsers').hide();
         $('#addEditSection').show();
     };
+
+    $scope.ImageUpload = function (userId) {
+        window.localStorage['userId'] = encodeURIComponent(userId);
+        window.location.href = '/Master/ImageCrop';
+    }
 });
 
 //app.controller('manageUsercontroller', function ($scope, $http) {

@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "ImageCrop";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+<link href="~/Content/crop/image-crop-styles.css" rel="stylesheet" />
+<script>
+    (function () {
+        angular.module('app', ['ImageCropper'])
+
+        .controller('MainController', ['$scope', '$http', function ($scope, $http) {
+            $scope.userId = window.localStorage['userId'];
+            $scope.fileChanged = function (e) {
+                debugger;
+                var files = e.target.files;
+                var fileReader = new FileReader();
+                $scope.fileName = files[0].name;
+                fileReader.readAsDataURL(files[0]);
+                fileReader.onload = function (e) {
+                    debugger;
+                    $scope.imgSrc = this.result;
+                    $scope.$apply();
+                };
+            }
+
+            $scope.clear = function () {
+                $scope.imageCropStep = 1;
+                delete $scope.imgSrc;
+                delete $scope.result;
+                delete $scope.resultBlob;
+            };
+
+            $scope.submit = function () {
+                debugger;
+                var viewModel = {
+                    "UserId": $scope.userId,
+                    "ImageType": $scope.result,
+                    "FileName": $scope.fileName
+                };
+
+                $http.post(
+                    '/Api/MasterApi/ImageUpload',
+                    JSON.stringify(viewModel),
+                    {
+                        headers: { 'Content-Type': 'application/json' }
+                    }
+                ).success(function (data) {
+                    debugger;
+                    localStorage.removeItem('userId');
+                    window.location.href = "/Master/ManageUsers";
+                }).error(function () {
+                    $scope.error.$invalid = "An Error has occured";
+                });
+            };
+
+            $http({
+                method: 'GET',
+                url: '/Api/MasterApi/GetImage',
+                params: {
+                    userId: window.localStorage['userId']
+                }
+            }).success(function (result) {
+                debugger;
+
+                $scope.imageCropStep = 3;
+                $scope.result = result.ImageType;
+            });
+        }]);
+
+    })();
+
+</script>
+
+<script src="~/Content/crop/image-crop.js"></script>
+
+<div class="content-wrapper">
+    <div ng-controller="MainController">
+        <div ng-show="imageCropStep == 1">
+            <br />
+            <input type="file" name="fileInput" id="fileInput" onchange="angular.element(this).scope().fileChanged(event)" />
+        </div>
+        <div ng-show="imageCropStep == 2">
+
+            <image-crop data-height="400"
+                        data-width="400"
+                        data-shape="square"
+                        data-step="imageCropStep"
+                        src="imgSrc"
+                        data-result="result"
+                        data-result-blob="resultBlob"
+                        crop="initCrop"
+                        padding="250"
+                        max-size="1024"></image-crop>
+        </div>
+        <div ng-show="imageCropStep == 2">
+            <br />
+            <button ng-click="clear()">Cancel</button>
+            <button ng-click="initCrop = true">Crop</button>
+        </div>
+        <div ng-show="imageCropStep == 3">
+            <img ng-src="{{result}}" />
+            <br />
+            <button ng-click="clear()">Clear</button>
+            <button ng-click="submit()">Save</button>
+        </div>
+    </div>
+</div>
+

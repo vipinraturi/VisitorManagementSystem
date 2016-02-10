@@ -98,6 +98,10 @@ namespace Evis.VisitorManagement.Web.Controllers
         {
             return View();
         }
+        public ActionResult ImageCrop()
+        {
+            return View();
+        }
 
         public ActionResult FacilityProfile()
         {

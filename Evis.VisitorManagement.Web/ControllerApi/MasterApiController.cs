@@ -13,6 +13,9 @@ using System.Web.Security;
 using System.Linq;
 using System.Net.Http;
 using Evis.VisitorManagement.Common;
+using System;
+using MODI;
+using System.IO;
 
 namespace Evis.VisitorManagement.Web.ControllerApi
 {
@@ -36,7 +39,7 @@ namespace Evis.VisitorManagement.Web.ControllerApi
 
         public async Task<IHttpActionResult> Login([FromBody]LoginViewModel loginViewModel)
         {
-            
+
             var user = await m_accountBO.FindAsync(loginViewModel.UserName, loginViewModel.Password);
 
             if (user != null)
@@ -354,5 +357,37 @@ namespace Evis.VisitorManagement.Web.ControllerApi
         }
 
         #endregion
+
+        public IHttpActionResult ImageUpload([FromBody]FileUpload fileUpload)
+        {
+            if (fileUpload.Id == 0)
+            {
+                fileUpload.ImageContent = Convert.FromBase64String(fileUpload.ImageType.Split(',')[1]);
+                fileUpload.ImageType = fileUpload.ImageType.Split(',')[0];
+                //string base64String = Convert.ToBase64String(fileUpload.Picture);
+                var allBuildings = m_buildingBO.InsertImage(fileUpload);
+                if (allBuildings == null)
+                    return NotFound();
+                return Ok(allBuildings);
+            }
+            else
+            {
+                fileUpload.ImageContent = Convert.FromBase64String(fileUpload.ImageType.Split(',')[1]);
+                fileUpload.ImageType = fileUpload.ImageType.Split(',')[0];
+                var isSuccess = m_buildingBO.UpdateImage(fileUpload);
+                if (isSuccess)
+                    return Ok(fileUpload);
+                return NotFound();
+            }
+        }
+
+        public IHttpActionResult GetImage(string userId)
+        {
+            var imageRecord = m_buildingBO.GetImage(userId);
+            if (imageRecord == null)
+                return NotFound();
+            imageRecord.ImageType = imageRecord.ImageType + ',' + Convert.ToBase64String(imageRecord.ImageContent);
+            return Ok(imageRecord);
+        }
     }
 }
