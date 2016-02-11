@@ -1252,6 +1252,8 @@
     <Content Include="Scripts\Plugin\angular-ui-ieshiv.min.js" />
     <Content Include="Scripts\Plugin\angular-ui.js" />
     <Content Include="Scripts\Plugin\angular-ui.min.js" />
+    <Content Include="Scripts\Plugin\angular-ui\angular-animate.js" />
+    <Content Include="Scripts\Plugin\angular-ui\ui-bootstrap-tpls-1.1.2.js" />
     <Content Include="Scripts\Plugin\angular-ui\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\Plugin\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\Plugin\angular-ui\ui-bootstrap.js" />
@@ -2114,8 +2116,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\Plugin\jquery-2.2.0.min.map" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Master\ManageUsers.cshtml" />

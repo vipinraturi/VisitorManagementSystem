@@ -3,152 +3,89 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>EVIS UAE</title>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
+
     <link rel="stylesheet" href="~/Scripts/bootstrap/css/bootstrap.min.css">
-    
-
-    <!-- Font Awesome -->
-    <script src="~/Scripts/js/lumino.glyphs.js"></script>
-    
     <link rel="stylesheet" href="~/Content/fonts/font-awesome.min.css">
-    <!-- Ionicons -->
     <link rel="stylesheet" href="~/Content/fonts/ionicons.min.css">
-    <!-- Theme style -->
     <link rel="stylesheet" href="~/Scripts/dist/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="~/Scripts/dist/css/skins/_all-skins.min.css">
-    <!-- iCheck -->
     <link rel="stylesheet" href="~/Scripts/plugins/iCheck/flat/blue.css">
-    <!-- Morris chart -->
     <link rel="stylesheet" href="~/Scripts/plugins/morris/morris.css">
-    <!-- jvectormap -->
     <link rel="stylesheet" href="~/Scripts/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-    <!-- Date Picker -->
     <link rel="stylesheet" href="~/Scripts/plugins/datepicker/datepicker3.css">
-    <!-- Daterange picker -->
     <link rel="stylesheet" href="~/Scripts/plugins/daterangepicker/daterangepicker-bs3.css">
-    <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="~/Scripts/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
-    <!--table design-->
-    <!-- CSS Reset -->
-    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/reset.css" media="screen" />
-
-    <!-- Fluid 960 Grid System - CSS framework -->
-    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/grid.css" media="screen" />
-
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/styles.css" media="screen" />
-
-    <!-- WYSIWYG editor stylesheet -->
-    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/jquery.wysiwyg.css" media="screen" />
-
-    <!-- Table sorter stylesheet -->
-    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/tablesorter.css" media="screen" />
-
-    <!-- Thickbox stylesheet -->
-    <link rel="stylesheet" type="text/css" href="~/Content/css-admin/thickbox.css" media="screen" />
-
-    <!-- Themes. Below are several color themes. Uncomment the line of your choice to switch to different color. All styles commented out means blue theme. -->
-    <link rel="stylesheet" type="text/css" href="~/css-admin/theme-blue.css" media="screen" />
-
+    <link rel="stylesheet" href="~/Content/css-admin/reset.css" media="screen" />
+    <link rel="stylesheet" href="~/Content/css-admin/grid.css" media="screen" />
+    <link rel="stylesheet" href="~/Content/css-admin/styles.css" media="screen" />
+    <link rel="stylesheet" href="~/Content/css-admin/jquery.wysiwyg.css" media="screen" />
+    <link rel="stylesheet" href="~/Content/css-admin/tablesorter.css" media="screen" />
+    <link rel="stylesheet" href="~/Content/css-admin/thickbox.css" media="screen" />
+    <link rel="stylesheet" href="~/css-admin/theme-blue.css" media="screen" />
     <link rel="stylesheet" href="~/Content/toastr.min.css">
     <link rel="stylesheet" href="~/Content/toastr-custom.css">
 
-
-
-    <!-- JQuery engine script-->
+    <script src="~/Scripts/js/lumino.glyphs.js"></script>
     <script type="text/javascript" src="~/Content/css-admin/jquery-1.3.2.min.js"></script>
-
-    <!-- JQuery WYSIWYG plugin script -->
     <script type="text/javascript" src="~/Content/css-admin/jquery.wysiwyg.js"></script>
-
-    <!-- JQuery tablesorter plugin script-->
     <script type="text/javascript" src="~/Content/css-admin/jquery.tablesorter.min.js"></script>
-
-    <!-- JQuery pager plugin script for tablesorter tables -->
     <script type="text/javascript" src="~/Content/css-admin/jquery.tablesorter.pager.js"></script>
-
-    <!-- JQuery password strength plugin script -->
     <script type="text/javascript" src="~/Content/css-admin/jquery.pstrength-min.1.2.js"></script>
-
-    <!-- JQuery thickbox plugin script -->
     <script type="text/javascript" src="~/Content/css-admin/thickbox.js"></script>
 
-    @*<script src="~/Content/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/Plugin/angular-ui/ui-bootstrap.js"></script>*@
-    
-    <script src="~/Scripts/Plugin/angular.js"></script>
+    @* TODO Vipin: Its showing error once including angular js directly. Need to fix it  *@
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.1.2.js"></script>
+
+    @*<script src="~/Scripts/Plugin/angular.js"></script>
+    <script src="~/Scripts/Plugin/angular-ui/angular-animate.js"></script>
+    <script src="~/Scripts/Plugin/angular-ui/ui-bootstrap-tpls-1.1.2.js"></script>*@
 
     <script type="text/javascript" src="~/Scripts/Plugin/jquery-2.2.0.min.js"></script>
     <script src="~/Content/toastr.min.js"></script>
     <script type="text/javascript" src="~/Scripts/Application/VMSSystemApp.js"></script>
+    <script src="~/Scripts/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="~/Scripts/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/plugins/morris/morris.min.js"></script>
+    <script src="~/Scripts/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/Scripts/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Scripts/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Scripts/plugins/knob/jquery.knob.js"></script>
+    <script src="~/Scripts/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="~/Scripts/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script src="~/Scripts/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Scripts/plugins/fastclick/fastclick.js"></script>
+    <script src="~/Scripts/dist/js/app.min.js"></script>
+    <script src="~/Scripts/dist/js/demo.js"></script>
 
     <script>
-    jQuery(document).ready(function () {
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "progressBar": false,
-            "positionClass": "toast-custom",
-            "onclick": null,
-            "showDuration": "3000",
-            "hideDuration": "1000",
-            "timeOut": "10000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
-    });
+        jQuery(document).ready(function () {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "progressBar": false,
+                "positionClass": "toast-custom",
+                "onclick": null,
+                "showDuration": "3000",
+                "hideDuration": "1000",
+                "timeOut": "10000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        });
     </script>
-   
-   
-    <style>
-        /* Styles for this demo page */
-        body {
-            font-size: 12px;
-            font-family: Helvetica, Arial;
-            background: white;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
 
-        a {
-            text-decoration: underline;
-            color: blue;
-            cursor: pointer;
-        }
-
-        hr {
-            border: none;
-            height: 1px;
-            width: 80%;
-            background: rgba(0,0,0,.3);
-            margin: 40px auto;
-        }
-
-        .result-datauri {
-            width: 300px;
-            height: 100px;
-            font-size: 11px;
-            line-height: 15px;
-            padding: 5px;
-            border: 1px solid black;
-            clear: both;
-            display: block;
-            margin: 20px auto;
-        }
-    </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-
         <header class="main-header">
             <!-- Logo -->
             <a href="~/Dashboard/Index" class="logo">
@@ -201,7 +138,6 @@
                 </div>
             </nav>
         </header>
-        <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
@@ -213,10 +149,25 @@
                         <div class="pull-left info">
                              <p>Anith RAJ</p>
                              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                         </div>*@
+                         </div>*@<div class="pull-left image">
+                        <img src="~/Scripts/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p></p>
+                        <a href="#"><i class="fa fa-circle text-success"></i></a>
+                    </div>
                 </div>
                 <!-- search form -->
-                <form action="#" method="get" class="sidebar-form">
+                @*<form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>*@<form action="#" method="get" class="sidebar-form">
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Search...">
                         <span class="input-group-btn">
@@ -282,40 +233,5 @@
         </footer>
         <div class="control-sidebar-bg"></div>
     </div>
-    <!-- ./wrapper -->
-    <!-- jQuery 2.1.4 -->
-    <script src="~/Scripts/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-        //$.widget.bridge('uibutton', $.ui.button);
-    </script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="~/Scripts/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Morris.js charts -->
-    <script src="~/Scripts/plugins/morris/morris.min.js"></script>
-    <!-- Sparkline -->
-    <script src="~/Scripts/plugins/sparkline/jquery.sparkline.min.js"></script>
-    <!-- jvectormap -->
-    <script src="~/Scripts/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="~/Scripts/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="~/Scripts/plugins/knob/jquery.knob.js"></script>
-    <!-- daterangepicker -->
-    <script src="~/Scripts/plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- datepicker -->
-    <script src="~/Scripts/plugins/datepicker/bootstrap-datepicker.js"></script>
-    <!-- Bootstrap WYSIHTML5 -->
-    <script src="~/Scripts/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-    <!-- Slimscroll -->
-    <script src="~/Scripts/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="~/Scripts/plugins/fastclick/fastclick.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/Scripts/dist/js/app.min.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    @*<script src="~/Scripts/dist/js/pages/dashboard.js"></script>*@
-    <!-- AdminLTE for demo purposes -->
-    <script src="~/Scripts/dist/js/demo.js"></script>
 </body>
 </html>
