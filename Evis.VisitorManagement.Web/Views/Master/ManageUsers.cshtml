@@ -125,17 +125,23 @@
             <div class="container_12">
                 <div class="module">
                     <div class="module-table-body">
+                        <form class="form-inline" ng-submit="search()" role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control input-sm" ng-model="pagingInfo.search" placeholder="Search...">
+                                <button type="submit" class="btn btn-info btn-sm"><strong>Search</strong></button>
+                            </div>
+                        </form>
                         <form name="manageUserForm" ng-model="manageUser" novalidate>
                             <button style="float:right;margin:5px;" class="btn btn-primary" ng-click="NewUser()">New User</button>
                             <table id="myTable" class="tablesorter">
                                 <thead>
                                     <tr>
                                         <th style="width:5%">#</th>
-                                        <th style="width:15%">Name</th>
-                                        <th style="width:21%">Email Id</th>
-                                        <th style="width:13%">Contact No</th>
-                                        <th style="width:13%">Gender</th>
-                                        <th style="width:13%">Roles</th>
+                                        <th style="width:15%" ng-click="sort('FirstName')">Name</th>
+                                        <th style="width:21%" ng-click="sort('FirstName')">Email Id</th>
+                                        <th style="width:13%" ng-click="sort('FirstName')">Contact No</th>
+                                        <th style="width:13%" ng-click="sort('FirstName')">Gender</th>
+                                        <th style="width:13%" ng-click="sort('FirstName')">Roles</th>
                                         <th style="width:15%"></th>
                                     </tr>
                                 </thead>
@@ -164,22 +170,19 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            currentPageNumber {{manageUser.CurrentPageNumber}}
-                            <ul class="pagination">
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                            </ul>
-                            <pager num-pages="manageUser.TotalPages" current-page="manageUser.CurrentPageNumber"></pager>
-                            <pagination boundary-links="true" total-items="manageUser.TotalPages" items-per-page="manageUser.PageSize" ng-change="pageChanged()"
-                                        ng-model="manageUser.CurrentPageNumber" class="pagination-lg" previous-text="Prev" next-text="Next" first-text="First"
-                                        last-text="Last"></pagination>
 
-                        </form>
+                            pagingInfo.totalItems {{pagingInfo.totalItems}}
+                            pagingInfo.page {{pagingInfo.page}}
+                            pagingInfo.itemsPerPage {{pagingInfo.itemsPerPage}}
+
+                            <uib-pagination total-items="pagingInfo.totalItems" 
+                                            ng-model="pagingInfo.page"
+                                            items-per-page="pagingInfo.itemsPerPage"
+                                            class="pagination-sm" boundary-links="true" ng-change="selectPage(pagingInfo.page)">
+                            </uib-pagination>
+
+                         </form>
                     </div>
-
                 </div>
             </div>
         </div>

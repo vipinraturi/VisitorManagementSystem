@@ -41,62 +41,59 @@
 </div>
 
 <script type="text/javascript">
-        'use strict';
-        angular.module('app', ['ngAnimate', 'ui.bootstrap']);
+    'use strict';
+    angular.module('app', ['ngAnimate', 'ui.bootstrap']);
 
-        angular.module('app').factory('UserService', ['$http',
-         function ($http) {
-             var service = {};
-             service.GetUsers = function (pagingInfo) {
-                 return $http.get('/Api/MasterApi/Get/', { params: pagingInfo });
-             };
-             return service;
-         }]);
+    angular.module('app').controller('Users.HomeController',
+        ['$scope', '$http',
+            function ($scope, $http) {
 
-        angular.module('app').controller('Users.HomeController',
-            ['$scope', 'UserService',
-            function ($scope, UserService) {
                 $scope.pagingInfo = {
-                    page: 1,
-                    itemsPerPage: 2,
-                    sortBy: 'FirstName',
-                    reverse: false,
-                    search: '',
-                    totalItems: 0,
-                };
+                  page: 1,
+                  itemsPerPage: 2,
+                  sortBy: 'FirstName',
+                  reverse: false,
+                  search: '',
+                  totalItems: 0,
+              };
 
-                $scope.search = function () {
-                    $scope.pagingInfo.page = 1;
-                    loadUsers();
-                };
+              $scope.search = function () {
+                  $scope.pagingInfo.page = 1;
+                  loadUsers();
+              };
 
-                $scope.sort = function (sortBy) {
-                    if (sortBy === $scope.pagingInfo.sortBy) {
-                        $scope.pagingInfo.reverse = !$scope.pagingInfo.reverse;
-                    } else {
-                        $scope.pagingInfo.sortBy = sortBy;
-                        $scope.pagingInfo.reverse = false;
-                    }
-                    $scope.pagingInfo.page = 1;
-                    loadUsers();
-                };
+              $scope.sort = function (sortBy) {
+                  if (sortBy === $scope.pagingInfo.sortBy) {
+                      $scope.pagingInfo.reverse = !$scope.pagingInfo.reverse;
+                  } else {
+                      $scope.pagingInfo.sortBy = sortBy;
+                      $scope.pagingInfo.reverse = false;
+                  }
+                  $scope.pagingInfo.page = 1;
+                  loadUsers();
+              };
 
-                $scope.selectPage = function (page) {
-                    console.log(page);
-                    $scope.pagingInfo.page = page;
-                    loadUsers();
-                };
+              $scope.selectPage = function (page) {
+                  console.log(page);
+                  $scope.pagingInfo.page = page;
+                  loadUsers();
+              };
 
-                function loadUsers() {
-                    $scope.users = null;
-                    UserService.GetUsers($scope.pagingInfo).success(function (data) {
-                        $scope.users = data.data;
-                        $scope.pagingInfo.totalItems = data.count;
-                    });
-                }
+              function loadUsers() {
+                  $scope.users = null;
 
-                loadUsers();
-            }]);
+                  $http({
+                      method: 'GET',
+                      url: '/Api/MasterApi/Get/',
+                      params: $scope.pagingInfo,
+                  }).success(function (data) {
+                      $scope.users = data.data;
+                      $scope.pagingInfo.totalItems = data.count;
+                  });
+              }
+
+              loadUsers();
+          }]);
+
 
 </script>
-

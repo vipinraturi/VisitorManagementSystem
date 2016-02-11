@@ -132,6 +132,8 @@ namespace Evis.VisitorManagement.Web.ControllerApi
         {
             var applicationUsers = await m_accountBO.GetAllUsers();
 
+            var totalCount = applicationUsers.Count();
+
             applicationUsers = applicationUsers.ToList().OrderBy(item => item.FirstName).Skip((pagingInformation.CurrentPageNumber - 1) * pagingInformation.PageSize).Take(pagingInformation.PageSize).ToList();
 
             //applicationUsers = applicationUsers.ToList().OrderBy(item => item.FirstName).Skip(0).Take(1).ToList();
@@ -145,8 +147,8 @@ namespace Evis.VisitorManagement.Web.ControllerApi
             userViewModel.CurrentPageNumber = pagingInformation.CurrentPageNumber;
             userViewModel.SortDirection = pagingInformation.SortDirection;
             userViewModel.SortExpression = pagingInformation.SortExpression;
-            userViewModel.TotalPages = pagingInformation.TotalPages;
-            userViewModel.TotalRows = applicationUsers.Count();
+            userViewModel.TotalPages = totalCount;
+            userViewModel.TotalRows = totalCount;
             userViewModel.UsersList = applicationUsers;
 
 
